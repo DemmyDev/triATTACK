@@ -16,6 +16,11 @@ public class ShootingEnemy : MonoBehaviour {
     public GameObject bulletTrailPrefab;
     private Transform firePoint;
 
+    [Range(0f, 2f)]
+    public float shakeIntensity;
+    private ScreenShake shake;
+    public float shakeDuration;
+
     [System.Serializable]
     public class EnemyStats
     {
@@ -23,15 +28,6 @@ public class ShootingEnemy : MonoBehaviour {
     }
 
     public EnemyStats enemyStats = new EnemyStats();
-
-    public void DamageEnemy(int damage)
-    {
-        enemyStats.health -= damage;
-        if (enemyStats.health <= 0)
-        {
-            GameMaster.KillShootingEnemy(this);
-        }
-    }
 
     void Start()
     {
@@ -42,6 +38,11 @@ public class ShootingEnemy : MonoBehaviour {
         if (firePoint == null)
         {
             Debug.LogError("No firepoint found");
+        }
+        shake = Camera.main.GetComponent<ScreenShake>();
+        if (shake == null)
+        {
+            Debug.LogError("No camera found for screenshake");
         }
     }
 
@@ -75,6 +76,16 @@ public class ShootingEnemy : MonoBehaviour {
         else
         {
             timeBtwShots -= Time.deltaTime;
+        }
+    }
+
+    public void DamageEnemy(int damage)
+    {
+        enemyStats.health -= damage;
+        if (enemyStats.health <= 0)
+        {
+            GameMaster.KillShootingEnemy(this);
+            shake.Shake(shakeDuration, shakeIntensity);
         }
     }
 

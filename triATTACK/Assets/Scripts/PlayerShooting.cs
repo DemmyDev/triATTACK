@@ -13,14 +13,19 @@ public class PlayerShooting: MonoBehaviour {
     private Transform firePoint;
     private float timeToFire = 0;
 
+    [Range(0f, 2f)]
+    public float shakeIntensity;
+    private ScreenShake shake;
+    public float shakeDuration;
+
     void Start()
     {
-       
         firePoint = transform.Find("BulletSpawn");
         if (firePoint == null)
         {
             Debug.LogError("No firepoint found");
         }
+        shake = Camera.main.GetComponent<ScreenShake>();
     }
 
     void Update ()
@@ -67,6 +72,7 @@ public class PlayerShooting: MonoBehaviour {
 
     void Effect()
     {
+        shake.Shake(shakeDuration, shakeIntensity);
         Instantiate(bulletTrailPrefab, firePoint.position, firePoint.rotation);
     }
 }

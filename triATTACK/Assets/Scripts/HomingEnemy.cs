@@ -11,6 +11,11 @@ public class HomingEnemy : MonoBehaviour
     private Transform target;
     private float nextTimeToSearch = 0;
 
+    [Range(0f, 2f)]
+    public float shakeIntensity;
+    private ScreenShake shake;
+    public float shakeDuration;
+
     [System.Serializable]
     public class EnemyStats
     {
@@ -19,18 +24,14 @@ public class HomingEnemy : MonoBehaviour
 
     public EnemyStats enemyStats = new EnemyStats();
 
-    public void DamageEnemy(int damage)
-    {
-        enemyStats.health -= damage;
-        if (enemyStats.health <= 0)
-        {
-            GameMaster.KillHomingEnemy(this);
-        }
-    }
-
     void Start()
     {
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        shake = Camera.main.GetComponent<ScreenShake>();
+        if (shake == null)
+        {
+            Debug.LogError("No camera found for screenshake");
+        }
     }
 
     void Update()
@@ -48,7 +49,16 @@ public class HomingEnemy : MonoBehaviour
         }        
     }
 
-    
+    public void DamageEnemy(int damage)
+    {
+        enemyStats.health -= damage;
+        if (enemyStats.health <= 0)
+        {
+            GameMaster.KillHomingEnemy(this);
+            shake.Shake(shakeDuration, shakeIntensity);
+        }
+    }
+
     void FindPlayer()
     {
         if (nextTimeToSearch <= Time.time)

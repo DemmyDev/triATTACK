@@ -32,7 +32,7 @@ public class GameMaster : MonoBehaviour {
     {
         //Destroy(player.gameObject);
         //gm.StartCoroutine(gm.RespawnPlayer());
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene("triATTACK");
     }
 
     public static void KillShootingEnemy(ShootingEnemy enemy)

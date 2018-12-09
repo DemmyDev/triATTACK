@@ -270,6 +270,8 @@ MonoBehaviour:
     m_Bits: 7168
   bulletTrailPrefab: {fileID: 4771473845291818, guid: 59546ce8e44d8474a94289b5f33fd4bd,
     type: 2}
+  shakeIntensity: 0.1
+  shakeDuration: 0.1
 --- !u!114 &114510370346152322
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -318,6 +320,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ab6e1f9858005845857403792ff7041, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shakeIntensity: 1
+  shakeDuration: 0.5
   playerStats:
     health: 1
 --- !u!212 &212706321325886746

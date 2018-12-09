@@ -81,6 +81,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 16
   enemyDamage: 1
+  shakeIntensity: 0.5
+  shakeDuration: 0.2
   enemyStats:
     health: 1
 --- !u!114 &114681380315842094
