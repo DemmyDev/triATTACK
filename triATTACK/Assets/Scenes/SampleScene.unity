@@ -207,10 +207,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 361e8716bc9f5c74ca11933deb647bd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerPrefab: {fileID: 4081753317543572, guid: 3b7af739aea3aa34a8e464c11d2d032c,
-    type: 2}
-  spawnPoint: {fileID: 713931793}
-  spawnDelay: 2
 --- !u!4 &414285924
 Transform:
   m_ObjectHideFlags: 0
@@ -414,14 +410,6 @@ Prefab:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 6200000, guid: 97975cbf86816dc44aa8ac344a07f2ba, type: 2}
-    - target: {fileID: 1346345105108084, guid: 3b7af739aea3aa34a8e464c11d2d032c, type: 2}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1514435992395282, guid: 3b7af739aea3aa34a8e464c11d2d032c, type: 2}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3b7af739aea3aa34a8e464c11d2d032c, type: 2}
   m_IsPrefabAsset: 0

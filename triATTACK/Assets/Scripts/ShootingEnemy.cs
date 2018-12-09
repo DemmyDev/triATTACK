@@ -11,6 +11,11 @@ public class ShootingEnemy : MonoBehaviour {
     private Transform target;
     private float nextTimeToSearch = 0;
 
+    private float timeBtwShots;
+    public float startTimeBtwShots;
+    public GameObject bulletTrailPrefab;
+    private Transform firePoint;
+
     [System.Serializable]
     public class EnemyStats
     {
@@ -31,6 +36,13 @@ public class ShootingEnemy : MonoBehaviour {
     void Start()
     {
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        timeBtwShots = startTimeBtwShots;
+
+        firePoint = transform.Find("BulletSpawn");
+        if (firePoint == null)
+        {
+            Debug.LogError("No firepoint found");
+        }
     }
 
     void Update()
@@ -53,6 +65,16 @@ public class ShootingEnemy : MonoBehaviour {
         else if (Vector2.Distance(transform.position, target.position) < retreatDistance)
         {
             transform.position = Vector2.MoveTowards(transform.position, target.position, -speed * Time.deltaTime);
+        }
+
+        if (timeBtwShots <= 0)
+        {
+            Instantiate(bulletTrailPrefab, firePoint.position, firePoint.rotation);
+            timeBtwShots = startTimeBtwShots;
+        }
+        else
+        {
+            timeBtwShots -= Time.deltaTime;
         }
     }
 

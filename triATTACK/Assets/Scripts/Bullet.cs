@@ -34,7 +34,5 @@ public class Bullet : MonoBehaviour
             Debug.Log("We did " + bulletDamage + " damage.");
             Destroy(this);
         }
-        
-      
     }
 }

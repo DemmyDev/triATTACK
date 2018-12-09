@@ -19,6 +19,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4515473265859972}
+  - component: {fileID: 114681380315842094}
   - component: {fileID: 212411215879289300}
   - component: {fileID: 114427737791335616}
   - component: {fileID: 61924450313456374}
@@ -82,6 +83,18 @@ MonoBehaviour:
   enemyDamage: 1
   enemyStats:
     health: 1
+--- !u!114 &114681380315842094
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1133979261722812}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 631fc5aa93f952e4aa7d93e126a93c4c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationOffset: 0
 --- !u!212 &212411215879289300
 SpriteRenderer:
   m_ObjectHideFlags: 1
