@@ -81,7 +81,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 16
   enemyDamage: 1
-  shakeIntensity: 0.5
+  shakeIntensity: 0.6
   shakeDuration: 0.2
   enemyStats:
     health: 1
@@ -132,8 +132,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: c7e516cee03e3fd4ba06e6571ad3ddc5, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: 21300000, guid: dd360cb7efb027141b081ac4b8c03f3f, type: 3}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
