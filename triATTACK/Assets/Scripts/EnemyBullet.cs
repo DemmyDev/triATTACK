@@ -9,7 +9,8 @@ public class EnemyBullet : MonoBehaviour {
 
 	void Start ()
     {
-        
+        GameObject bullet = this.gameObject;
+        bullet.transform.eulerAngles = new Vector3(bullet.transform.eulerAngles.x, bullet.transform.eulerAngles.y, bullet.transform.eulerAngles.z + Random.Range(-8f, 8f));
 	}
 	
 	void Update ()
