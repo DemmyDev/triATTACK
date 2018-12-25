@@ -9,12 +9,14 @@ public class HomingEnemy : MonoBehaviour
     public int enemyDamage;
 
     private Transform target;
-    private float nextTimeToSearch = 0;
 
     [Range(0f, 2f)]
     public float shakeIntensity;
     private ScreenShake shake;
     public float shakeDuration;
+
+    private ScoreText scoreText;
+    public int addScoreDeath;
 
     [System.Serializable]
     public class EnemyStats
@@ -27,6 +29,8 @@ public class HomingEnemy : MonoBehaviour
     void Start()
     {
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        GameObject text = GameObject.Find("ScoreText");
+        scoreText = text.GetComponent<ScoreText>();
         shake = Camera.main.GetComponent<ScreenShake>();
         if (shake == null)
         {
@@ -37,12 +41,7 @@ public class HomingEnemy : MonoBehaviour
     void Update()
     {
         
-        if (target == null)
-        {
-            FindPlayer();
-            return;
-        }
-        else
+        if (target != null)
         {
             transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
 
@@ -54,21 +53,9 @@ public class HomingEnemy : MonoBehaviour
         enemyStats.health -= damage;
         if (enemyStats.health <= 0)
         {
-            GameMaster.KillHomingEnemy(this);
+            scoreText.SetScore(addScoreDeath);
+            Destroy(gameObject);
             shake.Shake(shakeDuration, shakeIntensity);
-        }
-    }
-
-    void FindPlayer()
-    {
-        if (nextTimeToSearch <= Time.time)
-        {
-            GameObject searchResult = GameObject.FindGameObjectWithTag("Player");
-            if (searchResult != null)
-            {
-                target = searchResult.transform;
-            }
-            nextTimeToSearch = Time.time + 0.5f;
         }
     }
 
@@ -78,6 +65,8 @@ public class HomingEnemy : MonoBehaviour
         {
             Player player = other.gameObject.GetComponent<Player>();
             player.DamagePlayer(enemyDamage);
+            shake.Shake(shakeDuration, shakeIntensity * 2);
+            Destroy(gameObject);
         }
     }
 }

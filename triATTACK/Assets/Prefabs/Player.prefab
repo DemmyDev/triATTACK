@@ -73,7 +73,7 @@ Transform:
   m_GameObject: {fileID: 1656243668492558}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.4, y: 0.4, z: 1}
+  m_LocalScale: {x: 0.4, y: 0.45, z: 1}
   m_Children:
   - {fileID: 4545062620487238}
   - {fileID: 4367856041769592}
@@ -201,7 +201,7 @@ TrailRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.40131998
+        value: 0.34652224
         inSlope: -0.37611336
         outSlope: -0.37611336
         tangentMode: 0
@@ -326,7 +326,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerStats:
-    health: 1
+    health: 3
 --- !u!212 &212706321325886746
 SpriteRenderer:
   m_ObjectHideFlags: 1
