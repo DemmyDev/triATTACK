@@ -325,6 +325,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ab6e1f9858005845857403792ff7041, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathText: {fileID: 0}
+  scoreText: {fileID: 0}
   playerStats:
     health: 3
 --- !u!212 &212706321325886746

@@ -5,6 +5,7 @@ using UnityEngine;
 public class Player : MonoBehaviour {
 
     public GameObject deathText;
+    public GameObject scoreText;
 
     [System.Serializable]
     public class PlayerStats
@@ -42,7 +43,9 @@ public class Player : MonoBehaviour {
             }
             
             DeathText dText = deathText.GetComponent<DeathText>();
+            ScoreText sText = scoreText.GetComponent<ScoreText>();
             dText.EnableText();
+            sText.MoveText();
             gameObject.SetActive(false);
         }
     }
