@@ -65,7 +65,6 @@ public class HomingEnemy : MonoBehaviour
         {
             Player player = other.gameObject.GetComponent<Player>();
             player.DamagePlayer(enemyDamage);
-            shake.Shake(shakeDuration, shakeIntensity * 2);
             Destroy(gameObject);
         }
     }

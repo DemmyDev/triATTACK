@@ -20,6 +20,9 @@ public class ProjectileEnemy : MonoBehaviour {
     private ScoreText scoreText;
     public int addScoreDeath;
 
+    public float screenX;
+    public float screenY;
+
     [System.Serializable]
     public class EnemyStats
     {
@@ -45,6 +48,26 @@ public class ProjectileEnemy : MonoBehaviour {
     {
         transform.position += normDirection * moveSpeed * Time.deltaTime;
         transform.Rotate(Vector3.forward * rotateSpeed * Time.deltaTime);
+
+        Vector2 newPos = transform.position;
+
+        if (transform.position.x > screenX)
+        {
+            newPos.x = -screenX;
+        }
+        if (transform.position.x < -screenX)
+        {
+            newPos.x = screenX;
+        }
+        if (transform.position.y > screenY)
+        {
+            newPos.y = -screenY;
+        }
+        if (transform.position.y < -screenY)
+        {
+            newPos.y = screenY;
+        }
+        transform.position = newPos;
 	}
 
     public void DamageEnemy(int damage)
@@ -58,7 +81,7 @@ public class ProjectileEnemy : MonoBehaviour {
         }
         else if (enemyStats.health > 0)
         {
-            shake.Shake(shakeDuration / 2, shakeIntensity / 4);
+            shake.Shake(shakeDuration, shakeIntensity / 4);
         }
     }
 
@@ -68,12 +91,7 @@ public class ProjectileEnemy : MonoBehaviour {
         {
             Player player = other.gameObject.GetComponent<Player>();
             player.DamagePlayer(enemyDamage);
-            shake.Shake(shakeDuration, shakeIntensity * 2);
-            Destroy(gameObject);
-        }
-
-        if (other.CompareTag("ObjectDestroy"))
-        {
+            shake.Shake(shakeDuration * 2, shakeIntensity * 1.2f);
             Destroy(gameObject);
         }
     }

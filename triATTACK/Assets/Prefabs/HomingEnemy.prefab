@@ -19,9 +19,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4515473265859972}
-  - component: {fileID: 114681380315842094}
   - component: {fileID: 212411215879289300}
   - component: {fileID: 114427737791335616}
+  - component: {fileID: 114681380315842094}
   - component: {fileID: 61924450313456374}
   m_Layer: 0
   m_Name: HomingEnemy
@@ -82,7 +82,7 @@ MonoBehaviour:
   speed: 16
   enemyDamage: 1
   shakeIntensity: 0.6
-  shakeDuration: 0.3
+  shakeDuration: 0.25
   addScoreDeath: 100
   enemyStats:
     health: 1

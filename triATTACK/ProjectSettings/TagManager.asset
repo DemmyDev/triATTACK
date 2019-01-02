@@ -9,6 +9,7 @@ TagManager:
   - GameMaster
   - ObjectDestroy
   - Bullet
+  - Particle
   layers:
   - Default
   - TransparentFX

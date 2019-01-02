@@ -20,8 +20,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4083169613611084}
   - component: {fileID: 212051866473239082}
-  - component: {fileID: 114991378665465102}
   - component: {fileID: 114121591035299980}
+  - component: {fileID: 114991378665465102}
   - component: {fileID: 61532386676160498}
   m_Layer: 0
   m_Name: ShootingEnemy
@@ -111,11 +111,11 @@ MonoBehaviour:
   speed: 8
   stoppingDistance: 12
   retreatDistance: 10
-  startTimeBtwShots: 1.25
+  startTimeBtwShots: 0.8
   bulletTrailPrefab: {fileID: 1556493256478004, guid: 0f620f48ec5a2a84f8840b51950be3e0,
     type: 2}
   shakeIntensity: 0.6
-  shakeDuration: 0.3
+  shakeDuration: 0.25
   addScoreDeath: 200
   enemyStats:
     health: 2

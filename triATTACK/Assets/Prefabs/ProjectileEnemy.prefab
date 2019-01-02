@@ -37,7 +37,7 @@ Transform:
   m_GameObject: {fileID: 1594967658957982}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 2.5, y: 2.5, z: 2.5}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -85,14 +85,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c429e5768105714583bfbee1cc8e6bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 7.5
+  moveSpeed: 8
   rotateSpeed: 60
   enemyDamage: 1
-  shakeIntensity: 0.6
-  shakeDuration: 0.3
+  shakeIntensity: 1
+  shakeDuration: 0.25
   addScoreDeath: 500
+  screenX: 40
+  screenY: 25
   enemyStats:
-    health: 6
+    health: 5
 --- !u!212 &212257484576552068
 SpriteRenderer:
   m_ObjectHideFlags: 1

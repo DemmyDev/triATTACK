@@ -90,7 +90,7 @@ public class ShootingEnemy : MonoBehaviour {
         }
         else if (enemyStats.health > 0)
         {
-            shake.Shake(shakeDuration / 2, shakeIntensity / 4);
+            shake.Shake(shakeDuration, shakeIntensity / 4);
         }
     }
 }

@@ -21,16 +21,14 @@ public class EnemySpawner : MonoBehaviour {
 	// Each frame
 	void Update ()
     {
-        // If the time between spawns reaches 0
         if (timeBtwSpawns <= 0)
         {
-            SpawnEnemy(); // Call SpawnEnemy function
-            timeBtwSpawns = startTimeBtwSpawns; // Reset time between spawns back to original variable
+            SpawnEnemy(); 
+            timeBtwSpawns = startTimeBtwSpawns; 
         }
-        // If not
         else
         {
-            timeBtwSpawns -= Time.deltaTime; // Count down time between spawns
+            timeBtwSpawns -= Time.deltaTime;
         }
 	}
 

@@ -194,3 +194,9 @@ MonoBehaviour:
   bulletSpeed: 75
   bulletDamage: 1
   addScoreEnemyHit: 5
+  projectileParticlePrefab: {fileID: 4539848907246798, guid: 47fcb877b85818a44a95b49322783080,
+    type: 2}
+  shootingParticlePrefab: {fileID: 4993422432062980, guid: d19ccc1532c339d4f8a27e8a186a4501,
+    type: 2}
+  homingParticlePrefab: {fileID: 4313504409584924, guid: 7adbae7371eae9b48941a615262f8a52,
+    type: 2}

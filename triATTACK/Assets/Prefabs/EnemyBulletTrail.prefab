@@ -194,4 +194,4 @@ MonoBehaviour:
   bulletSpeed: 15
   bulletDamage: 1
   shakeIntensity: 1.2
-  shakeDuration: 0.3
+  shakeDuration: 0.5
