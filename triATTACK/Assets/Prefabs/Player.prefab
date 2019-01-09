@@ -42,7 +42,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1656243668492558
 GameObject:
   m_ObjectHideFlags: 0
@@ -288,8 +288,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 071ddd4b5eb76d2448282ad05dac80ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startTimeBtwSpawns: 0.01
-  echo: {fileID: 1619620942886218, guid: 0320d1ce26cace948a5cb035c15a55b0, type: 2}
+  startTimeBtwSpawns: 0.1
+  echoPrefab: {fileID: 1619620942886218, guid: 0320d1ce26cace948a5cb035c15a55b0, type: 2}
 --- !u!114 &114722053802287046
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -338,6 +338,8 @@ MonoBehaviour:
   - {fileID: 0}
   fullTri: {fileID: 21300000, guid: d29160672bd1c0447baa0a7d1311da28, type: 3}
   emptyTri: {fileID: 21300000, guid: f17abc275fd89df4393492a360b1d971, type: 3}
+  screenX: 36
+  screenY: 20.6
   shakeIntensity: 0.5
   shakeDuration: 0.25
 --- !u!212 &212706321325886746

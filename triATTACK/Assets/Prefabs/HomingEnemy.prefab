@@ -84,6 +84,8 @@ MonoBehaviour:
   shakeIntensity: 0.6
   shakeDuration: 0.25
   addScoreDeath: 100
+  homingParticlePrefab: {fileID: 4313504409584924, guid: 7adbae7371eae9b48941a615262f8a52,
+    type: 2}
   enemyStats:
     health: 1
 --- !u!114 &114681380315842094

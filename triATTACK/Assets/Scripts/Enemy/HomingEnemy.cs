@@ -18,6 +18,8 @@ public class HomingEnemy : MonoBehaviour
     private ScoreText scoreText;
     public int addScoreDeath;
 
+    public Transform homingParticlePrefab;
+
     [System.Serializable]
     public class EnemyStats
     {
@@ -63,6 +65,7 @@ public class HomingEnemy : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            Instantiate(homingParticlePrefab, gameObject.transform.position, gameObject.transform.rotation);
             Player player = other.gameObject.GetComponent<Player>();
             player.DamagePlayer(enemyDamage);
             Destroy(gameObject);

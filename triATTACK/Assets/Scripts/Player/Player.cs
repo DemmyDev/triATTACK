@@ -18,10 +18,15 @@ public class Player : MonoBehaviour {
     public Sprite fullTri;
     public Sprite emptyTri;
 
+    public float screenX;
+    public float screenY;
+
     [Range(0f, 2f)]
     public float shakeIntensity;
     private ScreenShake shake;
     public float shakeDuration;
+
+    public static bool isInvincible = false;
 
     private void Start()
     {
@@ -59,6 +64,28 @@ public class Player : MonoBehaviour {
                 tris[i].enabled = false;
             }
         }
+
+        
+        Vector2 newPos = transform.position;
+
+        if (transform.position.x > screenX)
+        {
+            newPos.x = -screenX;
+        }
+        if (transform.position.x < -screenX)
+        {
+            newPos.x = screenX;
+        }
+        if (transform.position.y > screenY)
+        {
+            newPos.y = -screenY;
+        }
+        if (transform.position.y < -screenY)
+        {
+            newPos.y = screenY;
+        }
+        transform.position = newPos;
+        
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -71,40 +98,51 @@ public class Player : MonoBehaviour {
 
     public void DamagePlayer(int damage)
     {
-        Instantiate(playerParticlePrefab, gameObject.transform.position, gameObject.transform.rotation);
-        shake.Shake(shakeDuration, shakeIntensity);
-
-        health -= damage;
-        if (health <= 0)
+        if (!isInvincible)
         {
-            GameObject.Find("GameMaster").GetComponent<EnemySpawner>().enabled = false;
+            Instantiate(playerParticlePrefab, gameObject.transform.position, gameObject.transform.rotation);
+            shake.Shake(shakeDuration, shakeIntensity);
 
-            GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
-            foreach(GameObject enemy in enemies)
+            health -= damage;
+            if (health <= 0)
             {
-                GameObject.Destroy(enemy);
+                GameObject.Find("GameMaster").GetComponent<EnemySpawner>().enabled = false;
+
+                GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+                foreach (GameObject enemy in enemies)
+                {
+                    GameObject.Destroy(enemy);
+                }
+
+                GameObject[] bullets = GameObject.FindGameObjectsWithTag("Bullet");
+                foreach (GameObject bullet in bullets)
+                {
+                    GameObject.Destroy(bullet);
+                }
+
+                GameObject[] particles = GameObject.FindGameObjectsWithTag("Particle");
+                foreach (GameObject particle in particles)
+                {
+                    GameObject.Destroy(particle);
+                }
+
+                DeathText dText = deathText.GetComponent<DeathText>();
+                ScoreText sText = scoreText.GetComponent<ScoreText>();
+                HealthUI hUI = healthUI.GetComponent<HealthUI>();
+                hUI.DisableUI();
+                dText.EnableText();
+                sText.MoveText();
+                gameObject.SetActive(false);
             }
 
-            GameObject[] bullets = GameObject.FindGameObjectsWithTag("Bullet");
-            foreach (GameObject bullet in bullets)
-            {
-                GameObject.Destroy(bullet);
-            }
-
-            GameObject[] particles = GameObject.FindGameObjectsWithTag("Particle");
-            foreach (GameObject particle in particles)
-            {
-                GameObject.Destroy(particle);
-            }
-            
-            DeathText dText = deathText.GetComponent<DeathText>();
-            ScoreText sText = scoreText.GetComponent<ScoreText>();
-            HealthUI hUI = healthUI.GetComponent<HealthUI>();
-            hUI.DisableUI();
-            dText.EnableText();
-            sText.MoveText();
-            gameObject.SetActive(false);
+            isInvincible = true;
+            Invoke("EndInvincibility", 1);
         }
+    }
+
+    void EndInvincibility()
+    {
+        isInvincible = false;
     }
 	
 }

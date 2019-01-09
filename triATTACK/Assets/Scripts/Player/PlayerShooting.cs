@@ -30,19 +30,22 @@ public class PlayerShooting: MonoBehaviour {
 
     void Update ()
     {
-        if (fireRate == 0)
+        if (!PauseMenu.isPaused)
         {
-            if (Input.GetMouseButtonDown(0))
+            if (fireRate == 0)
             {
-                Shoot();
+                if (Input.GetMouseButtonDown(0))
+                {
+                    Shoot();
+                }
             }
-        }
-        else
-        {
-            if (Input.GetMouseButton(0) && Time.time > timeToFire)
+            else
             {
-                timeToFire = Time.time + 1/fireRate;
-                Shoot();
+                if (Input.GetMouseButton(0) && Time.time > timeToFire)
+                {
+                    timeToFire = Time.time + 1 / fireRate;
+                    Shoot();
+                }
             }
         }
 	}
