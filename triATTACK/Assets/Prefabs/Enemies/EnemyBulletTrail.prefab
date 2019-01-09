@@ -193,5 +193,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletSpeed: 15
   bulletDamage: 1
-  shakeIntensity: 1.2
-  shakeDuration: 0.5

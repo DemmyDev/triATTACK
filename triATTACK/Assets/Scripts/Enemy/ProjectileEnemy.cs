@@ -23,7 +23,7 @@ public class ProjectileEnemy : MonoBehaviour {
     public float screenX;
     public float screenY;
 
-    public Transform projectileParticlePrefab;
+    public Transform projectileDmgParticlePrefab;
 
     [System.Serializable]
     public class EnemyStats
@@ -91,7 +91,8 @@ public class ProjectileEnemy : MonoBehaviour {
     {
         if (other.CompareTag("Player"))
         {
-            Instantiate(projectileParticlePrefab, gameObject.transform.position, gameObject.transform.rotation);
+            Instantiate(projectileDmgParticlePrefab, gameObject.transform.position, gameObject.transform.rotation);
+            
             Player player = other.gameObject.GetComponent<Player>();
             player.DamagePlayer(enemyDamage);
             shake.Shake(shakeDuration * 2, shakeIntensity * 1.2f);

@@ -10,9 +10,11 @@ public class Bullet : MonoBehaviour
     private ScoreText scoreText;
     public int addScoreEnemyHit;
 
-    public Transform projectileParticlePrefab;
-    public Transform shootingParticlePrefab;
-    public Transform homingParticlePrefab;
+    public Transform projectileDmgParticlePrefab;
+    public Transform shootingDmgParticlePrefab;
+    public Transform homingDeathParticlePrefab;
+    public Transform projectileDeathParticlePrefab;
+    public Transform shootingDeathParticlePrefab;
 
     void Start()
     {
@@ -36,23 +38,23 @@ public class Bullet : MonoBehaviour
             if (homingEnemy)
             {
                 homingEnemy.DamageEnemy(bulletDamage);
-                Instantiate(homingParticlePrefab, gameObject.transform.position, gameObject.transform.rotation);
+                Instantiate(homingDeathParticlePrefab, gameObject.transform.position, gameObject.transform.rotation);
             }
             else if (shootingEnemy)
             {
                 shootingEnemy.DamageEnemy(bulletDamage);
-                Instantiate(shootingParticlePrefab, gameObject.transform.position, gameObject.transform.rotation);
+                Instantiate(shootingDmgParticlePrefab, gameObject.transform.position, gameObject.transform.rotation);
+                
             }
             else if (projectileEnemy)
             {
                 projectileEnemy.DamageEnemy(bulletDamage);
-                Instantiate(projectileParticlePrefab, gameObject.transform.position, gameObject.transform.rotation);
+                Instantiate(projectileDmgParticlePrefab, gameObject.transform.position, gameObject.transform.rotation);
             }
 
             scoreText.SetScore(addScoreEnemyHit);
 
             Destroy(gameObject);
-
         }
         else if (other.CompareTag("ObjectDestroy"))
         {
