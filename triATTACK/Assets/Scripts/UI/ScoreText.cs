@@ -29,5 +29,6 @@ public class ScoreText : MonoBehaviour {
         rectTransform.anchoredPosition = new Vector3(0f, -10f, 0f);
         scoreText.alignment = TextAnchor.MiddleCenter;
         scoreText.color = new Color(255f, 255f, 255f);
+        scoreText.fontSize = 28;
     }
 }

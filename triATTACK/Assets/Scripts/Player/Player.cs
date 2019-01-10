@@ -27,9 +27,13 @@ public class Player : MonoBehaviour {
     public float shakeDuration;
 
     public static bool isInvincible = false;
+    private Animation anim;
+    private SpriteRenderer sprite;
 
     private void Start()
     {
+        anim = GetComponent<Animation>();
+        sprite = GetComponent<SpriteRenderer>();
         shake = Camera.main.GetComponent<ScreenShake>();
         if (shake == null)
         {
@@ -135,14 +139,18 @@ public class Player : MonoBehaviour {
                 gameObject.SetActive(false);
             }
 
+            anim.enabled = true;
             isInvincible = true;
             Invoke("EndInvincibility", 1);
+            
         }
     }
 
     void EndInvincibility()
     {
         isInvincible = false;
+        anim.enabled = false;
+        sprite.enabled = true;
     }
 	
 }
