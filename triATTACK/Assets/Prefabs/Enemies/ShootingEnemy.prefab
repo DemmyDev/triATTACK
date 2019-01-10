@@ -114,6 +114,10 @@ MonoBehaviour:
   startTimeBtwShots: 0.8
   bulletTrailPrefab: {fileID: 1556493256478004, guid: 0f620f48ec5a2a84f8840b51950be3e0,
     type: 2}
+  deathParticlePrefab: {fileID: 4675210404812272, guid: e2f83a310b0c9b94ea601219e3d90107,
+    type: 2}
+  dmgParticlePrefab: {fileID: 4993422432062980, guid: d19ccc1532c339d4f8a27e8a186a4501,
+    type: 2}
   shakeIntensity: 0.6
   shakeDuration: 0.25
   addScoreDeath: 200

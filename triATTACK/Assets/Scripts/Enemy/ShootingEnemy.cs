@@ -15,6 +15,9 @@ public class ShootingEnemy : MonoBehaviour {
     public GameObject bulletTrailPrefab;
     private Transform firePoint;
 
+    public Transform deathParticlePrefab;
+    public Transform dmgParticlePrefab;
+
     [Range(0f, 2f)]
     public float shakeIntensity;
     private ScreenShake shake;
@@ -79,17 +82,19 @@ public class ShootingEnemy : MonoBehaviour {
         }
     }
 
-    public void DamageEnemy(int damage)
+    public void DamageEnemy(int damage, Vector3 bulletPos, Quaternion bulletRot)
     {
         enemyStats.health -= damage;
         if (enemyStats.health <= 0)
         {
+            Instantiate(deathParticlePrefab, gameObject.transform.position, gameObject.transform.rotation);
             scoreText.SetScore(addScoreDeath);
             Destroy(gameObject);
             shake.Shake(shakeDuration, shakeIntensity);
         }
         else if (enemyStats.health > 0)
         {
+            Instantiate(dmgParticlePrefab, bulletPos, bulletRot);
             shake.Shake(shakeDuration, shakeIntensity / 4);
         }
     }

@@ -12,6 +12,9 @@ public class ProjectileEnemy : MonoBehaviour {
     private Transform target;
     private Vector3 normDirection;
 
+    public Transform deathParticlePrefab;
+    public Transform dmgParticlePrefab;
+
     [Range(0f, 2f)]
     public float shakeIntensity;
     private ScreenShake shake;
@@ -22,8 +25,6 @@ public class ProjectileEnemy : MonoBehaviour {
 
     public float screenX;
     public float screenY;
-
-    public Transform projectileDmgParticlePrefab;
 
     [System.Serializable]
     public class EnemyStats
@@ -72,17 +73,19 @@ public class ProjectileEnemy : MonoBehaviour {
         transform.position = newPos;
 	}
 
-    public void DamageEnemy(int damage)
+    public void DamageEnemy(int damage, Vector3 bulletPos, Quaternion bulletRot)
     {
         enemyStats.health -= damage;
         if (enemyStats.health <= 0)
         {
+            Instantiate(deathParticlePrefab, gameObject.transform.position, gameObject.transform.rotation);
             scoreText.SetScore(addScoreDeath);
             Destroy(gameObject);
             shake.Shake(shakeDuration, shakeIntensity);
         }
         else if (enemyStats.health > 0)
         {
+            Instantiate(dmgParticlePrefab, bulletPos, bulletRot);
             shake.Shake(shakeDuration, shakeIntensity / 4);
         }
     }
@@ -91,7 +94,7 @@ public class ProjectileEnemy : MonoBehaviour {
     {
         if (other.CompareTag("Player"))
         {
-            Instantiate(projectileDmgParticlePrefab, gameObject.transform.position, gameObject.transform.rotation);
+            Instantiate(deathParticlePrefab, gameObject.transform.position, gameObject.transform.rotation);
             
             Player player = other.gameObject.GetComponent<Player>();
             player.DamagePlayer(enemyDamage);
