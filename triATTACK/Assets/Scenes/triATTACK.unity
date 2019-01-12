@@ -925,11 +925,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 647972950}
-  - component: {fileID: 647972951}
   - component: {fileID: 647972949}
   - component: {fileID: 647972948}
   - component: {fileID: 647972947}
   - component: {fileID: 647972946}
+  - component: {fileID: 647972951}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1039,9 +1039,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   displacementMap: {fileID: 0}
   Shader: {fileID: 4800000, guid: f89228c7ea691594eb4e467ddc351820, type: 3}
-  intensity: 2.5
-  flipIntensity: 2.5
-  colorIntensity: 2.5
+  intensity: 3
+  flipIntensity: 3
+  colorIntensity: 3
 --- !u!1 &652492809
 GameObject:
   m_ObjectHideFlags: 0

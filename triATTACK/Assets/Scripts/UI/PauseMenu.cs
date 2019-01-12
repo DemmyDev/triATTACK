@@ -8,9 +8,15 @@ public class PauseMenu : MonoBehaviour {
     public static bool isPaused = false;
 
     public GameObject pauseMenuUI;
-	
-	// Update is called once per frame
-	void Update ()
+
+    private GlitchEffect glitch;
+
+    private void Start()
+    {
+        glitch = Camera.main.GetComponent<GlitchEffect>();
+    }
+
+    void Update ()
     {
 		if (Input.GetKeyDown(KeyCode.Escape))
         {
@@ -28,8 +34,11 @@ public class PauseMenu : MonoBehaviour {
     public void Resume()
     {
         pauseMenuUI.SetActive(false);
+        glitch.enabled = false;
+        SceneManager.LoadScene(1);
         Time.timeScale = 1f;
         isPaused = false;
+        Debug.Log("resume");
     }
 
     void Pause()
@@ -46,8 +55,11 @@ public class PauseMenu : MonoBehaviour {
 
     public void RestartGame()
     {
-        SceneManager.LoadScene(1);
+        pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
-        isPaused = false;
+        glitch.enabled = true;
+        GameMaster gm = GameObject.FindGameObjectWithTag("GameMaster").GetComponent<GameMaster>();
+        gm.DisableObjectScripts();
+        Invoke("Resume", 1f);
     }
 }

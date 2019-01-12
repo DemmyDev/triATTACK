@@ -19,4 +19,61 @@ public class GameMaster : MonoBehaviour {
     {
         SceneManager.LoadScene("triATTACK");
     }
+
+    public void DisableObjectScripts()
+    {
+        gameObject.GetComponent<EnemySpawner>().enabled = false;
+
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        foreach (GameObject enemy in enemies)
+        {
+            if (enemy.name == "HomingEnemy(Clone)")
+            {
+                enemy.GetComponent<HomingEnemy>().enabled = false;
+                enemy.GetComponent<CircleCollider2D>().enabled = false;
+            }
+            else if(enemy.name == "ShootingEnemy(Clone)")
+            {
+                enemy.GetComponent<ShootingEnemy>().enabled = false;
+                enemy.GetComponent<BoxCollider2D>().enabled = false;
+            }
+            else if (enemy.name == "ProjectileEnemy(Clone)")
+            {
+                enemy.GetComponent<ProjectileEnemy>().enabled = false;
+                enemy.GetComponent<PolygonCollider2D>().enabled = false;
+            }
+        }
+
+        GameObject[] bullets = GameObject.FindGameObjectsWithTag("Bullet");
+        foreach (GameObject bullet in bullets)
+        {
+            Destroy(bullet);
+        }
+
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player != null)
+        {
+            player.GetComponent<PlayerMovement>().enabled = false;
+            player.GetComponent<Player>().enabled = false;
+            player.GetComponent<PlayerShooting>().enabled = false;
+        }
+    }
+
+
+    public void DeleteObjectsOnPlayerDeath()
+    {
+        gameObject.GetComponent<EnemySpawner>().enabled = false;
+
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        foreach (GameObject enemy in enemies)
+        {
+            GameObject.Destroy(enemy);
+        }
+
+        GameObject[] bullets = GameObject.FindGameObjectsWithTag("Bullet");
+        foreach (GameObject bullet in bullets)
+        {
+            GameObject.Destroy(bullet);
+        }
+    }
 }

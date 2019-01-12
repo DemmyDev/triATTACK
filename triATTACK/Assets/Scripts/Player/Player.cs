@@ -110,27 +110,8 @@ public class Player : MonoBehaviour {
             health -= damage;
             if (health <= 0)
             {
-                GameObject.Find("GameMaster").GetComponent<EnemySpawner>().enabled = false;
-
-                GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
-                foreach (GameObject enemy in enemies)
-                {
-                    GameObject.Destroy(enemy);
-                }
-
-                GameObject[] bullets = GameObject.FindGameObjectsWithTag("Bullet");
-                foreach (GameObject bullet in bullets)
-                {
-                    GameObject.Destroy(bullet);
-                }
-
-                /*
-                GameObject[] particles = GameObject.FindGameObjectsWithTag("Particle");
-                foreach (GameObject particle in particles)
-                {
-                    GameObject.Destroy(particle);
-                }
-                */
+                GameMaster gm = GameObject.FindGameObjectWithTag("GameMaster").GetComponent<GameMaster>();
+                gm.DeleteObjectsOnPlayerDeath();
 
                 DeathText dText = deathText.GetComponent<DeathText>();
                 ScoreText sText = scoreText.GetComponent<ScoreText>();
