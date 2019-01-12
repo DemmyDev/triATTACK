@@ -12,13 +12,13 @@ public class ScoreText : MonoBehaviour {
     {
         currentScore = 0;
         scoreText = GetComponent<Text>();
-        scoreText.text = "triSCORE = " + currentScore.ToString(); 
+        scoreText.text = "tri.score = " + currentScore.ToString() + ";"; 
 	}
 
     public void SetScore(int addScore)
     {
         currentScore = currentScore + addScore;
-        scoreText.text = "triSCORE = " + currentScore.ToString();
+        scoreText.text = "tri.score = " + currentScore.ToString() + ";";
     }
 
     public void MoveText()

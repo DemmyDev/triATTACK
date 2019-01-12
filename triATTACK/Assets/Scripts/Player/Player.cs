@@ -124,11 +124,13 @@ public class Player : MonoBehaviour {
                     GameObject.Destroy(bullet);
                 }
 
+                /*
                 GameObject[] particles = GameObject.FindGameObjectsWithTag("Particle");
                 foreach (GameObject particle in particles)
                 {
                     GameObject.Destroy(particle);
                 }
+                */
 
                 DeathText dText = deathText.GetComponent<DeathText>();
                 ScoreText sText = scoreText.GetComponent<ScoreText>();
