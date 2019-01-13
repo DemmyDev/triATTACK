@@ -15,9 +15,9 @@ public class GameMaster : MonoBehaviour {
         }
     }
 
-    public static void RestartScene()
+    public void RestartScene()
     {
-        SceneManager.LoadScene("triATTACK");
+        SceneManager.LoadScene(1);
     }
 
     public void DisableObjectScripts()

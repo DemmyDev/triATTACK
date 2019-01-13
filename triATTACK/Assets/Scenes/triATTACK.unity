@@ -1040,8 +1040,8 @@ MonoBehaviour:
   displacementMap: {fileID: 0}
   Shader: {fileID: 4800000, guid: f89228c7ea691594eb4e467ddc351820, type: 3}
   intensity: 3
-  flipIntensity: 3
-  colorIntensity: 3
+  flipIntensity: 1
+  colorIntensity: 5
 --- !u!1 &652492809
 GameObject:
   m_ObjectHideFlags: 0

@@ -27,6 +27,7 @@ public class Player : MonoBehaviour {
     public float shakeDuration;
 
     public static bool isInvincible = false;
+    public static bool isDead = false;
     private Animation anim;
     private SpriteRenderer sprite;
 
@@ -110,6 +111,7 @@ public class Player : MonoBehaviour {
             health -= damage;
             if (health <= 0)
             {
+                isDead = true;
                 GameMaster gm = GameObject.FindGameObjectWithTag("GameMaster").GetComponent<GameMaster>();
                 gm.DeleteObjectsOnPlayerDeath();
 

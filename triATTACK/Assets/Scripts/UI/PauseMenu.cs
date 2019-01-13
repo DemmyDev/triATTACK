@@ -18,7 +18,7 @@ public class PauseMenu : MonoBehaviour {
 
     void Update ()
     {
-		if (Input.GetKeyDown(KeyCode.Escape))
+		if (Input.GetKeyDown(KeyCode.Escape) && !Player.isDead)
         {
             if (isPaused)
             {
@@ -35,10 +35,8 @@ public class PauseMenu : MonoBehaviour {
     {
         pauseMenuUI.SetActive(false);
         glitch.enabled = false;
-        SceneManager.LoadScene(1);
         Time.timeScale = 1f;
         isPaused = false;
-        Debug.Log("resume");
     }
 
     void Pause()
@@ -60,6 +58,7 @@ public class PauseMenu : MonoBehaviour {
         glitch.enabled = true;
         GameMaster gm = GameObject.FindGameObjectWithTag("GameMaster").GetComponent<GameMaster>();
         gm.DisableObjectScripts();
-        Invoke("Resume", 1f);
+        gm.Invoke("RestartScene", 1f);
+        Invoke("Resume", 1f);        
     }
 }
