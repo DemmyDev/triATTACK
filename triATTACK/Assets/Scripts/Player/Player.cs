@@ -124,7 +124,7 @@ public class Player : MonoBehaviour {
                 gameObject.SetActive(false);
             }
 
-            anim.enabled = true;
+            anim.Play();
             isInvincible = true;
             Invoke("EndInvincibility", 1);
             
@@ -134,7 +134,7 @@ public class Player : MonoBehaviour {
     void EndInvincibility()
     {
         isInvincible = false;
-        anim.enabled = false;
+        anim.Stop();
         sprite.enabled = true;
     }
 	

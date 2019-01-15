@@ -5,14 +5,27 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu: MonoBehaviour {
 
-	public void StartGame()
+    private Animation anim;
+
+    private void Start()
     {
-        SceneManager.LoadScene(1);
+        anim = GetComponent<Animation>();
+    }
+
+    public void StartGame()
+    {
+        anim.Play();
+        Invoke("LoadGame", 1f);
     }
 
     public void QuitGame()
     {
         Debug.Log("please end me i'm in pain");
         Application.Quit();
+    }
+
+    public void LoadGame()
+    {
+        SceneManager.LoadScene(1);
     }
 }

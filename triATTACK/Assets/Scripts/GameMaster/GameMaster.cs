@@ -59,6 +59,18 @@ public class GameMaster : MonoBehaviour {
         }
     }
 
+    public void StartGame()
+    {
+        gameObject.GetComponent<EnemySpawner>().enabled = true;
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player != null)
+        {
+            player.GetComponent<PlayerMovement>().enabled = true;
+            player.GetComponent<Player>().enabled = true;
+            player.GetComponent<PlayerShooting>().enabled = true;
+        }
+    }
+
 
     public void DeleteObjectsOnPlayerDeath()
     {
