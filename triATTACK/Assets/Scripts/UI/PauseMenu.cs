@@ -37,6 +37,7 @@ public class PauseMenu : MonoBehaviour {
         glitch.enabled = false;
         Time.timeScale = 1f;
         isPaused = false;
+        Player.ResetDeathBool();
     }
 
     void Pause()

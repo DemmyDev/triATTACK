@@ -127,7 +127,6 @@ public class Player : MonoBehaviour {
             anim.Play();
             isInvincible = true;
             Invoke("EndInvincibility", 1);
-            
         }
     }
 
@@ -137,5 +136,9 @@ public class Player : MonoBehaviour {
         anim.Stop();
         sprite.enabled = true;
     }
-	
+
+    public static void ResetDeathBool()
+    {
+        isDead = false;
+    }
 }

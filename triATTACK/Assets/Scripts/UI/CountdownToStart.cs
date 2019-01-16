@@ -35,11 +35,6 @@ public class CountdownToStart : MonoBehaviour {
             gm.StartGame();
             Invoke("Disable", 1f);
         }
-
-        if (Input.GetMouseButton(0))
-        {
-            Debug.Log(Time.deltaTime);
-        }
     }
 
     void Disable()
