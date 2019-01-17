@@ -10,7 +10,10 @@ public class PlayerShooting: MonoBehaviour {
 
     public Transform bulletTrailPrefab;
 
-    private Transform firePoint;
+    private Transform firePointOne;
+    private Transform firePointTwo;
+    private Transform firePointThree;
+
     private float timeToFire = 0;
 
     [Range(0f, 2f)]
@@ -20,11 +23,9 @@ public class PlayerShooting: MonoBehaviour {
 
     void Start()
     {
-        firePoint = transform.Find("BulletSpawn");
-        if (firePoint == null)
-        {
-            Debug.LogError("No firepoint found");
-        }
+        firePointOne = transform.Find("BulletSpawn1");
+        firePointTwo = transform.Find("BulletSpawn2");
+        firePointThree = transform.Find("BulletSpawn3");
         shake = Camera.main.GetComponent<ScreenShake>();
     }
 
@@ -52,30 +53,10 @@ public class PlayerShooting: MonoBehaviour {
 
     void Shoot()
     {
-        Vector2 mousePosition = new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y);
-        Vector2 firePointPosition = new Vector2(firePoint.position.x, firePoint.position.y);
-        // RaycastHit2D hit = Physics2D.Raycast(firePointPosition, mousePosition - firePointPosition, 100, whatToHit);
-        Debug.DrawLine(firePointPosition, (mousePosition - firePointPosition) * 100, Color.cyan);
-        
-        /*
-        if (hit.collider != null)
-        {
-            Debug.DrawLine(firePointPosition, hit.point, Color.red);
-            Enemy enemy = hit.collider.GetComponent<Enemy>();
-            if (enemy != null)
-            {
-                enemy.DamageEnemy(damage);
-                Debug.Log("We hit " + hit.collider.name + " and did " + damage + " damage.");
-            }
-        }
-        */
-       
-        Effect();
-    }
-
-    void Effect()
-    {
         shake.Shake(shakeDuration, shakeIntensity);
-        Instantiate(bulletTrailPrefab, firePoint.position, firePoint.rotation);
+
+        Instantiate(bulletTrailPrefab, firePointOne.position, firePointOne.rotation);
+        Instantiate(bulletTrailPrefab, firePointTwo.position, firePointOne.rotation);
+        Instantiate(bulletTrailPrefab, firePointThree.position, firePointOne.rotation);
     }
 }

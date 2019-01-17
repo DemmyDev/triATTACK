@@ -191,5 +191,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 569e9d3f6cab7704580d225e7704e87d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  destroyParticlePrefab: {fileID: 4867486543242424, guid: d3451376ed0eb5d468462cf88bc71f11,
+    type: 2}
   bulletSpeed: 15
   bulletDamage: 1

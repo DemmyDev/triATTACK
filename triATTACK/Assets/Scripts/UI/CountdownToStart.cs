@@ -31,7 +31,7 @@ public class CountdownToStart : MonoBehaviour {
         else if (timer <= 0.01f && !timeIsZero)
         {
             timeIsZero = true;
-            text.text = "tri.Attack();";
+            text.text = "tri.Begin();";
             gm.StartGame();
             Invoke("Disable", 1f);
         }

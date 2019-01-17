@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class EnemyBullet : MonoBehaviour {
 
+    public Transform destroyParticlePrefab;
+
     public int bulletSpeed;
     public int bulletDamage;
 
@@ -21,6 +23,7 @@ public class EnemyBullet : MonoBehaviour {
     {
         if (other.CompareTag("Player"))
         {
+            Instantiate(destroyParticlePrefab, gameObject.transform.position, gameObject.transform.rotation);
             Player player = other.gameObject.GetComponent<Player>();
             player.DamagePlayer(bulletDamage);
             Destroy(gameObject);

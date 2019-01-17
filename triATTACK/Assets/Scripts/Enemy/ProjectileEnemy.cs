@@ -78,6 +78,9 @@ public class ProjectileEnemy : MonoBehaviour {
         enemyStats.health -= damage;
         if (enemyStats.health <= 0)
         {
+            EnemySpawner spawner = GameObject.FindGameObjectWithTag("GameMaster").GetComponent<EnemySpawner>();
+            spawner.KilledEnemyCounter();
+
             Instantiate(deathParticlePrefab, gameObject.transform.position, gameObject.transform.rotation);
             scoreText.SetScore(addScoreDeath);
             Destroy(gameObject);

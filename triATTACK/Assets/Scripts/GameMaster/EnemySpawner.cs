@@ -8,8 +8,9 @@ public class EnemySpawner : MonoBehaviour {
     public Transform[] spawner; // Empty GameObjects to be used for spawn locations
     public float startTimeBtwSpawns; // Adjustable variable for the time between enemy spawns
     private float timeBtwSpawns; // Allows time between enemy spawns to be reset
+    public float subtractTime;
     private int enemyInt;
-    
+    private int enemiesKilled = 0;
 
     // On start
 	void Start ()
@@ -29,7 +30,7 @@ public class EnemySpawner : MonoBehaviour {
         {
             timeBtwSpawns -= Time.deltaTime;
         }
-	}
+    }
 
     public void SpawnEnemy()
     {
@@ -51,5 +52,19 @@ public class EnemySpawner : MonoBehaviour {
             Debug.Log("Spawn projectile enemy");
         }
         Instantiate(enemy[enemyInt], spawner[arrayInt].position, Quaternion.identity); // Spawns enemy object at spawner location
+    }
+
+    public void KilledEnemyCounter()
+    {
+        enemiesKilled++;
+        Debug.Log("Enemies Killed: " + enemiesKilled);
+
+        
+        if (enemiesKilled == 34 || enemiesKilled == 25 || enemiesKilled == 18 || enemiesKilled == 12 || enemiesKilled == 8 || enemiesKilled == 4)
+        {
+            startTimeBtwSpawns -= subtractTime;
+            Debug.Log("New spawn timer: " + startTimeBtwSpawns);
+        }
+        
     }
 }

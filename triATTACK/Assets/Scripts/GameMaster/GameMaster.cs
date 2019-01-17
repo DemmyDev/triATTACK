@@ -30,7 +30,7 @@ public class GameMaster : MonoBehaviour {
             if (enemy.name == "HomingEnemy(Clone)")
             {
                 enemy.GetComponent<HomingEnemy>().enabled = false;
-                enemy.GetComponent<CircleCollider2D>().enabled = false;
+                enemy.GetComponent<CapsuleCollider2D>().enabled = false;
             }
             else if(enemy.name == "ShootingEnemy(Clone)")
             {

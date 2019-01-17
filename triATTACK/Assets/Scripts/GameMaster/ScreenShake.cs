@@ -18,7 +18,6 @@ public class ScreenShake : MonoBehaviour {
 
     public void Shake(float duration, float intensity)
     {
-        Debug.Log("Shake called");
         shakeIntensity = intensity;
         if (duration > 0)
         {

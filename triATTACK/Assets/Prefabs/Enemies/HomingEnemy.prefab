@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 212411215879289300}
   - component: {fileID: 114427737791335616}
   - component: {fileID: 114681380315842094}
-  - component: {fileID: 58379802589413138}
+  - component: {fileID: 70334830425337178}
   m_Layer: 0
   m_Name: HomingEnemy
   m_TagString: Enemy
@@ -37,14 +37,14 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1133979261722812}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -38.2, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalPosition: {x: -28.46, y: 0, z: 0}
+  m_LocalScale: {x: 0.6, y: 0.5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!58 &58379802589413138
-CircleCollider2D:
+--- !u!70 &70334830425337178
+CapsuleCollider2D:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -56,8 +56,8 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 1.28
+  m_Size: {x: 2.56, y: 2.56}
+  m_Direction: 1
 --- !u!114 &114427737791335616
 MonoBehaviour:
   m_ObjectHideFlags: 1
