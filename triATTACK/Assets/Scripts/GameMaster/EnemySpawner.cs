@@ -39,17 +39,17 @@ public class EnemySpawner : MonoBehaviour {
         if (randomInt < 36)
         {
             enemyInt = 0;
-            Debug.Log("Spawn homing enemy");
+            //Debug.Log("Spawn homing enemy");
         }
         else if (randomInt < 75 && randomInt > 35)
         {
             enemyInt = 1;
-            Debug.Log("Spawn shooting enemy");
+            //Debug.Log("Spawn shooting enemy");
         }
         else
         {
             enemyInt = 2;
-            Debug.Log("Spawn projectile enemy");
+            //Debug.Log("Spawn projectile enemy");
         }
         Instantiate(enemy[enemyInt], spawner[arrayInt].position, Quaternion.identity); // Spawns enemy object at spawner location
     }
@@ -57,13 +57,13 @@ public class EnemySpawner : MonoBehaviour {
     public void KilledEnemyCounter()
     {
         enemiesKilled++;
-        Debug.Log("Enemies Killed: " + enemiesKilled);
+        //Debug.Log("Enemies Killed: " + enemiesKilled);
 
         
         if (enemiesKilled == 34 || enemiesKilled == 25 || enemiesKilled == 18 || enemiesKilled == 12 || enemiesKilled == 8 || enemiesKilled == 4)
         {
             startTimeBtwSpawns -= subtractTime;
-            Debug.Log("New spawn timer: " + startTimeBtwSpawns);
+            //Debug.Log("New spawn timer: " + startTimeBtwSpawns);
         }
         
     }
