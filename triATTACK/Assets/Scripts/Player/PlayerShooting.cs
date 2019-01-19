@@ -82,6 +82,8 @@ public class PlayerShooting: MonoBehaviour {
                 }
             }
 
+            triAttackMeterUI.value = triAttackMeter;
+
             if (fireRate == 0)
             {
                 if (Input.GetMouseButtonDown(0))
