@@ -2,10 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MapMovement : MonoBehaviour {
+public class LeftTeleport : MonoBehaviour {
 
     public Transform leftSpawn;
-    public Transform cam;
+    private Transform cam;
+
+    private void Start()
+    {
+        cam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Transform>();
+    }
 
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -17,5 +22,4 @@ public class MapMovement : MonoBehaviour {
             cam.transform.position = newCamPos;
         }
     }
-
 }

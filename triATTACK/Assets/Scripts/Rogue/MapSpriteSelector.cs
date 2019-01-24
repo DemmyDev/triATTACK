@@ -5,11 +5,11 @@ using UnityEngine;
 public class MapSpriteSelector : MonoBehaviour {
 	
 	public Sprite 	spU, spD, spR, spL,
-			spUD, spRL, spUR, spUL, spDR, spDL,
-			spULD, spRUL, spDRU, spLDR, spUDRL;
+			        spUD, spRL, spUR, spUL, spDR, spDL,
+			        spULD, spRUL, spDRU, spLDR, spUDRL;
 
 	public bool up, down, left, right;
-	public int type; // 0: normal, 1: enter
+	public int type; // 0: Normal, 1: First room
 	public Color normalColor, enterColor;
 	Color mainColor;
 	SpriteRenderer rend;
@@ -21,9 +21,9 @@ public class MapSpriteSelector : MonoBehaviour {
 		PickSprite();
 		PickColor();
 	}
-	void PickSprite()
-    { //picks correct sprite based on the four door bools
-		if (up)
+	void PickSprite() // Picks correct sprite based on the four door bools
+    {
+        if (up)
         {
 			if (down)
             {
@@ -112,9 +112,12 @@ public class MapSpriteSelector : MonoBehaviour {
 	}
 
 	void PickColor(){ //changes color based on what type the room is
-		if (type == 0){
+		if (type == 0)
+        {
 			mainColor = normalColor;
-		}else if (type == 1){
+		}
+        else if (type == 1)
+        {
 			mainColor = enterColor;
 		}
 		rend.color = mainColor;
