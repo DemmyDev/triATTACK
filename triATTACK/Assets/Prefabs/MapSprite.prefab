@@ -149,7 +149,7 @@ GameObject:
   - component: {fileID: 212157788372356522}
   m_Layer: 0
   m_Name: MapSprite
-  m_TagString: Untagged
+  m_TagString: MapSprite
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -542,6 +542,8 @@ MonoBehaviour:
   type: 0
   normalColor: {r: 1, g: 0, b: 0, a: 1}
   enterColor: {r: 0, g: 1, b: 0.06432104, a: 1}
+  itemColor: {r: 1, g: 0.97292817, b: 0, a: 1}
+  bossColor: {r: 0, g: 0.12695694, b: 1, a: 1}
 --- !u!114 &114602895860907792
 MonoBehaviour:
   m_ObjectHideFlags: 1

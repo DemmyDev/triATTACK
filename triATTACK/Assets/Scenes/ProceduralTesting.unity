@@ -239,7 +239,7 @@ GameObject:
   - component: {fileID: 1568204526}
   m_Layer: 0
   m_Name: Level Generator
-  m_TagString: Untagged
+  m_TagString: LevelGen
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -257,6 +257,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numberOfRooms: 20
   roomWhiteObj: {fileID: 1775711343006372, guid: 67d08aa819ae11548b2fbb09c10bf58a,
+    type: 2}
+  mapSpritePref: {fileID: 1560482414636770, guid: 5e06f0314f966bf4c84be4dc10a7f36e,
     type: 2}
 --- !u!4 &1568204527
 Transform:

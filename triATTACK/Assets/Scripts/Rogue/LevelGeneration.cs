@@ -9,6 +9,7 @@ public class LevelGeneration : MonoBehaviour {
     int gridSizeX, gridSizeY;
     public int numberOfRooms = 20;
 	public GameObject roomWhiteObj;
+    public GameObject mapSpritePref;
 	void Start () {
 		if (numberOfRooms >= (worldSize.x * 2) * (worldSize.y * 2)){ // make sure we dont try to make more rooms than can fit in our grid
 			numberOfRooms = Mathf.RoundToInt((worldSize.x * 2) * (worldSize.y * 2));
@@ -18,7 +19,8 @@ public class LevelGeneration : MonoBehaviour {
 		CreateRooms(); //lays out the actual map
 		SetRoomDoors(); //assigns the doors where rooms would connect
 		DrawMap(); //instantiates objects to make up a map
-	}
+        Instantiate(mapSpritePref);
+    }
 	void CreateRooms(){
 		//setup
 		rooms = new Room[gridSizeX * 2,gridSizeY * 2];
@@ -66,7 +68,7 @@ public class LevelGeneration : MonoBehaviour {
 			y = (int) takenPositions[index].y;
 			bool UpDown = (Random.value < 0.5f);//randomly pick wether to look on hor or vert axis
 			bool positive = (Random.value < 0.5f);//pick whether to be positive or negative on that axis
-			if (UpDown){ //find the position bnased on the above bools
+			if (UpDown){ //find the position based on the above bools
 				if (positive){
 					y += 1;
 				}else{
@@ -136,13 +138,15 @@ public class LevelGeneration : MonoBehaviour {
 		return ret;
 	}
 	void DrawMap(){
-		foreach (Room room in rooms){
+		foreach (Room room in rooms)
+        {
 			if (room == null){
 				continue; //skip where there is no room
 			}
 			Vector2 drawPos = room.gridPos;
 			drawPos.x *= 17;//aspect ratio of map sprite
 			drawPos.y *= 13;
+
 			//create map obj and assign its variables
 			MapSpriteSelector mapper = Object.Instantiate(roomWhiteObj, drawPos, Quaternion.identity).GetComponent<MapSpriteSelector>();
 			mapper.type = room.type;

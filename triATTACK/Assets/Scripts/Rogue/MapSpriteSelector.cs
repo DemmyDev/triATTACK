@@ -10,17 +10,18 @@ public class MapSpriteSelector : MonoBehaviour {
 
 	public bool up, down, left, right;
 	public int type; // 0: Normal, 1: First room, 2: Item room, 3: Boss room
-	public Color normalColor, enterColor;
+	public Color normalColor, enterColor, itemColor, bossColor;
 	Color mainColor;
 	SpriteRenderer rend;
-
+    LevelGeneration levelGen;
+    
 	void Start ()
     {
-		rend = GetComponent<SpriteRenderer>();
+        rend = GetComponent<SpriteRenderer>();
 		mainColor = normalColor;
 		PickSprite();
 		PickColor();
-	}
+    }
 	void PickSprite() // Picks correct sprite based on the four door bools
     {
         if (up)
@@ -111,7 +112,8 @@ public class MapSpriteSelector : MonoBehaviour {
 		}
 	}
 
-	void PickColor(){ //changes color based on what type the room is
+	public void PickColor() //changes color based on what type the room is
+    {
 		if (type == 0)
         {
 			mainColor = normalColor;
@@ -120,6 +122,14 @@ public class MapSpriteSelector : MonoBehaviour {
         {
 			mainColor = enterColor;
 		}
+        else if (type == 2)
+        {
+            mainColor = itemColor;
+        }
+        else if (type == 3)
+        {
+            mainColor = bossColor;
+        }
 		rend.color = mainColor;
 	}
 }

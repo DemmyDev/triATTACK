@@ -10,6 +10,8 @@ TagManager:
   - ObjectDestroy
   - Bullet
   - Particle
+  - MapSprite
+  - LevelGen
   layers:
   - Default
   - TransparentFX
