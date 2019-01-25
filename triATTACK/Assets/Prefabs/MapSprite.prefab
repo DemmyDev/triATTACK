@@ -535,17 +535,13 @@ MonoBehaviour:
   spDRU: {fileID: 21300000, guid: 26568a5d29811404b98c32f67d8e13e5, type: 3}
   spLDR: {fileID: 21300000, guid: 1971b8a5dd6a7c8478a2890393b02f56, type: 3}
   spUDRL: {fileID: 21300000, guid: 506f4f2f2ac25994daf09e68587bdc4a, type: 3}
-  upPort: {fileID: 1659269357307618}
-  downPort: {fileID: 1874288213425142}
-  leftPort: {fileID: 1535572894988836}
-  rightPort: {fileID: 1040217686346242}
   up: 0
   down: 0
   left: 0
   right: 0
   type: 0
-  normalColor: {r: 1, g: 1, b: 1, a: 1}
-  enterColor: {r: 0.9817722, g: 1, b: 0, a: 1}
+  normalColor: {r: 1, g: 0, b: 0, a: 1}
+  enterColor: {r: 0, g: 1, b: 0.06432104, a: 1}
 --- !u!114 &114602895860907792
 MonoBehaviour:
   m_ObjectHideFlags: 1

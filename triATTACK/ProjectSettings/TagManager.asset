@@ -10,9 +10,6 @@ TagManager:
   - ObjectDestroy
   - Bullet
   - Particle
-  - SpawnPoint
-  - Rooms
-  - DoorCol
   layers:
   - Default
   - TransparentFX

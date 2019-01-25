@@ -25,21 +25,30 @@ public class LevelGeneration : MonoBehaviour {
 		rooms[gridSizeX,gridSizeY] = new Room(Vector2.zero, 1);
 		takenPositions.Insert(0,Vector2.zero);
 		Vector2 checkPos = Vector2.zero;
+
 		//magic numbers
 		float randomCompare = 0.2f, randomCompareStart = 0.2f, randomCompareEnd = 0.01f;
+
 		//add rooms
-		for (int i =0; i < numberOfRooms -1; i++){
+		for (int i =0; i < numberOfRooms -1; i++)
+        {
 			float randomPerc = ((float) i) / (((float)numberOfRooms - 1));
 			randomCompare = Mathf.Lerp(randomCompareStart, randomCompareEnd, randomPerc);
+
 			//grab new position
 			checkPos = NewPosition();
+
 			//test new position
-			if (NumberOfNeighbors(checkPos, takenPositions) > 1 && Random.value > randomCompare){
+			if (NumberOfNeighbors(checkPos, takenPositions) > 1 && Random.value > randomCompare)
+            {
 				int iterations = 0;
-				do{
+
+				do
+                {
 					checkPos = SelectiveNewPosition();
 					iterations++;
 				}while(NumberOfNeighbors(checkPos, takenPositions) > 1 && iterations < 100);
+
 				if (iterations >= 50)
 					Debug.LogError("Could not create with fewer neighbors than : " + NumberOfNeighbors(checkPos, takenPositions));
 			}
@@ -149,8 +158,8 @@ public class LevelGeneration : MonoBehaviour {
 				if (rooms[x,y] == null){
 					continue;
 				}
-				Vector2 gridPosition = new Vector2(x,y);
-				if (y - 1 < 0){ //check above
+
+                if (y - 1 < 0){ //check above
 					rooms[x,y].doorBot = false;
 				}else{
 					rooms[x,y].doorBot = (rooms[x,y-1] != null);

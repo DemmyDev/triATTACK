@@ -9,7 +9,7 @@ public class MapSpriteSelector : MonoBehaviour {
 			        spULD, spRUL, spDRU, spLDR, spUDRL;
 
 	public bool up, down, left, right;
-	public int type; // 0: Normal, 1: First room
+	public int type; // 0: Normal, 1: First room, 2: Item room, 3: Boss room
 	public Color normalColor, enterColor;
 	Color mainColor;
 	SpriteRenderer rend;
