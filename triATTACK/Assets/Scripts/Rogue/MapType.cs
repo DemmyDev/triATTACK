@@ -6,7 +6,7 @@ public class MapType : MonoBehaviour {
 
     private GameObject[] mapObjs;
     private LevelGeneration levelGen;
-    bool itemRoomIsSet = false, bossRoomIsSet = false;
+    bool itemRoomIsSet = false, bossRoomIsSet = false, shopRoomIsSet = false;
 
     void Start()
     {
@@ -14,6 +14,7 @@ public class MapType : MonoBehaviour {
         GetMapSprites();
         SetItemRoom();
         SetBossRoom();
+        SetShopRoom();
     }
 
     void GetMapSprites()
@@ -29,7 +30,7 @@ public class MapType : MonoBehaviour {
             int rand = Random.Range(0, levelGen.numberOfRooms);
             MapSpriteSelector spr = mapObjs[rand].GetComponent<MapSpriteSelector>();
 
-            if (spr.type != 1)
+            if (spr.type == 0)
             {
                 SpriteRenderer rend = spr.GetComponent<SpriteRenderer>();
 
@@ -51,7 +52,7 @@ public class MapType : MonoBehaviour {
             int rand = Random.Range(0, levelGen.numberOfRooms);
             MapSpriteSelector spr = mapObjs[rand].GetComponent<MapSpriteSelector>();
 
-            if (spr.type != 1 && spr.type != 2)
+            if (spr.type == 0)
             {
                 SpriteRenderer rend = spr.GetComponent<SpriteRenderer>();
 
@@ -62,8 +63,29 @@ public class MapType : MonoBehaviour {
                     bossRoomIsSet = true;
                     spr.PickColor();
                 }
-
             }
         } while (!bossRoomIsSet);
+    }
+
+    void SetShopRoom()
+    {
+        do
+        {
+            int rand = Random.Range(0, levelGen.numberOfRooms);
+            MapSpriteSelector spr = mapObjs[rand].GetComponent<MapSpriteSelector>();
+
+            if (spr.type == 0)
+            {
+                SpriteRenderer rend = spr.GetComponent<SpriteRenderer>();
+
+                if (rend.sprite == spr.spD || rend.sprite == spr.spU || rend.sprite == spr.spR || rend.sprite == spr.spL)
+                {
+                    Debug.Log("Shop room!!!");
+                    spr.type = 4;
+                    shopRoomIsSet = true;
+                    spr.PickColor();
+                }
+            }
+        } while (!shopRoomIsSet);
     }
 }

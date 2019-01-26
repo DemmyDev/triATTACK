@@ -10,7 +10,7 @@ public class MapSpriteSelector : MonoBehaviour {
 
 	public bool up, down, left, right;
 	public int type; // 0: Normal, 1: First room, 2: Item room, 3: Boss room
-	public Color normalColor, enterColor, itemColor, bossColor;
+	public Color normalColor, enterColor, itemColor, bossColor, shopColor;
 	Color mainColor;
 	SpriteRenderer rend;
     LevelGeneration levelGen;
@@ -129,6 +129,10 @@ public class MapSpriteSelector : MonoBehaviour {
         else if (type == 3)
         {
             mainColor = bossColor;
+        }
+        else if (type == 4)
+        {
+            mainColor = shopColor;
         }
 		rend.color = mainColor;
 	}
