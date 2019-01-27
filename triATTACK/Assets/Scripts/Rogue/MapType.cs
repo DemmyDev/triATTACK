@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class MapType : MonoBehaviour {
 
-    private GameObject[] mapObjs;
-    private LevelGeneration levelGen;
+    GameObject[] mapObjs;
+    LevelGeneration levelGen;
     bool itemRoomIsSet = false, bossRoomIsSet = false, shopRoomIsSet = false;
 
     void Start()

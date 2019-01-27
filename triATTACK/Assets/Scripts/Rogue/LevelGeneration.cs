@@ -154,6 +154,7 @@ public class LevelGeneration : MonoBehaviour {
 			mapper.down = room.doorBot;
 			mapper.right = room.doorRight;
 			mapper.left = room.doorLeft;
+            mapper.gameObject.name = "MapSprite (" + room.gridPos.x + ", " + room.gridPos.y + ")";
 		}
 	}
 	void SetRoomDoors(){

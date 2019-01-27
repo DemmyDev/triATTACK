@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class MapSpriteSelector : MonoBehaviour {
 	
-	public Sprite 	spU, spD, spR, spL,
+    public Sprite 	spU, spD, spR, spL,
 			        spUD, spRL, spUR, spUL, spDR, spDL,
 			        spULD, spRUL, spDRU, spLDR, spUDRL;
 
 	public bool up, down, left, right;
-	public int type; // 0: Normal, 1: First room, 2: Item room, 3: Boss room
-	public Color normalColor, enterColor, itemColor, bossColor, shopColor;
+	public int type; // 0: Normal, 1: Entry room, 2: Item room, 3: Boss room, 4: Shop room
+
+    [SerializeField]
+    Color normalColor, enterColor, itemColor, bossColor, shopColor;
 	Color mainColor;
 	SpriteRenderer rend;
     LevelGeneration levelGen;
@@ -21,7 +23,9 @@ public class MapSpriteSelector : MonoBehaviour {
 		mainColor = normalColor;
 		PickSprite();
 		PickColor();
+        SpawnRoom();
     }
+
 	void PickSprite() // Picks correct sprite based on the four door bools
     {
         if (up)
@@ -114,26 +118,60 @@ public class MapSpriteSelector : MonoBehaviour {
 
 	public void PickColor() //changes color based on what type the room is
     {
-		if (type == 0)
+        switch (type)
         {
-			mainColor = normalColor;
-		}
-        else if (type == 1)
-        {
-			mainColor = enterColor;
-		}
-        else if (type == 2)
-        {
-            mainColor = itemColor;
+            case 0:
+                mainColor = normalColor;
+                break;
+            case 1:
+                mainColor = enterColor;
+                break;
+            case 2:
+                mainColor = itemColor;
+                break;
+            case 3:
+                mainColor = bossColor;
+                break;
+            case 4:
+                mainColor = shopColor;
+                break;
+            default:
+                Debug.LogError("Type " + type + "ain't it, chief.");
+                break;
         }
-        else if (type == 3)
-        {
-            mainColor = bossColor;
-        }
-        else if (type == 4)
-        {
-            mainColor = shopColor;
-        }
-		rend.color = mainColor;
+
+        rend.color = mainColor;
 	}
+
+    void SpawnRoom()
+    {
+        // Check for rooms with types 1, 2, 3, 4 (entry, item, boss, shop)
+        // For the entry room, check bools (need the branching mess) for which doors to spawn, then instantiate the entry room
+        // For each other, check bools (no need for branching mess) for which doors to spawn
+        // Instantiate the room for the given type, with the correct doors
+        // For type 0s, check bools and determine what set of rooms can be used
+        // Spawn the room at the position of the sprite
+
+        switch (type)
+        {
+            case 0:
+
+                break;
+            case 1:
+
+                break;
+            case 2:
+
+                break;
+            case 3:
+
+                break;
+            case 4:
+
+                break;
+            default:
+                Debug.LogError("Type " + type + "ain't it, chief.");
+                break;
+        }
+    }
 }
