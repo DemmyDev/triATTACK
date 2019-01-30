@@ -11,16 +11,10 @@ public class MapType : MonoBehaviour {
     void Start()
     {
         levelGen = GameObject.Find("Level Generator").GetComponent<LevelGeneration>();
-        GetMapSprites();
+        mapObjs = GameObject.FindGameObjectsWithTag("MapSprite");
         SetItemRoom();
         SetBossRoom();
         SetShopRoom();
-    }
-
-    void GetMapSprites()
-    {
-        mapObjs = GameObject.FindGameObjectsWithTag("MapSprite");
-        Debug.Log(mapObjs.Length);
     }
 
     void SetItemRoom()
@@ -36,7 +30,6 @@ public class MapType : MonoBehaviour {
 
                 if (rend.sprite == spr.spD || rend.sprite == spr.spU || rend.sprite == spr.spR || rend.sprite == spr.spL)
                 {
-                    Debug.Log("Item room!!!");
                     spr.type = 2;
                     itemRoomIsSet = true;
                     spr.PickColor();
@@ -58,7 +51,6 @@ public class MapType : MonoBehaviour {
 
                 if (rend.sprite == spr.spD || rend.sprite == spr.spU || rend.sprite == spr.spR || rend.sprite == spr.spL)
                 {
-                    Debug.Log("Boss room!!!");
                     spr.type = 3;
                     bossRoomIsSet = true;
                     spr.PickColor();
@@ -80,7 +72,6 @@ public class MapType : MonoBehaviour {
 
                 if (rend.sprite == spr.spD || rend.sprite == spr.spU || rend.sprite == spr.spR || rend.sprite == spr.spL)
                 {
-                    Debug.Log("Shop room!!!");
                     spr.type = 4;
                     shopRoomIsSet = true;
                     spr.PickColor();

@@ -18,7 +18,7 @@ public class UpTeleport : MonoBehaviour {
         {
             other.transform.position = upSpawn.transform.position;
 
-            Vector3 newCamPos = new Vector3(cam.transform.position.x, cam.transform.position.y + 13f, cam.transform.position.z);
+            Vector3 newCamPos = new Vector3(cam.transform.position.x, cam.transform.position.y + 10f, cam.transform.position.z);
             cam.transform.position = newCamPos;
         }
     }

@@ -23,7 +23,100 @@ public class MapSpriteSelector : MonoBehaviour {
 		mainColor = normalColor;
 		PickSprite();
 		PickColor();
-        SpawnRoom();
+
+        switch (type)
+        {
+            case 0:
+                NormalRoom();
+                break;
+            case 1:
+                EntryRoom();
+                break;
+            case 2:
+                ItemRoom();
+                break;
+            case 3:
+                BossRoom();
+                break;
+            case 4:
+                ShopRoom();
+                break;
+        }
+    }
+
+    void NormalRoom()
+    {
+        // Branching if-else statements for door bools (15 total)
+            // Spawn wall chunk with correct door bools
+            // Spawn random chunk from list based on bools
+        
+    }
+
+    void EntryRoom()
+    {
+        // Branching if-else statements for door bools (15 total)
+            // Spawn wall chunk with correct door bools
+            // Spawn empty room chunk
+    }
+
+    void ItemRoom()
+    {
+        if (up)
+        {
+            // Instantiate item room with up door
+        }
+        else if (down)
+        {
+            // Instantiate item room with down door
+        }
+        else if (left)
+        {
+            // Instantiate item room with left door
+        }
+        else if (right)
+        {
+            // Instantiate item room with right door
+        }
+    }
+
+    void BossRoom()
+    {
+        if (up)
+        {
+            // Instantiate boss room with up door
+        }
+        else if (down)
+        {
+            // Instantiate boss room with down door
+        }
+        else if (left)
+        {
+            // Instantiate boss room with left door
+        }
+        else if (right)
+        {
+            // Instantiate boss room with right door
+        }
+    }
+
+    void ShopRoom()
+    {
+        if (up)
+        {
+            // Instantiate shop room with up door
+        }
+        else if (down)
+        {
+            // Instantiate shop room with down door
+        }
+        else if (left)
+        {
+            // Instantiate shop room with left door
+        }
+        else if (right)
+        {
+            // Instantiate shop room with right door
+        }
     }
 
 	void PickSprite() // Picks correct sprite based on the four door bools
@@ -142,36 +235,4 @@ public class MapSpriteSelector : MonoBehaviour {
 
         rend.color = mainColor;
 	}
-
-    void SpawnRoom()
-    {
-        // Check for rooms with types 1, 2, 3, 4 (entry, item, boss, shop)
-        // For the entry room, check bools (need the branching mess) for which doors to spawn, then instantiate the entry room
-        // For each other, check bools (no need for branching mess) for which doors to spawn
-        // Instantiate the room for the given type, with the correct doors
-        // For type 0s, check bools and determine what set of rooms can be used
-        // Spawn the room at the position of the sprite
-
-        switch (type)
-        {
-            case 0:
-
-                break;
-            case 1:
-
-                break;
-            case 2:
-
-                break;
-            case 3:
-
-                break;
-            case 4:
-
-                break;
-            default:
-                Debug.LogError("Type " + type + "ain't it, chief.");
-                break;
-        }
-    }
 }

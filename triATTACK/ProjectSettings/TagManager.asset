@@ -12,6 +12,7 @@ TagManager:
   - Particle
   - MapSprite
   - LevelGen
+  - WallChunk
   layers:
   - Default
   - TransparentFX

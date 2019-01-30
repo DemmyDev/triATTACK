@@ -18,7 +18,7 @@ public class RightTeleport : MonoBehaviour {
         {
             other.transform.position = rightSpawn.transform.position;
 
-            Vector3 newCamPos = new Vector3(cam.transform.position.x + 17f, cam.transform.position.y, cam.transform.position.z);
+            Vector3 newCamPos = new Vector3(cam.transform.position.x + 16f, cam.transform.position.y, cam.transform.position.z);
             cam.transform.position = newCamPos;
         }
     }

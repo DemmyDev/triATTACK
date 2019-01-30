@@ -8,7 +8,8 @@ public class LevelGeneration : MonoBehaviour {
 	List<Vector2> takenPositions = new List<Vector2>();
     int gridSizeX, gridSizeY;
     public int numberOfRooms = 20;
-	public GameObject roomWhiteObj;
+    [SerializeField]
+    GameObject parentChunk;
     public GameObject mapSpritePref;
 	void Start () {
 		if (numberOfRooms >= (worldSize.x * 2) * (worldSize.y * 2)){ // make sure we dont try to make more rooms than can fit in our grid
@@ -19,7 +20,7 @@ public class LevelGeneration : MonoBehaviour {
 		CreateRooms(); //lays out the actual map
 		SetRoomDoors(); //assigns the doors where rooms would connect
 		DrawMap(); //instantiates objects to make up a map
-        Instantiate(mapSpritePref);
+        //Instantiate(mapSpritePref);
     }
 	void CreateRooms(){
 		//setup
@@ -144,17 +145,28 @@ public class LevelGeneration : MonoBehaviour {
 				continue; //skip where there is no room
 			}
 			Vector2 drawPos = room.gridPos;
-			drawPos.x *= 17;//aspect ratio of map sprite
-			drawPos.y *= 13;
+			drawPos.x *= 16;//aspect ratio of map sprite
+			drawPos.y *= 10f;
+            drawPos.x += .5f;
+            drawPos.y += .5f;
 
 			//create map obj and assign its variables
-			MapSpriteSelector mapper = Object.Instantiate(roomWhiteObj, drawPos, Quaternion.identity).GetComponent<MapSpriteSelector>();
-			mapper.type = room.type;
+			/* 
+            MapSpriteSelector mapper = Object.Instantiate(roomWhiteObj, drawPos, Quaternion.identity).GetComponent<MapSpriteSelector>();
+            mapper.type = room.type;
 			mapper.up = room.doorTop;
 			mapper.down = room.doorBot;
 			mapper.right = room.doorRight;
 			mapper.left = room.doorLeft;
             mapper.gameObject.name = "MapSprite (" + room.gridPos.x + ", " + room.gridPos.y + ")";
+            */
+            ChunkSelector chonk = Object.Instantiate(parentChunk, drawPos, Quaternion.identity).GetComponent<ChunkSelector>();
+            chonk.type = room.type;
+            chonk.up = room.doorTop;
+            chonk.down = room.doorBot;
+            chonk.right = room.doorRight;
+            chonk.left = room.doorLeft;
+            chonk.name = ("Chunk (" + room.gridPos.x + ", " + room.gridPos.y + ")");
 		}
 	}
 	void SetRoomDoors(){
