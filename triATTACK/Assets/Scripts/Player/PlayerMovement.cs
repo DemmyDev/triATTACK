@@ -8,15 +8,16 @@ public class PlayerMovement : MonoBehaviour {
 
     public float speed;
     private Vector2 moveVelocity;
+    Vector2 moveInput;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
     }
 
-    void Update()
+    void FixedUpdate()
     {
-        Vector2 moveInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+        moveInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
         moveVelocity = moveInput * speed;
         if (!PauseMenu.isPaused)
         {
@@ -25,10 +26,6 @@ public class PlayerMovement : MonoBehaviour {
             Vector2 direction = new Vector2(mousePosition.x - transform.position.x, mousePosition.y - transform.position.y);
             transform.up = direction;
         }
-    }
-
-    void FixedUpdate()
-    {
         rb.MovePosition(rb.position + moveVelocity * Time.fixedDeltaTime);
     }
 }
