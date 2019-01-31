@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2985268947492870491}
   m_Layer: 0
   m_Name: ParentChunk
-  m_TagString: Untagged
+  m_TagString: ParentChunk
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -43,6 +43,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a37ce4716b327de4d8f6ee2b15ec1380, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  up: 0
+  down: 0
+  left: 0
+  right: 0
+  type: 0
   wallU: {fileID: 1110763823520732323, guid: 4f09bd9064b503145b33a56193b868f2, type: 3}
   wallD: {fileID: 3034303100938159211, guid: d8e36581229784e4cb1507faf3f553d1, type: 3}
   wallR: {fileID: 7783305178590194764, guid: e9680fe9edb6b17418c71c9454d23292, type: 3}
@@ -59,8 +64,10 @@ MonoBehaviour:
   wallLDR: {fileID: 3740167854063263194, guid: 9ba5a894cbaee25449d77c1848396b43, type: 3}
   wallUDRL: {fileID: 5031205881032514955, guid: 03dc803dd35b42c49ad736f7757d7da9,
     type: 3}
-  up: 0
-  down: 0
-  left: 0
-  right: 0
-  type: 0
+  wall: {fileID: 0}
+  entryRoom: {fileID: 1813850593458643473, guid: daa8fe697a83adc41a1d83eab1a86391,
+    type: 3}
+  itemRoom: {fileID: 0}
+  bossRoom: {fileID: 0}
+  shopRoom: {fileID: 0}
+  room: {fileID: 0}

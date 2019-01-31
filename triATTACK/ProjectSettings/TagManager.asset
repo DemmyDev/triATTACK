@@ -13,6 +13,8 @@ TagManager:
   - MapSprite
   - LevelGen
   - WallChunk
+  - RoomChunk
+  - ParentChunk
   layers:
   - Default
   - TransparentFX

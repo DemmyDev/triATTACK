@@ -10,7 +10,8 @@ public class LevelGeneration : MonoBehaviour {
     public int numberOfRooms = 20;
     [SerializeField]
     GameObject parentChunk;
-    public GameObject mapSpritePref;
+    [SerializeField]
+    GameObject mapType;
 	void Start () {
 		if (numberOfRooms >= (worldSize.x * 2) * (worldSize.y * 2)){ // make sure we dont try to make more rooms than can fit in our grid
 			numberOfRooms = Mathf.RoundToInt((worldSize.x * 2) * (worldSize.y * 2));
@@ -20,12 +21,12 @@ public class LevelGeneration : MonoBehaviour {
 		CreateRooms(); //lays out the actual map
 		SetRoomDoors(); //assigns the doors where rooms would connect
 		DrawMap(); //instantiates objects to make up a map
-        //Instantiate(mapSpritePref);
+        Instantiate(mapType);
     }
 	void CreateRooms(){
 		//setup
 		rooms = new Room[gridSizeX * 2,gridSizeY * 2];
-		rooms[gridSizeX,gridSizeY] = new Room(Vector2.zero, 1);
+		rooms[gridSizeX,gridSizeY] = new Room(Vector2.zero, Room.RoomType.Entry);
 		takenPositions.Insert(0,Vector2.zero);
 		Vector2 checkPos = Vector2.zero;
 
@@ -150,18 +151,9 @@ public class LevelGeneration : MonoBehaviour {
             drawPos.x += .5f;
             drawPos.y += .5f;
 
-			//create map obj and assign its variables
-			/* 
-            MapSpriteSelector mapper = Object.Instantiate(roomWhiteObj, drawPos, Quaternion.identity).GetComponent<MapSpriteSelector>();
-            mapper.type = room.type;
-			mapper.up = room.doorTop;
-			mapper.down = room.doorBot;
-			mapper.right = room.doorRight;
-			mapper.left = room.doorLeft;
-            mapper.gameObject.name = "MapSprite (" + room.gridPos.x + ", " + room.gridPos.y + ")";
-            */
+			// Create wall obj and assign variables
             ChunkSelector chonk = Object.Instantiate(parentChunk, drawPos, Quaternion.identity).GetComponent<ChunkSelector>();
-            chonk.type = room.type;
+            chonk.type = (ChunkSelector.RoomType)room.type;
             chonk.up = room.doorTop;
             chonk.down = room.doorBot;
             chonk.right = room.doorRight;
