@@ -17,3 +17,5 @@ MonoBehaviour:
   down: 1
   left: 1
   right: 1
+  roomPrefab: {fileID: 6419602502731138080, guid: 4c437a97864d77e4ea961b7281590778,
+    type: 3}

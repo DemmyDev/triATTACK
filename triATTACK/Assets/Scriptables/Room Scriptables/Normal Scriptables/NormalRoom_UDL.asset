@@ -10,10 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 58b93d7c0989c1a4d8cb295c54f86562, type: 3}
-  m_Name: NormalRoom1
+  m_Name: NormalRoom_UDL
   m_EditorClassIdentifier: 
   type: 0
   up: 1
   down: 1
-  left: 0
+  left: 1
   right: 0
+  roomPrefab: {fileID: 5004504010925573654, guid: 203fb41ce4557ec4686034b647216357,
+    type: 3}

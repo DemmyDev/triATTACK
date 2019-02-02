@@ -1,21 +1,11 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &100100000
-Prefab:
-  m_ObjectHideFlags: 1
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications: []
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1560482414636770}
-  m_IsPrefabAsset: 1
 --- !u!1 &1560482414636770
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4642222848457368}
@@ -29,9 +19,10 @@ GameObject:
   m_IsActive: 1
 --- !u!4 &4642222848457368
 Transform:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1560482414636770}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -10}
@@ -42,12 +33,51 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &114422676333191656
 MonoBehaviour:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1560482414636770}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7e662a85b3b038f4a80ec45bf602f019, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  entryRoomChunks:
+  - {fileID: 11400000, guid: b274c8f6309dc9f4aa967dfd7e5133f8, type: 2}
+  itemRoomChunks:
+  - {fileID: 11400000, guid: d1b88f6c894791f478b64f152ced3bf2, type: 2}
+  bossRoomChunks:
+  - {fileID: 11400000, guid: b8fd4f1ed88b3ac44839823b850a46e8, type: 2}
+  shopRoomChunks:
+  - {fileID: 11400000, guid: a819632a14371b64e9f8702ed768edca, type: 2}
+  roomChunkU:
+  - {fileID: 11400000, guid: da657fcd82111a24f929b8056a897f79, type: 2}
+  roomChunkD:
+  - {fileID: 11400000, guid: 4e1b66970381c7b45ae1306444604696, type: 2}
+  roomChunkR:
+  - {fileID: 11400000, guid: 054664079be2fa84c84f945ee5210409, type: 2}
+  roomChunkL:
+  - {fileID: 11400000, guid: babb96aee10559244be117dde42f91d7, type: 2}
+  roomChunkUD:
+  - {fileID: 11400000, guid: 923feddf1a0c94c428d2d59810ed0a8e, type: 2}
+  roomChunkRL:
+  - {fileID: 11400000, guid: 2030d74557347c549a570aef0a1cffe7, type: 2}
+  roomChunkUR:
+  - {fileID: 11400000, guid: 2551cd091dbe3524182822aead026aaa, type: 2}
+  roomChunkUL:
+  - {fileID: 11400000, guid: 57bb13ea03fbddd4eb77d52093ef1f43, type: 2}
+  roomChunkDR:
+  - {fileID: 11400000, guid: 69d11b10e9754fe40a0a83fadf40abb6, type: 2}
+  roomChunkDL:
+  - {fileID: 11400000, guid: 03ccc5e8c1e1b9345978e5b77929c2d4, type: 2}
+  roomChunkULD:
+  - {fileID: 11400000, guid: 56ae7198e9f57054e8cdf979d3ec9f3c, type: 2}
+  roomChunkRUL:
+  - {fileID: 11400000, guid: 2551cd091dbe3524182822aead026aaa, type: 2}
+  roomChunkDRU:
+  - {fileID: 11400000, guid: 600c4738359e9ff45ad493c636eeb663, type: 2}
+  roomChunkLDR:
+  - {fileID: 11400000, guid: 8bb00e7a5ba6048449c29e280d54630b, type: 2}
+  roomChunkUDRL:
+  - {fileID: 11400000, guid: 6c3e00dfceb71ef4cb6b3f7cd59254cf, type: 2}

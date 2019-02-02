@@ -8,10 +8,8 @@ public class LevelGeneration : MonoBehaviour {
 	List<Vector2> takenPositions = new List<Vector2>();
     int gridSizeX, gridSizeY;
     public int numberOfRooms = 20;
-    [SerializeField]
-    GameObject parentChunk;
-    [SerializeField]
-    GameObject mapType;
+    [SerializeField] GameObject parentChunk;
+    [SerializeField] GameObject mapType;
 	void Start () {
 		if (numberOfRooms >= (worldSize.x * 2) * (worldSize.y * 2)){ // make sure we dont try to make more rooms than can fit in our grid
 			numberOfRooms = Mathf.RoundToInt((worldSize.x * 2) * (worldSize.y * 2));

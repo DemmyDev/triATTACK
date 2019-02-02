@@ -20,18 +20,8 @@ public class ChunkSelector : MonoBehaviour
     public Transform wall;
 
     [Header("Room Chunk Variables")]
-
     RoomChunk roomScriptable;
 
-    Transform[] upNormRooms;
-    Transform[] downNormRooms;
-    Transform[] leftNormRooms;
-    Transform[] rightNormRooms;
-
-    [SerializeField] Transform entryRoom;
-    [SerializeField] Transform itemRoom;
-    [SerializeField] Transform bossRoom;
-    [SerializeField] Transform shopRoom;
 
     [HideInInspector]
     public Transform room;
@@ -134,31 +124,17 @@ public class ChunkSelector : MonoBehaviour
 
     public void SetScriptable(RoomChunk[] scriptableRooms)
     {
-
+        Debug.Log("Hey it got here");
+        int rand = Random.Range(0, scriptableRooms.Length);
+        roomScriptable = scriptableRooms[rand];
+        room = roomScriptable.roomPrefab;
+        PickRoom();
     }
 
-    public void PickRoom()
+    void PickRoom()
     {
-        switch (type)
-        {
-            case RoomType.Normal:
 
-                break;
-            case RoomType.Entry:
-                room = entryRoom;
-                var instRoom = Instantiate(room, gameObject.transform.position, gameObject.transform.rotation);
-                instRoom.transform.parent = gameObject.transform;
-
-                break;
-            case RoomType.Item:
-
-                break;
-            case RoomType.Boss:
-
-                break;
-            case RoomType.Shop:
-
-                break;
-        }
+        var instRoom = Instantiate(room, gameObject.transform.position, gameObject.transform.rotation);
+        instRoom.transform.parent = gameObject.transform;
     }
 }

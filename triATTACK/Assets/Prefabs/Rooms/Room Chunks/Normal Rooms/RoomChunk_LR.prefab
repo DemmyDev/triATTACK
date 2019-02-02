@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &6777929393161121558
+--- !u!1001 &2851684462652173986
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: 2227565182477607697, guid: 8700c4b805e666d42a629262ad24736e,
         type: 3}
       propertyPath: m_Name
-      value: RoomChunk_Entry
+      value: RoomChunk_LR
       objectReference: {fileID: 0}
     - target: {fileID: 5133009966650084615, guid: 8700c4b805e666d42a629262ad24736e,
         type: 3}

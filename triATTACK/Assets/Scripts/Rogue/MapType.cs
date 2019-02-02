@@ -8,8 +8,16 @@ public class MapType : MonoBehaviour {
     LevelGeneration levelGen;
     bool itemRoomIsSet = false, bossRoomIsSet = false, shopRoomIsSet = false;
 
-    [Header("Normal Scriptables")]
-    public RoomChunk[] normalRoomChunks;
+    [Header("Special Room Scriptables")]
+    public RoomChunk[] entryRoomChunks;
+    public RoomChunk[] itemRoomChunks;
+    public RoomChunk[] bossRoomChunks;
+    public RoomChunk[] shopRoomChunks;
+
+    [Header("Normal Room Scriptables")]
+    public RoomChunk[] roomChunkU; public RoomChunk[] roomChunkD; public RoomChunk[] roomChunkR; public RoomChunk[] roomChunkL;
+    public RoomChunk[] roomChunkUD; public RoomChunk[] roomChunkRL; public RoomChunk[] roomChunkUR; public RoomChunk[] roomChunkUL; public RoomChunk[] roomChunkDR; public RoomChunk[] roomChunkDL;
+    public RoomChunk[] roomChunkULD; public RoomChunk[] roomChunkRUL; public RoomChunk[] roomChunkDRU; public RoomChunk[] roomChunkLDR; public RoomChunk[] roomChunkUDRL;
 
     void Start()
     {
@@ -107,30 +115,114 @@ public class MapType : MonoBehaviour {
         {
             ChunkSelector chunk = parentChunk.GetComponent<ChunkSelector>();
             // Give the room a scriptable, and assign the scriptable's variables to the room
-            chunk.SetScriptable(roomChunks);
 
             switch (chunk.type)
             {
                 case ChunkSelector.RoomType.Normal:
-
+                    RoomChunk[] chosenNormalArray = PickNormalRoomArray(chunk);
+                    chunk.SetScriptable(chosenNormalArray);
                     break;
                 case ChunkSelector.RoomType.Entry:
-
+                    chunk.SetScriptable(entryRoomChunks);
                     break;
-
                 case ChunkSelector.RoomType.Item:
-
+                    chunk.SetScriptable(itemRoomChunks);
                     break;
                 case ChunkSelector.RoomType.Boss:
-
+                    chunk.SetScriptable(bossRoomChunks);
                     break;
                 case ChunkSelector.RoomType.Shop:
-
+                    chunk.SetScriptable(shopRoomChunks);
                     break;
             }
+        }
+    }
 
-            // Based on the scriptable's information, pick an allowed room
-            chunk.PickRoom();
+    RoomChunk[] PickNormalRoomArray(ChunkSelector chunk)
+    {
+        if (chunk.up)
+        {
+            if (chunk.down)
+            {
+                if (chunk.right)
+                {
+                    if (chunk.left)
+                    {
+                        return roomChunkUDRL;
+                    }
+                    else
+                    {
+                        return roomChunkDRU;
+                    }
+                }
+                else if (chunk.left)
+                {
+                    return roomChunkULD;
+                }
+                else
+                {
+                    return roomChunkUD;
+                }
+            }
+            else
+            {
+                if (chunk.right)
+                {
+                    if (chunk.left)
+                    {
+                        return roomChunkRUL;
+                    }
+                    else
+                    {
+                        return roomChunkUR;
+                    }
+                }
+                else if (chunk.left)
+                {
+                    return roomChunkUL;
+                }
+                else
+                {
+                    return roomChunkU;
+                }
+            }
+        }
+        if (chunk.down)
+        {
+            if (chunk.right)
+            {
+                if (chunk.left)
+                {
+                    return roomChunkLDR;
+                }
+                else
+                {
+                    return roomChunkDR;
+                }
+            }
+            else if (chunk.left)
+            {
+                return roomChunkDL;
+            }
+            else
+            {
+                return roomChunkD;
+            }
+        }
+        if (chunk.right)
+        {
+            if (chunk.left)
+            {
+                return roomChunkRL;
+            }
+            else
+            {
+                return roomChunkR;
+            }
+        }
+        else
+        {
+            return roomChunkL;
         }
     }
 }
