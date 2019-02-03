@@ -9,15 +9,15 @@ public class MapType : MonoBehaviour {
     bool itemRoomIsSet = false, bossRoomIsSet = false, shopRoomIsSet = false;
 
     [Header("Special Room Scriptables")]
-    public RoomChunk[] entryRoomChunks;
-    public RoomChunk[] itemRoomChunks;
-    public RoomChunk[] bossRoomChunks;
-    public RoomChunk[] shopRoomChunks;
+    [SerializeField] List<RoomChunk> entryRoomChunks;
+    [SerializeField] List<RoomChunk> itemRoomChunks;
+    [SerializeField] List<RoomChunk> bossRoomChunks;
+    [SerializeField] List<RoomChunk> shopRoomChunks;
 
     [Header("Normal Room Scriptables")]
-    public RoomChunk[] roomChunkU; public RoomChunk[] roomChunkD; public RoomChunk[] roomChunkR; public RoomChunk[] roomChunkL;
-    public RoomChunk[] roomChunkUD; public RoomChunk[] roomChunkRL; public RoomChunk[] roomChunkUR; public RoomChunk[] roomChunkUL; public RoomChunk[] roomChunkDR; public RoomChunk[] roomChunkDL;
-    public RoomChunk[] roomChunkULD; public RoomChunk[] roomChunkRUL; public RoomChunk[] roomChunkDRU; public RoomChunk[] roomChunkLDR; public RoomChunk[] roomChunkUDRL;
+    [SerializeField] List<RoomChunk> roomChunkU; [SerializeField] List<RoomChunk> roomChunkD; [SerializeField] List<RoomChunk> roomChunkR; [SerializeField] List<RoomChunk> roomChunkL;
+    [SerializeField] List<RoomChunk> roomChunkUD; [SerializeField] List<RoomChunk> roomChunkRL; [SerializeField] List<RoomChunk> roomChunkUR; [SerializeField] List<RoomChunk> roomChunkUL; [SerializeField] List<RoomChunk> roomChunkDR; [SerializeField] List<RoomChunk> roomChunkDL;
+    [SerializeField] List<RoomChunk> roomChunkULD; [SerializeField] List<RoomChunk> roomChunkRUL; [SerializeField] List<RoomChunk> roomChunkDRU; [SerializeField] List<RoomChunk> roomChunkLDR; [SerializeField] List<RoomChunk> roomChunkUDRL;
 
     void Start()
     {
@@ -119,7 +119,7 @@ public class MapType : MonoBehaviour {
             switch (chunk.type)
             {
                 case ChunkSelector.RoomType.Normal:
-                    RoomChunk[] chosenNormalArray = PickNormalRoomArray(chunk);
+                    List<RoomChunk> chosenNormalArray = PickNormalRoomArray(chunk);
                     chunk.SetScriptable(chosenNormalArray);
                     break;
                 case ChunkSelector.RoomType.Entry:
@@ -138,7 +138,7 @@ public class MapType : MonoBehaviour {
         }
     }
 
-    RoomChunk[] PickNormalRoomArray(ChunkSelector chunk)
+    List<RoomChunk> PickNormalRoomArray(ChunkSelector chunk)
     {
         if (chunk.up)
         {

@@ -122,10 +122,9 @@ public class ChunkSelector : MonoBehaviour
         }
     }
 
-    public void SetScriptable(RoomChunk[] scriptableRooms)
+    public void SetScriptable(List<RoomChunk> scriptableRooms)
     {
-        Debug.Log("Hey it got here");
-        int rand = Random.Range(0, scriptableRooms.Length);
+        int rand = Random.Range(0, scriptableRooms.Count);
         roomScriptable = scriptableRooms[rand];
         room = roomScriptable.roomPrefab;
         PickRoom();
@@ -133,7 +132,6 @@ public class ChunkSelector : MonoBehaviour
 
     void PickRoom()
     {
-
         var instRoom = Instantiate(room, gameObject.transform.position, gameObject.transform.rotation);
         instRoom.transform.parent = gameObject.transform;
     }
