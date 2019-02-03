@@ -14,7 +14,7 @@ public class DownTeleport : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.name == "Player")
+        if (other.CompareTag("Player"))
         {
             other.transform.position = downSpawn.transform.position;
 

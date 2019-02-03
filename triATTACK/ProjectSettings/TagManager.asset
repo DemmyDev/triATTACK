@@ -15,6 +15,7 @@ TagManager:
   - WallChunk
   - RoomChunk
   - ParentChunk
+  - Door
   layers:
   - Default
   - TransparentFX

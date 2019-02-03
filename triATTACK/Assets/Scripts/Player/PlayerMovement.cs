@@ -7,7 +7,7 @@ public class PlayerMovement : MonoBehaviour {
     private Rigidbody2D rb;
 
     public float speed;
-    private Vector2 moveVelocity;
+    Vector2 moveVelocity;
     Vector2 moveInput;
 
     void Start()
@@ -19,13 +19,13 @@ public class PlayerMovement : MonoBehaviour {
     {
         moveInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
         moveVelocity = moveInput * speed;
-        if (!PauseMenu.isPaused)
-        {
-            Vector3 mousePosition = Input.mousePosition;
-            mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
-            Vector2 direction = new Vector2(mousePosition.x - transform.position.x, mousePosition.y - transform.position.y);
-            transform.up = direction;
-        }
+
+        Transform sprite = transform.Find("PlayerSprite");
+        Vector3 mousePosition = Input.mousePosition;
+        mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
+        Vector2 direction = new Vector2(mousePosition.x - transform.position.x, mousePosition.y - transform.position.y);
+        sprite.up = direction;
+
         rb.MovePosition(rb.position + moveVelocity * Time.fixedDeltaTime);
     }
 }

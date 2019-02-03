@@ -11,19 +11,17 @@ public class PlayerShooting: MonoBehaviour {
 
     public Transform bulletTrailPrefab;
 
-    private Transform firePointOne;
-    private Transform firePointTwo;
-    private Transform firePointThree;
+    private Transform firePoint;
 
     private float timeToFire = 0;
 
-    public Slider triAttackMeterUI;
+    //public Slider triAttackMeterUI;
 
-    public float triAttackActivateValue;
+    /*public float triAttackActivateValue;
     public float triAttackMaxValue;
     public float triAttackMeter = 0f;
     private bool triAttackIsActive = false;
-    private bool isAtMaxValue = false;
+    private bool isAtMaxValue = false;*/
 
     [Range(0f, 2f)]
     public float shakeIntensity;
@@ -32,19 +30,19 @@ public class PlayerShooting: MonoBehaviour {
 
     void Start()
     {
-        firePointOne = transform.Find("BulletSpawn1");
-        firePointTwo = transform.Find("BulletSpawn2");
-        firePointThree = transform.Find("BulletSpawn3");
+        firePoint = transform.Find("BulletSpawn");
         shake = Camera.main.GetComponent<ScreenShake>();
 
-        triAttackActivateValue = triAttackMaxValue / 2;
-        triAttackMeterUI.maxValue = triAttackMaxValue;
+        //triAttackActivateValue = triAttackMaxValue / 2;
+        //triAttackMeterUI.maxValue = triAttackMaxValue;
     }
 
     void Update ()
     {
+        
         if (!PauseMenu.isPaused)
         {
+            /*
             if (triAttackIsActive)
             {
                 triAttackMeter -= Time.deltaTime * 2f;
@@ -83,7 +81,8 @@ public class PlayerShooting: MonoBehaviour {
             }
 
             triAttackMeterUI.value = triAttackMeter;
-
+            */
+             
             if (fireRate == 0)
             {
                 if (Input.GetMouseButtonDown(0))
@@ -104,8 +103,10 @@ public class PlayerShooting: MonoBehaviour {
 
     void Shoot()
     {
-        Instantiate(bulletTrailPrefab, firePointOne.position, firePointOne.rotation);
+        Instantiate(bulletTrailPrefab, firePoint.position, firePoint.rotation);
+        shake.Shake(shakeDuration, shakeIntensity);
 
+        /*
         if (triAttackIsActive)
         {
             Instantiate(bulletTrailPrefab, firePointTwo.position, firePointOne.rotation);
@@ -116,6 +117,6 @@ public class PlayerShooting: MonoBehaviour {
         {
             shake.Shake(shakeDuration, shakeIntensity);
         }
-
+        */
     }
 }

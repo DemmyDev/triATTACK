@@ -14,7 +14,7 @@ public class RightTeleport : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.name == "Player")
+        if (other.CompareTag("Player"))
         {
             other.transform.position = rightSpawn.transform.position;
 

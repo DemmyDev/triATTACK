@@ -7,14 +7,14 @@ public class Bullet : MonoBehaviour
     public int bulletSpeed;
     public int bulletDamage;
 
-    private ScoreText scoreText;
+    //private ScoreText scoreText;
     public int addScoreEnemyHit;
 
 
     void Start()
     {
         GameObject text = GameObject.Find("ScoreText");
-        scoreText = text.GetComponent<ScoreText>();
+        //scoreText = text.GetComponent<ScoreText>();
     }
 
     void Update()
@@ -46,11 +46,11 @@ public class Bullet : MonoBehaviour
                 projectileEnemy.DamageEnemy(bulletDamage, bulletPos, bulletRot);
             }
 
-            scoreText.SetScore(addScoreEnemyHit);
+            //scoreText.SetScore(addScoreEnemyHit);
 
             Destroy(gameObject);
         }
-        else if (other.CompareTag("ObjectDestroy"))
+        else if (other.CompareTag("WallChunk") || other.CompareTag("Door"))
         {
             Destroy(gameObject);
         }
