@@ -18,9 +18,6 @@ public class Player : MonoBehaviour {
     public Sprite fullTri;
     public Sprite emptyTri;
 
-    public float screenX;
-    public float screenY;
-
     [Range(0f, 2f)]
     public float shakeIntensity;
     private ScreenShake shake;
@@ -69,28 +66,6 @@ public class Player : MonoBehaviour {
                 tris[i].enabled = false;
             }
         }
-
-        
-        Vector2 newPos = transform.position;
-
-        if (transform.position.x > screenX)
-        {
-            newPos.x = -screenX;
-        }
-        if (transform.position.x < -screenX)
-        {
-            newPos.x = screenX;
-        }
-        if (transform.position.y > screenY)
-        {
-            newPos.y = -screenY;
-        }
-        if (transform.position.y < -screenY)
-        {
-            newPos.y = screenY;
-        }
-        transform.position = newPos;
-        
     }
 
     void OnCollisionEnter2D(Collision2D collision)

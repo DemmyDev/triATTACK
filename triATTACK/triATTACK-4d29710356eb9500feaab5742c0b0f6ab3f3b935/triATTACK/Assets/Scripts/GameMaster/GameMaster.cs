@@ -50,6 +50,9 @@ public class GameMaster : MonoBehaviour {
             Destroy(bullet);
         }
 
+        GameObject triBullet = GameObject.FindGameObjectWithTag("TriBullet");
+        Destroy(triBullet);
+
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (player != null)
         {

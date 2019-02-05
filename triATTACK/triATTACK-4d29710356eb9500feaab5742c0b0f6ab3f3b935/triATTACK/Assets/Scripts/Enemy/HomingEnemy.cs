@@ -5,34 +5,26 @@ using UnityEngine;
 public class HomingEnemy : MonoBehaviour
 {
 
-    public float speed;
-    public int enemyDamage;
+    [SerializeField] float speed;
+    [SerializeField] int enemyDamage;
+    [SerializeField] int health;
 
-    private Transform target;
+    Transform target;
 
     [Range(0f, 2f)]
-    public float shakeIntensity;
-    private ScreenShake shake;
-    public float shakeDuration;
+    [SerializeField] float shakeIntensity;
+    [SerializeField] float shakeDuration;
+    ScreenShake shake;
 
-    private ScoreText scoreText;
-    public int addScoreDeath;
+    ScoreText scoreText;
+    [SerializeField] int addScoreDeath;
 
-    public Transform homingParticlePrefab;
-
-    [System.Serializable]
-    public class EnemyStats
-    {
-        public int health;
-    }
-
-    public EnemyStats enemyStats = new EnemyStats();
+    [SerializeField] Transform homingParticlePrefab;
 
     void Start()
     {
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
-        GameObject text = GameObject.Find("ScoreText");
-        scoreText = text.GetComponent<ScoreText>();
+        scoreText = GameObject.Find("ScoreText").GetComponent<ScoreText>();
         shake = Camera.main.GetComponent<ScreenShake>();
         if (shake == null)
         {
@@ -42,18 +34,16 @@ public class HomingEnemy : MonoBehaviour
 
     void Update()
     {
-        
         if (target != null)
         {
             transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
-
         }        
     }
 
     public void DamageEnemy(int damage)
     {
-        enemyStats.health -= damage;
-        if (enemyStats.health <= 0)
+        health -= damage;
+        if (health <= 0)
         {
             EnemySpawner spawner = GameObject.FindGameObjectWithTag("GameMaster").GetComponent<EnemySpawner>();
             spawner.KilledEnemyCounter();

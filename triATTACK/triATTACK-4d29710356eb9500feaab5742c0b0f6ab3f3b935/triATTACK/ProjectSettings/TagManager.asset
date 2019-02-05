@@ -10,6 +10,7 @@ TagManager:
   - ObjectDestroy
   - Bullet
   - Particle
+  - TriBullet
   layers:
   - Default
   - TransparentFX

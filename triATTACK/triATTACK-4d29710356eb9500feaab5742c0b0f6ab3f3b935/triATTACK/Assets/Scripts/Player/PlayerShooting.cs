@@ -5,117 +5,83 @@ using UnityEngine.UI;
 
 public class PlayerShooting: MonoBehaviour {
 
-    public float fireRate;
-    public int damage;
-    public LayerMask whatToHit;
+    [SerializeField] float fireRate;
+    [SerializeField] int damage;
 
-    public Transform bulletTrailPrefab;
+    [SerializeField] Transform bulletTrailPrefab;
 
-    private Transform firePointOne;
-    private Transform firePointTwo;
-    private Transform firePointThree;
+    Transform firePoint;
 
-    private float timeToFire = 0;
-
-    public Slider triAttackMeterUI;
-
-    public float triAttackActivateValue;
-    public float triAttackMaxValue;
-    public float triAttackMeter = 0f;
-    private bool triAttackIsActive = false;
-    private bool isAtMaxValue = false;
+    float timeToFire = 0;
 
     [Range(0f, 2f)]
-    public float shakeIntensity;
-    private ScreenShake shake;
-    public float shakeDuration;
+    [SerializeField] float shakeIntensity;
+    [SerializeField] float shakeDuration;
+    ScreenShake shake;
+
+    bool canShoot, hasShot, isRecalling;
 
     void Start()
     {
-        firePointOne = transform.Find("BulletSpawn1");
-        firePointTwo = transform.Find("BulletSpawn2");
-        firePointThree = transform.Find("BulletSpawn3");
+        firePoint = transform.Find("BulletSpawn");
         shake = Camera.main.GetComponent<ScreenShake>();
-
-        triAttackActivateValue = triAttackMaxValue / 2;
-        triAttackMeterUI.maxValue = triAttackMaxValue;
+        canShoot = true;
+        hasShot = false;
+        isRecalling = false;
     }
 
     void Update ()
     {
         if (!PauseMenu.isPaused)
         {
-            if (triAttackIsActive)
-            {
-                triAttackMeter -= Time.deltaTime * 2f;
+            // If the player can shoot (canShoot == true) && if the player hits left mouse 
+                // Shoot function (instantiate object at firepoint, screenshake)
+                // hasShot is true, canShoot is false
+            // If the player has shot (hasShot == true) && if the player hits right mouse
+                // Recall function (public void that changes bool in Bullet to make bullet go to player)
 
-                if (triAttackMeter < 0f)
-                {
-                    Debug.Log("tri attack finished");
-                    triAttackMeter = 0f;
-                    triAttackIsActive = false;
-                }
+            // On collision with bullet
+                // Destroy bullet 
+                // canShoot becomes true (cooldown for canShoot to become true?), hasShot becomes false
+                
+            if (canShoot && Input.GetMouseButton(0))
+            {
+                Shoot();
+                hasShot = true;
+                canShoot = false;
+                Debug.Log("Shoot");
             }
-            else
+            else if (hasShot && Input.GetKeyDown(KeyCode.Space)) // Change spacebar to right mouse
             {
-                if (triAttackMeter >= triAttackMaxValue && !isAtMaxValue)
-                {
-                    Debug.Log("tri attack at max value ");
-                    triAttackMeter = triAttackMaxValue;
-                    isAtMaxValue = true;
-                }
-
-                if (!isAtMaxValue)
-                {
-                    triAttackMeter += Time.deltaTime;
-                }
-
-                if (triAttackMeter >= triAttackActivateValue)
-                {
-                    Debug.Log("tri attack can be activated");
-                    if (Input.GetKeyDown(KeyCode.Space))
-                    {
-                        Debug.Log("tri attack activated");
-                        triAttackIsActive = true;
-                        isAtMaxValue = false;
-                    }
-                }
+                Bullet.isRecalling = true;
+                isRecalling = true;
+                Debug.Log("Recall");
             }
 
-            triAttackMeterUI.value = triAttackMeter;
-
-            if (fireRate == 0)
-            {
-                if (Input.GetMouseButtonDown(0))
-                {
-                    Shoot();
-                }
-            }
-            else
-            {
-                if (Input.GetMouseButton(0) && Time.time > timeToFire)
-                {
-                    timeToFire = Time.time + 1 / fireRate;
-                    Shoot();
-                }
-            }
         }
-	}
+    }
 
     void Shoot()
     {
-        Instantiate(bulletTrailPrefab, firePointOne.position, firePointOne.rotation);
+        Instantiate(bulletTrailPrefab, firePoint.position, gameObject.transform.rotation);
+        shake.Shake(shakeDuration, shakeIntensity);
+    }
 
-        if (triAttackIsActive)
-        {
-            Instantiate(bulletTrailPrefab, firePointTwo.position, firePointOne.rotation);
-            Instantiate(bulletTrailPrefab, firePointThree.position, firePointOne.rotation);
-            shake.Shake(shakeDuration, shakeIntensity * 2);
-        }
-        else
-        {
-            shake.Shake(shakeDuration, shakeIntensity);
-        }
+    void CanShoot()
+    {
+        canShoot = true;
+        Debug.Log("Can shoot");
+    }
 
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("TriBullet") && isRecalling)
+        {
+            Destroy(other.gameObject);
+            Bullet.isRecalling = false;
+            isRecalling = false;
+            // Animation for recharging?
+            Invoke("CanShoot", .5f);
+        }
     }
 }

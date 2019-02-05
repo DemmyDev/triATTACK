@@ -4,22 +4,33 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    public int bulletSpeed;
-    public int bulletDamage;
+    [SerializeField] int bulletSpeed;
+    [SerializeField] int bulletDamage;
 
-    private ScoreText scoreText;
-    public int addScoreEnemyHit;
+    ScoreText scoreText;
+    [SerializeField] int addScoreEnemyHit;
 
+    public static bool isRecalling;
+    Transform target;
 
     void Start()
     {
-        GameObject text = GameObject.Find("ScoreText");
-        scoreText = text.GetComponent<ScoreText>();
+        isRecalling = false;
+        scoreText = GameObject.Find("ScoreText").GetComponent<ScoreText>();
+        target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
     }
 
     void Update()
     {
-        transform.Translate(Vector3.right * Time.deltaTime * bulletSpeed);
+        if (!isRecalling)
+        {
+            // This line needs rewriting to allow constant bullet rotation
+            transform.Translate(Vector3.up * Time.deltaTime * bulletSpeed);
+        }
+        else if (isRecalling)
+        {
+            transform.position = Vector2.MoveTowards(transform.position, target.position, bulletSpeed * Time.deltaTime);
+        }
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -47,12 +58,6 @@ public class Bullet : MonoBehaviour
             }
 
             scoreText.SetScore(addScoreEnemyHit);
-
-            Destroy(gameObject);
-        }
-        else if (other.CompareTag("ObjectDestroy"))
-        {
-            Destroy(gameObject);
         }
     }
 }
