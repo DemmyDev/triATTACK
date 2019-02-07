@@ -77,11 +77,11 @@ public class PlayerShooting: MonoBehaviour {
     {
         if (other.CompareTag("TriBullet") && isRecalling)
         {
-            Destroy(other.gameObject);
+            Destroy(other.transform.parent.gameObject);
             Bullet.isRecalling = false;
             isRecalling = false;
             // Animation for recharging?
-            Invoke("CanShoot", .5f);
+            Invoke("CanShoot", .25f);
         }
     }
 }

@@ -5,59 +5,50 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     [SerializeField] int bulletSpeed;
-    [SerializeField] int bulletDamage;
-
-    ScoreText scoreText;
-    [SerializeField] int addScoreEnemyHit;
 
     public static bool isRecalling;
     Transform target;
+    Rigidbody2D rb;
+
+    [SerializeField] float rotateSpeed;
+    float slowDownSpeed;
+    Transform spriteObj;
+    SpriteRenderer sprite;
 
     void Start()
     {
+        spriteObj = GameObject.Find("Sprite").GetComponent<Transform>(); ;
+        sprite = spriteObj.GetComponent<SpriteRenderer>();
         isRecalling = false;
-        scoreText = GameObject.Find("ScoreText").GetComponent<ScoreText>();
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        rb = gameObject.GetComponent<Rigidbody2D>();
+        transform.rotation = target.rotation;
+
+        Vector2 direction = new Vector2(transform.up.x, transform.up.y);
+        rb.velocity = direction * Time.deltaTime * bulletSpeed;
+        slowDownSpeed = rotateSpeed;
     }
 
     void Update()
     {
         if (!isRecalling)
         {
-            // This line needs rewriting to allow constant bullet rotation
-            transform.Translate(Vector3.up * Time.deltaTime * bulletSpeed);
+            if (slowDownSpeed > 10f)
+            {
+                slowDownSpeed /= 1.01f;
+                spriteObj.Rotate(Vector3.forward * Time.deltaTime * slowDownSpeed);
+            }
         }
         else if (isRecalling)
         {
-            transform.position = Vector2.MoveTowards(transform.position, target.position, bulletSpeed * Time.deltaTime);
-        }
-    }
+            spriteObj.Rotate(Vector3.forward * Time.deltaTime * rotateSpeed);
+            rb.velocity = Vector2.zero;
+            transform.position = Vector2.MoveTowards(transform.position, target.position, (bulletSpeed / 50) * Time.deltaTime );
 
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.CompareTag("Enemy"))
-        {
-            HomingEnemy homingEnemy = other.gameObject.GetComponent<HomingEnemy>();
-            ShootingEnemy shootingEnemy = other.gameObject.GetComponent<ShootingEnemy>();
-            ProjectileEnemy projectileEnemy = other.gameObject.GetComponent<ProjectileEnemy>();
-
-            Vector3 bulletPos = gameObject.transform.position;
-            Quaternion bulletRot = gameObject.transform.rotation;
-
-            if (homingEnemy)
-            {
-                homingEnemy.DamageEnemy(bulletDamage);
-            }
-            else if (shootingEnemy)
-            {
-                shootingEnemy.DamageEnemy(bulletDamage, bulletPos, bulletRot);                
-            }
-            else if (projectileEnemy)
-            {
-                projectileEnemy.DamageEnemy(bulletDamage, bulletPos, bulletRot);
-            }
-
-            scoreText.SetScore(addScoreEnemyHit);
+            Vector3 difference = target.transform.position - transform.position;
+            difference.Normalize();
+            float rotZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.Euler(0f, 0f, rotZ - 90f);
         }
     }
 }
