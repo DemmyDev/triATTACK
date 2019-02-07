@@ -14,6 +14,7 @@ public class MainMenu: MonoBehaviour {
 
     public void StartGame()
     {
+        Debug.Log("Start Game");
         anim.Play();
         Invoke("LoadGame", 1f);
     }
@@ -26,6 +27,8 @@ public class MainMenu: MonoBehaviour {
 
     public void LoadGame()
     {
+        anim.Stop();
+        Debug.Log("Load Game");
         SceneManager.LoadScene(1);
     }
 }

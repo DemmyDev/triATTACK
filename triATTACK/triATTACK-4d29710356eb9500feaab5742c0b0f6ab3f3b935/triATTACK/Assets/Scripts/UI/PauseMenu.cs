@@ -7,11 +7,11 @@ public class PauseMenu : MonoBehaviour {
 
     public static bool isPaused = false;
 
-    public GameObject pauseMenuUI;
+    [SerializeField] GameObject pauseMenuUI;
 
-    private GlitchEffect glitch;
+    GlitchEffect glitch;
 
-    private void Start()
+    void Start()
     {
         glitch = Camera.main.GetComponent<GlitchEffect>();
     }
@@ -49,6 +49,7 @@ public class PauseMenu : MonoBehaviour {
 
     public void LoadMainMenu()
     {
+        Time.timeScale = 1f;
         SceneManager.LoadScene(0);
     }
 

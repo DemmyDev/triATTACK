@@ -5,30 +5,30 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour {
 
-    public GameObject deathText;
-    public GameObject scoreText;
-    public GameObject healthUI;
+    [SerializeField] GameObject deathText;
+    [SerializeField] GameObject scoreText;
+    [SerializeField] GameObject healthUI;
 
-    public Transform playerParticlePrefab;
+    [SerializeField] Transform playerParticlePrefab;
     
-    public int health;
-    public int numOfTris;
+    [SerializeField] int health;
+    [SerializeField] int numOfTris;
 
-    public Image[] tris;
-    public Sprite fullTri;
-    public Sprite emptyTri;
+    [SerializeField] Image[] tris;
+    [SerializeField] Sprite fullTri;
+    [SerializeField] Sprite emptyTri;
 
     [Range(0f, 2f)]
-    public float shakeIntensity;
-    private ScreenShake shake;
-    public float shakeDuration;
+    [SerializeField] float shakeIntensity;
+    ScreenShake shake;
+    [SerializeField] float shakeDuration;
 
     public static bool isInvincible = false;
     public static bool isDead = false;
-    private Animation anim;
-    private SpriteRenderer sprite;
+    Animation anim;
+    SpriteRenderer sprite;
 
-    private void Start()
+    void Start()
     {
         anim = GetComponent<Animation>();
         sprite = GetComponent<SpriteRenderer>();

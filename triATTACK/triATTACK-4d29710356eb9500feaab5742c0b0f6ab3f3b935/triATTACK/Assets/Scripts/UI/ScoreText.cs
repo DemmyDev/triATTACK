@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class ScoreText : MonoBehaviour {
 
-    private int currentScore;
-    private Text scoreText;
+    int currentScore;
+    Text scoreText;
 
     void Start ()
     {

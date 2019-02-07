@@ -62,6 +62,7 @@ public class GameMaster : MonoBehaviour {
     public void StartGame()
     {
         gameObject.GetComponent<EnemySpawner>().enabled = true;
+        gameObject.GetComponent<EnemySpawner>().SpawnEnemy();
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (player != null)
         {

@@ -12,8 +12,6 @@ public class PlayerShooting: MonoBehaviour {
 
     Transform firePoint;
 
-    float timeToFire = 0;
-
     [Range(0f, 2f)]
     [SerializeField] float shakeIntensity;
     [SerializeField] float shakeDuration;
@@ -34,16 +32,6 @@ public class PlayerShooting: MonoBehaviour {
     {
         if (!PauseMenu.isPaused)
         {
-            // If the player can shoot (canShoot == true) && if the player hits left mouse 
-                // Shoot function (instantiate object at firepoint, screenshake)
-                // hasShot is true, canShoot is false
-            // If the player has shot (hasShot == true) && if the player hits right mouse
-                // Recall function (public void that changes bool in Bullet to make bullet go to player)
-
-            // On collision with bullet
-                // Destroy bullet 
-                // canShoot becomes true (cooldown for canShoot to become true?), hasShot becomes false
-                
             if (canShoot && Input.GetMouseButton(0))
             {
                 Shoot();
@@ -77,6 +65,7 @@ public class PlayerShooting: MonoBehaviour {
     {
         if (other.CompareTag("TriBullet") && isRecalling)
         {
+            shake.Shake(shakeDuration, shakeIntensity * 2f);
             Destroy(other.transform.parent.gameObject);
             Bullet.isRecalling = false;
             isRecalling = false;

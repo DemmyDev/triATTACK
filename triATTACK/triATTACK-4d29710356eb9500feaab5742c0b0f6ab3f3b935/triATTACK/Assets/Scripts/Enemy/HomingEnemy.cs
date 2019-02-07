@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class HomingEnemy : MonoBehaviour
 {
-
     [SerializeField] float speed;
     [SerializeField] int enemyDamage;
     [SerializeField] int health;

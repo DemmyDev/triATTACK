@@ -12,7 +12,6 @@ public class BulletCollision : MonoBehaviour
     void Start()
     {
         scoreText = GameObject.Find("ScoreText").GetComponent<ScoreText>();
-
     }
 
     void OnTriggerEnter2D(Collider2D other)

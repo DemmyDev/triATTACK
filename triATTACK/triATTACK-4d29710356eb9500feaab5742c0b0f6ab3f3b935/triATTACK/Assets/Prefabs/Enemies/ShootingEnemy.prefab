@@ -9,35 +9,16 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1653587664911592}
+  m_RootGameObject: {fileID: 1989745196843296}
   m_IsPrefabAsset: 1
---- !u!1 &1653587664911592
+--- !u!1 &1795786698227756
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4083169613611084}
-  - component: {fileID: 212051866473239082}
-  - component: {fileID: 114121591035299980}
-  - component: {fileID: 114991378665465102}
-  - component: {fileID: 61532386676160498}
-  m_Layer: 0
-  m_Name: ShootingEnemy
-  m_TagString: Enemy
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!1 &1975152555870644
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4349948316216304}
+  - component: {fileID: 4882590554891036}
   m_Layer: 0
   m_Name: BulletSpawn
   m_TagString: Untagged
@@ -45,39 +26,58 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4083169613611084
+--- !u!1 &1989745196843296
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4538724311713988}
+  - component: {fileID: 212547799593600362}
+  - component: {fileID: 114945145349070998}
+  - component: {fileID: 114532944280004308}
+  - component: {fileID: 61731154430100030}
+  m_Layer: 0
+  m_Name: ShootingEnemy
+  m_TagString: Enemy
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4538724311713988
 Transform:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1653587664911592}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_GameObject: {fileID: 1989745196843296}
+  m_LocalRotation: {x: 0, y: 0, z: 0.025176479, w: 0.999683}
+  m_LocalPosition: {x: -28.96839, y: -7.602315, z: 0}
   m_LocalScale: {x: 0.66, y: 0.66, z: 1}
   m_Children:
-  - {fileID: 4349948316216304}
+  - {fileID: 4882590554891036}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4349948316216304
+--- !u!4 &4882590554891036
 Transform:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1975152555870644}
+  m_GameObject: {fileID: 1795786698227756}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 4083169613611084}
+  m_Father: {fileID: 4538724311713988}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &61532386676160498
+--- !u!61 &61731154430100030
 BoxCollider2D:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1653587664911592}
+  m_GameObject: {fileID: 1989745196843296}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -97,50 +97,48 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.56, y: 2.56}
   m_EdgeRadius: 0
---- !u!114 &114121591035299980
+--- !u!114 &114532944280004308
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1653587664911592}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f8ff0fbada2af84b900eee377aa02b7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 8
-  stoppingDistance: 12
-  retreatDistance: 10
-  startTimeBtwShots: 0.8
-  bulletTrailPrefab: {fileID: 1556493256478004, guid: 0f620f48ec5a2a84f8840b51950be3e0,
-    type: 2}
-  deathParticlePrefab: {fileID: 4675210404812272, guid: e2f83a310b0c9b94ea601219e3d90107,
-    type: 2}
-  dmgParticlePrefab: {fileID: 4993422432062980, guid: d19ccc1532c339d4f8a27e8a186a4501,
-    type: 2}
-  shakeIntensity: 0.6
-  shakeDuration: 0.25
-  addScoreDeath: 200
-  enemyStats:
-    health: 2
---- !u!114 &114991378665465102
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1653587664911592}
+  m_GameObject: {fileID: 1989745196843296}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 631fc5aa93f952e4aa7d93e126a93c4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationOffset: 0
---- !u!212 &212051866473239082
+--- !u!114 &114945145349070998
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1989745196843296}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f8ff0fbada2af84b900eee377aa02b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 6
+  stoppingDistance: 12
+  retreatDistance: 10
+  startTimeBtwShots: 1.5
+  bulletTrailPrefab: {fileID: 1114150222734168, guid: 82bb33601bc16e148870af20aba51086,
+    type: 2}
+  deathParticlePrefab: {fileID: 4675210404812272, guid: e2f83a310b0c9b94ea601219e3d90107,
+    type: 2}
+  dmgParticlePrefab: {fileID: 4993422432062980, guid: d19ccc1532c339d4f8a27e8a186a4501,
+    type: 2}
+  shakeIntensity: 0.5
+  shakeDuration: 0.1
+  addScoreDeath: 200
+  health: 2
+--- !u!212 &212547799593600362
 SpriteRenderer:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1653587664911592}
+  m_GameObject: {fileID: 1989745196843296}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0

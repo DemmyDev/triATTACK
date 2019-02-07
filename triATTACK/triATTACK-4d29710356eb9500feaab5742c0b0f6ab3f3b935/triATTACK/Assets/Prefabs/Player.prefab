@@ -152,7 +152,7 @@ MonoBehaviour:
   damage: 1
   bulletTrailPrefab: {fileID: 4486507701744908, guid: 4b6fa2e49cdcdd54087e962d84d39b49,
     type: 2}
-  shakeIntensity: 0.1
+  shakeIntensity: 0.15
   shakeDuration: 0.1
 --- !u!114 &114808574869525734
 MonoBehaviour:

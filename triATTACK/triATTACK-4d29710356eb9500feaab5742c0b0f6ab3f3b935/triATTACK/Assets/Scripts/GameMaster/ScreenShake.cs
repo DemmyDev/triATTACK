@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class ScreenShake : MonoBehaviour {
 
-    private Transform target;
-    private Vector3 initialPos;
-    private bool isShaking = false;
-    private float pendingShakeDuration = 0f;
-    private float shakeIntensity;
+    Transform target;
+    Vector3 initialPos;
+    bool isShaking = false;
+    float pendingShakeDuration = 0f;
+    float shakeIntensity;
 
     void Start ()
     {

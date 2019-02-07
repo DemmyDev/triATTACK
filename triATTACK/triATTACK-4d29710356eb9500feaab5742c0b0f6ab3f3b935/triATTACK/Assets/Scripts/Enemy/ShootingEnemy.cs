@@ -2,37 +2,32 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShootingEnemy : MonoBehaviour {
-    
-    public float speed;
-    public float stoppingDistance;
-    public float retreatDistance;
+public class ShootingEnemy : MonoBehaviour
+{
+    [SerializeField] float speed;
+    [SerializeField] float stoppingDistance;
+    [SerializeField] float retreatDistance;
 
-    private Transform target;
+    Transform target;
 
-    private float timeBtwShots;
-    public float startTimeBtwShots;
-    public GameObject bulletTrailPrefab;
-    private Transform firePoint;
+    float timeBtwShots;
+    [SerializeField] float startTimeBtwShots;
+    [SerializeField] GameObject bulletTrailPrefab;
+    Transform firePoint;
 
-    public Transform deathParticlePrefab;
-    public Transform dmgParticlePrefab;
+    [SerializeField] Transform deathParticlePrefab;
+    [SerializeField] Transform dmgParticlePrefab;
 
     [Range(0f, 2f)]
-    public float shakeIntensity;
-    private ScreenShake shake;
-    public float shakeDuration;
+    [SerializeField] float shakeIntensity;
+    [SerializeField] float shakeDuration;
+    ScreenShake shake;
 
-    private ScoreText scoreText;
-    public int addScoreDeath;
+    ScoreText scoreText;
+    [SerializeField] int addScoreDeath;
 
-    [System.Serializable]
-    public class EnemyStats
-    {
-        public int health;
-    }
-
-    public EnemyStats enemyStats = new EnemyStats();
+    [SerializeField] int health;
+    
 
     void Start()
     {
@@ -84,8 +79,8 @@ public class ShootingEnemy : MonoBehaviour {
 
     public void DamageEnemy(int damage, Vector3 bulletPos, Quaternion bulletRot)
     {
-        enemyStats.health -= damage;
-        if (enemyStats.health <= 0)
+        health -= damage;
+        if (health <= 0)
         {
             EnemySpawner spawner = GameObject.FindGameObjectWithTag("GameMaster").GetComponent<EnemySpawner>();
             spawner.KilledEnemyCounter();
@@ -95,7 +90,7 @@ public class ShootingEnemy : MonoBehaviour {
             Destroy(gameObject);
             shake.Shake(shakeDuration, shakeIntensity);
         }
-        else if (enemyStats.health > 0)
+        else if (health > 0)
         {
             Instantiate(dmgParticlePrefab, bulletPos, bulletRot);
             shake.Shake(shakeDuration, shakeIntensity / 4);

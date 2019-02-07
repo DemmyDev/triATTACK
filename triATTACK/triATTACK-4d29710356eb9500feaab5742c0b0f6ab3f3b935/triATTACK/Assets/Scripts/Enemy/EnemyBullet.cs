@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class EnemyBullet : MonoBehaviour {
 
-    public Transform destroyParticlePrefab;
+    [SerializeField] Transform destroyParticlePrefab;
 
-    public int bulletSpeed;
-    public int bulletDamage;
+    [SerializeField] int bulletSpeed;
+    [SerializeField] int bulletDamage;
 
     void Start ()
     {
-        gameObject.transform.eulerAngles = new Vector3(gameObject.transform.eulerAngles.x, gameObject.transform.eulerAngles.y, gameObject.transform.eulerAngles.z + Random.Range(-8f, 8f));
+        gameObject.transform.eulerAngles = new Vector3(gameObject.transform.eulerAngles.x, gameObject.transform.eulerAngles.y, gameObject.transform.eulerAngles.z + Random.Range(-5f, 5f));
 	}
 	
 	void Update ()

@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour {
 
-    private Rigidbody2D rb;
+    Rigidbody2D rb;
 
-    public float speed;
-    private Vector2 moveVelocity;
+    [SerializeField] float speed;
+    Vector2 moveVelocity;
 
     void Start()
     {

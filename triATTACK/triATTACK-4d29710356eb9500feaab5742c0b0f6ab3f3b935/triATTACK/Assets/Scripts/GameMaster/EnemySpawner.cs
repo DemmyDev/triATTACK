@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour {
 
-    public GameObject[] enemy; // Enemy object
-    public Transform[] spawner; // Empty GameObjects to be used for spawn locations
-    public float startTimeBtwSpawns; // Adjustable variable for the time between enemy spawns
-    private float timeBtwSpawns; // Allows time between enemy spawns to be reset
-    public float subtractTime;
-    private int enemyInt;
-    private int enemiesKilled = 0;
+    [SerializeField] GameObject[] enemy; // Enemy object
+    [SerializeField] Transform[] spawner; // Empty GameObjects to be used for spawn locations
+    [SerializeField] float startTimeBtwSpawns; // Adjustable variable for the time between enemy spawns
+    float timeBtwSpawns; // Allows time between enemy spawns to be reset
+    [SerializeField] float subtractTime;
+    int enemyInt;
+    int enemiesKilled = 0;
 
     // On start
 	void Start ()
@@ -35,13 +35,13 @@ public class EnemySpawner : MonoBehaviour {
     public void SpawnEnemy()
     {
         int arrayInt = Random.Range(0, spawner.Length); // Chooses random integer for spawner array
-        int randomInt = Random.Range(1, 100); // Chooses random integer for enemy array
-        if (randomInt < 36)
+        int randomInt = Random.Range(0, 100); // Chooses random integer for enemy array
+        if (randomInt < 50)
         {
             enemyInt = 0;
             //Debug.Log("Spawn homing enemy");
         }
-        else if (randomInt < 75 && randomInt > 35)
+        else if (randomInt < 91 && randomInt >= 50)
         {
             enemyInt = 1;
             //Debug.Log("Spawn shooting enemy");

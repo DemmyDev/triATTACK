@@ -5,12 +5,12 @@ using UnityEngine.UI;
 
 public class CountdownToStart : MonoBehaviour {
 
-    private Text text;
-    private float mainTimer = 3f;
+    Text text;
+    float mainTimer = 3f;
 
-    private float timer;
-    private bool timeIsZero = false;
-    private GameMaster gm;
+    float timer;
+    bool timeIsZero = false;
+    GameMaster gm;
 
 	void Start ()
     {
