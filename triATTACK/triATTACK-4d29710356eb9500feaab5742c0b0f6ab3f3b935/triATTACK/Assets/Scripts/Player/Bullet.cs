@@ -11,14 +11,13 @@ public class Bullet : MonoBehaviour
     Rigidbody2D rb;
 
     [SerializeField] float rotateSpeed;
+    [SerializeField] float slowDownDivider = 1.01f;
     float slowDownSpeed;
     Transform spriteObj;
-    SpriteRenderer sprite;
 
     void Start()
     {
         spriteObj = GameObject.Find("Sprite").GetComponent<Transform>(); ;
-        sprite = spriteObj.GetComponent<SpriteRenderer>();
         isRecalling = false;
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         rb = gameObject.GetComponent<Rigidbody2D>();
@@ -35,7 +34,7 @@ public class Bullet : MonoBehaviour
         {
             if (slowDownSpeed > 10f)
             {
-                slowDownSpeed /= 1.01f;
+                slowDownSpeed /= slowDownDivider;
                 spriteObj.Rotate(Vector3.forward * Time.deltaTime * slowDownSpeed);
             }
         }
@@ -43,7 +42,7 @@ public class Bullet : MonoBehaviour
         {
             spriteObj.Rotate(Vector3.forward * Time.deltaTime * rotateSpeed);
             rb.velocity = Vector2.zero;
-            transform.position = Vector2.MoveTowards(transform.position, target.position, (bulletSpeed / 50) * Time.deltaTime );
+            transform.position = Vector2.MoveTowards(transform.position, target.position, (bulletSpeed / 25) * Time.deltaTime );
 
             Vector3 difference = target.transform.position - transform.position;
             difference.Normalize();

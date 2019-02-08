@@ -115,8 +115,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 1
-  m_AngularDrag: 1
+  m_LinearDrag: 1.25
+  m_AngularDrag: 0
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
@@ -267,6 +267,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletSpeed: 1600
   rotateSpeed: 500
+  slowDownDivider: 1.01
 --- !u!114 &114846563306777742
 MonoBehaviour:
   m_ObjectHideFlags: 1

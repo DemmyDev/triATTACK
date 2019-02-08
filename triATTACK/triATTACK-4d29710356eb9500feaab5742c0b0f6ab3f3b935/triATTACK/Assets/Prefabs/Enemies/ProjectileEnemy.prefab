@@ -94,10 +94,10 @@ MonoBehaviour:
     type: 2}
   shakeIntensity: 0.5
   shakeDuration: 0.1
-  addScoreDeath: 500
+  addScoreDeath: 250
   screenX: 40
   screenY: 25
-  health: 3
+  health: 2
 --- !u!212 &212517141315819288
 SpriteRenderer:
   m_ObjectHideFlags: 1
