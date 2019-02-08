@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class GameMaster : MonoBehaviour {
 
     public static GameMaster gm;
+    [SerializeField] Transform crosshair;
 
     void Start()
     {
@@ -13,6 +14,13 @@ public class GameMaster : MonoBehaviour {
         {
             gm = this;
         }
+        Cursor.visible = false;
+    }
+
+    void Update()
+    {
+        crosshair.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        crosshair.position = new Vector3(crosshair.position.x, crosshair.position.y, 10f);
     }
 
     public void RestartScene()
