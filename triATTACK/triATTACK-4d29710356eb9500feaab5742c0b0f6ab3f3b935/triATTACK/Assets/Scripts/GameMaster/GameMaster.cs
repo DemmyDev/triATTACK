@@ -7,6 +7,9 @@ public class GameMaster : MonoBehaviour {
 
     public static GameMaster gm;
     [SerializeField] Transform crosshair;
+    [SerializeField] float freezeFrameDuration;
+    bool isFrozen;
+    float pendingFreezeDuration = 0f;
 
     void Start()
     {
@@ -21,6 +24,30 @@ public class GameMaster : MonoBehaviour {
     {
         crosshair.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         crosshair.position = new Vector3(crosshair.position.x, crosshair.position.y, 10f);
+
+        if (pendingFreezeDuration > 0 && !isFrozen)
+        {
+            StartCoroutine(DoFreeze());
+        }
+    }
+
+    public void Freeze()
+    {
+        Debug.Log("Freeze");
+        pendingFreezeDuration = freezeFrameDuration;
+    }
+
+    IEnumerator DoFreeze()
+    {
+        Debug.Log("DoFreeze");
+        isFrozen = true;
+        Time.timeScale = 0f;
+
+        yield return new WaitForSecondsRealtime(freezeFrameDuration);
+
+        Time.timeScale = 1f;
+        pendingFreezeDuration = 0f;
+        isFrozen = false;
     }
 
     public void RestartScene()

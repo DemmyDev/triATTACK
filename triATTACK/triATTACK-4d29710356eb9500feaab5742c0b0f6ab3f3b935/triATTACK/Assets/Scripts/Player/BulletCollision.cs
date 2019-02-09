@@ -18,6 +18,8 @@ public class BulletCollision : MonoBehaviour
     {
         if (other.CompareTag("Enemy"))
         {
+            GameMaster.gm.Freeze();
+
             HomingEnemy homingEnemy = other.gameObject.GetComponent<HomingEnemy>();
             ShootingEnemy shootingEnemy = other.gameObject.GetComponent<ShootingEnemy>();
             ProjectileEnemy projectileEnemy = other.gameObject.GetComponent<ProjectileEnemy>();
@@ -37,7 +39,7 @@ public class BulletCollision : MonoBehaviour
             {
                 projectileEnemy.DamageEnemy(bulletDamage, bulletPos, bulletRot);
             }
-
+            
             scoreText.SetScore(5);
         }
     }
