@@ -8,6 +8,7 @@ public class BulletCollision : MonoBehaviour
 
     ScoreText scoreText;
     [SerializeField] int addScoreEnemyHit;
+    [SerializeField] Transform flashObj;
 
     AudioSource enemyHitSound;
 
@@ -22,6 +23,10 @@ public class BulletCollision : MonoBehaviour
         if (other.CompareTag("Enemy"))
         {
             GameMaster.gm.Freeze();
+
+            // Make the flash object animate
+            var flashInst = Instantiate(flashObj, other.transform.position, Quaternion.identity);
+            Destroy(flashInst.gameObject, .25f);
 
             GameMaster.gm.PlaySound(enemyHitSound);
             enemyHitSound.pitch += .05f;

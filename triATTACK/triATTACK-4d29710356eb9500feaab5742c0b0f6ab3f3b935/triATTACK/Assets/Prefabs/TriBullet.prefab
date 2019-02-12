@@ -377,6 +377,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletDamage: 1
   addScoreEnemyHit: 5
+  flashObj: {fileID: 4674653849547896, guid: 5d93db66c10c99d4c9ef8d590fa1fa76, type: 2}
 --- !u!212 &212216039485020228
 SpriteRenderer:
   m_ObjectHideFlags: 1
