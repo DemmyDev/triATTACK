@@ -33,13 +33,11 @@ public class GameMaster : MonoBehaviour {
 
     public void Freeze()
     {
-        Debug.Log("Freeze");
         pendingFreezeDuration = freezeFrameDuration;
     }
 
     IEnumerator DoFreeze()
     {
-        Debug.Log("DoFreeze");
         isFrozen = true;
         Time.timeScale = 0f;
 

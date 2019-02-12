@@ -41,15 +41,10 @@ public class EnemySpawner : MonoBehaviour {
             enemyInt = 0;
             //Debug.Log("Spawn homing enemy");
         }
-        else if (randomInt < 91 && randomInt >= 50)
+        else
         {
             enemyInt = 1;
             //Debug.Log("Spawn shooting enemy");
-        }
-        else
-        {
-            enemyInt = 2;
-            //Debug.Log("Spawn projectile enemy");
         }
         Instantiate(enemy[enemyInt], spawner[arrayInt].position, Quaternion.identity); // Spawns enemy object at spawner location
     }

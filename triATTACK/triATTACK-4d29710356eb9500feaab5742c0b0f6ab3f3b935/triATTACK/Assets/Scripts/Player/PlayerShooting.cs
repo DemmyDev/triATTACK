@@ -23,7 +23,7 @@ public class PlayerShooting: MonoBehaviour {
     [SerializeField] Sprite normalSprite;
     [SerializeField] Sprite recallSprite;
 
-    bool canShoot, hasShot, isRecalling;
+    bool canShoot, canRecall, hasShot, isRecalling;
 
     void Start()
     {
@@ -32,6 +32,7 @@ public class PlayerShooting: MonoBehaviour {
         firePoint = transform.Find("BulletSpawn");
         shake = Camera.main.GetComponent<ScreenShake>();
         canShoot = true;
+        canRecall = false;
         hasShot = false;
         isRecalling = false;
     }
@@ -47,13 +48,13 @@ public class PlayerShooting: MonoBehaviour {
                 Shoot();
                 hasShot = true;
                 canShoot = false;
-                Debug.Log("Shoot");
+                Invoke("CanRecall", .25f);
             }
-            else if (hasShot && Input.GetKeyDown(KeyCode.Space)) // Change spacebar to right mouse
+            else if (hasShot && canRecall && Input.GetKeyDown(KeyCode.Space)) // Change spacebar to right mouse
             {
                 Bullet.isRecalling = true;
                 isRecalling = true;
-                Debug.Log("Recall");
+                canRecall = false;
             }
         }
     }
@@ -64,10 +65,14 @@ public class PlayerShooting: MonoBehaviour {
         shake.Shake(shakeDuration, shakeIntensity);
     }
 
+    void CanRecall()
+    {
+        canRecall = true;
+    }
+
     void CanShoot()
     {
         canShoot = true;
-        Debug.Log("Can shoot");
     }
 
     void OnTriggerEnter2D(Collider2D other)

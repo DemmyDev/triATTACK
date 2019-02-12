@@ -573,7 +573,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 414285922}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 431954a782cd8444ea060645553a4355, type: 3}
   m_Name: 
@@ -581,7 +581,6 @@ MonoBehaviour:
   enemy:
   - {fileID: 1465479379708000, guid: e2568be6851cf04409819f554df975f5, type: 2}
   - {fileID: 1989745196843296, guid: 5517bf9b1222d4c40bba546d2ee56f86, type: 2}
-  - {fileID: 1317461463004984, guid: bf7605bbc06497c418307068e16508ef, type: 2}
   spawner:
   - {fileID: 556554553}
   - {fileID: 1094766755}

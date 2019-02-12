@@ -15,6 +15,8 @@ public class Bullet : MonoBehaviour
     float slowDownSpeed;
     Transform spriteObj;
 
+    bool dumbFix = true;
+
     void Start()
     {
         spriteObj = GameObject.Find("Sprite").GetComponent<Transform>(); ;
@@ -24,7 +26,7 @@ public class Bullet : MonoBehaviour
         transform.rotation = target.rotation;
 
         Vector2 direction = new Vector2(transform.up.x, transform.up.y);
-        rb.velocity = direction * Time.deltaTime * bulletSpeed;
+        rb.velocity = direction * bulletSpeed;
         slowDownSpeed = rotateSpeed;
     }
 
@@ -40,9 +42,15 @@ public class Bullet : MonoBehaviour
         }
         else if (isRecalling)
         {
+            if (dumbFix)
+            {
+                rb.velocity = Vector2.zero;
+                dumbFix = false;
+                // im a bad programmer ayy
+            }
+            
             spriteObj.Rotate(Vector3.forward * Time.deltaTime * rotateSpeed);
-            rb.velocity = Vector2.zero;
-            transform.position = Vector2.MoveTowards(transform.position, target.position, (bulletSpeed / 25) * Time.deltaTime );
+            transform.position = Vector2.MoveTowards(transform.position, target.position, bulletSpeed * 2f * Time.deltaTime );
 
             Vector3 difference = target.transform.position - transform.position;
             difference.Normalize();
