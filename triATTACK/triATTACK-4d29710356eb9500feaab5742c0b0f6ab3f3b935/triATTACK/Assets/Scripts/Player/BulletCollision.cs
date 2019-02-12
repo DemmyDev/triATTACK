@@ -9,8 +9,11 @@ public class BulletCollision : MonoBehaviour
     ScoreText scoreText;
     [SerializeField] int addScoreEnemyHit;
 
+    AudioSource enemyHitSound;
+
     void Start()
     {
+        enemyHitSound = gameObject.GetComponent<AudioSource>();
         scoreText = GameObject.Find("ScoreText").GetComponent<ScoreText>();
     }
 
@@ -19,6 +22,9 @@ public class BulletCollision : MonoBehaviour
         if (other.CompareTag("Enemy"))
         {
             GameMaster.gm.Freeze();
+
+            GameMaster.gm.PlaySound(enemyHitSound);
+            enemyHitSound.pitch += .05f;
 
             HomingEnemy homingEnemy = other.gameObject.GetComponent<HomingEnemy>();
             ShootingEnemy shootingEnemy = other.gameObject.GetComponent<ShootingEnemy>();

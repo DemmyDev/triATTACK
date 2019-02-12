@@ -28,8 +28,11 @@ public class Player : MonoBehaviour {
     Animation anim;
     SpriteRenderer sprite;
 
+    AudioSource playerHitSound;
+
     void Start()
     {
+        playerHitSound = gameObject.GetComponent<AudioSource>();
         anim = GetComponent<Animation>();
         sprite = GetComponent<SpriteRenderer>();
         shake = Camera.main.GetComponent<ScreenShake>();
@@ -99,6 +102,7 @@ public class Player : MonoBehaviour {
                 gameObject.SetActive(false);
             }
 
+            GameMaster.gm.PlaySound(playerHitSound);
             anim.Play();
             isInvincible = true;
             Invoke("EndInvincibility", 1);

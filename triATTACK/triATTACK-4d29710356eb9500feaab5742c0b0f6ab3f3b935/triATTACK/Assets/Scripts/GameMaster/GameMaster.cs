@@ -10,9 +10,11 @@ public class GameMaster : MonoBehaviour {
     [SerializeField] float freezeFrameDuration;
     bool isFrozen;
     float pendingFreezeDuration = 0f;
+    AudioSource gameSound;
 
     void Start()
     {
+        gameSound = gameObject.GetComponent<AudioSource>();
         if (gm == null)
         {
             gm = this;
@@ -46,6 +48,13 @@ public class GameMaster : MonoBehaviour {
         Time.timeScale = 1f;
         pendingFreezeDuration = 0f;
         isFrozen = false;
+    }
+
+    public void PlaySound(AudioSource sound)
+    {
+        gameSound.clip = sound.clip;
+        gameSound.pitch = sound.pitch;
+        sound.Play();
     }
 
     public void RestartScene()
