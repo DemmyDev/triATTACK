@@ -9,11 +9,16 @@ public class BulletCollision : MonoBehaviour
     ScoreText scoreText;
     [SerializeField] int addScoreEnemyHit;
     [SerializeField] Transform flashObj;
+    [SerializeField] float freezeFrameDuration;
+    [SerializeField] float addFreezeDuration;
 
     AudioSource enemyHitSound;
 
+    Bullet bullet;
+
     void Start()
     {
+        bullet = gameObject.transform.parent.GetComponent<Bullet>();
         enemyHitSound = gameObject.GetComponent<AudioSource>();
         scoreText = GameObject.Find("ScoreText").GetComponent<ScoreText>();
     }
@@ -22,7 +27,8 @@ public class BulletCollision : MonoBehaviour
     {
         if (other.CompareTag("Enemy"))
         {
-            GameMaster.gm.Freeze();
+            GameMaster.gm.Freeze(freezeFrameDuration);
+            freezeFrameDuration += addFreezeDuration;
 
             // Make the flash object animate
             var flashInst = Instantiate(flashObj, other.transform.position, Quaternion.identity);
@@ -52,6 +58,12 @@ public class BulletCollision : MonoBehaviour
             }
             
             scoreText.SetScore(5);
+        }
+
+        if (other.CompareTag("Wall"))
+        {
+            bullet.slowDownSpeed = 0f;
+            bullet.rb.velocity = Vector2.zero;
         }
     }
 }

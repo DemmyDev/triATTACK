@@ -50,7 +50,7 @@ public class PlayerShooting: MonoBehaviour {
                 canShoot = false;
                 Invoke("CanRecall", .25f);
             }
-            else if (hasShot && canRecall && Input.GetKeyDown(KeyCode.Space)) // Change spacebar to right mouse
+            else if (hasShot && canRecall && Input.GetMouseButton(0)) // Change spacebar to right mouse
             {
                 Bullet.isRecalling = true;
                 isRecalling = true;
@@ -77,7 +77,7 @@ public class PlayerShooting: MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("TriBullet") && isRecalling)
+        if (other.CompareTag("TriBullet") && (isRecalling || canRecall))
         {
             spriteR.sprite = normalSprite;
             trail.SetActive(true);
@@ -85,6 +85,7 @@ public class PlayerShooting: MonoBehaviour {
             Destroy(other.transform.parent.gameObject);
             Bullet.isRecalling = false;
             isRecalling = false;
+            canRecall = false;
             // Animation for recharging?
             Invoke("CanShoot", .25f);
         }

@@ -7,9 +7,12 @@ public class GameMaster : MonoBehaviour {
 
     public static GameMaster gm;
     [SerializeField] Transform crosshair;
-    [SerializeField] float freezeFrameDuration;
+
+    float freezeFrameDuration;
+    float addFreezeDuration = .025f;
     bool isFrozen;
     float pendingFreezeDuration = 0f;
+
     AudioSource gameSound;
 
     void Start()
@@ -33,8 +36,9 @@ public class GameMaster : MonoBehaviour {
         }
     }
 
-    public void Freeze()
+    public void Freeze(float duration)
     {
+        freezeFrameDuration = duration;
         pendingFreezeDuration = freezeFrameDuration;
     }
 

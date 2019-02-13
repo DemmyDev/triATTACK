@@ -11,6 +11,7 @@ TagManager:
   - Bullet
   - Particle
   - TriBullet
+  - Wall
   layers:
   - Default
   - TransparentFX

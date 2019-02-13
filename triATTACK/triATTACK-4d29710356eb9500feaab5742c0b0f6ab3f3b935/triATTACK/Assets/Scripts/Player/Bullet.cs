@@ -8,11 +8,11 @@ public class Bullet : MonoBehaviour
 
     public static bool isRecalling;
     Transform target;
-    Rigidbody2D rb;
+    [HideInInspector] public Rigidbody2D rb;
 
     [SerializeField] float rotateSpeed;
     [SerializeField] float slowDownDivider = 1.01f;
-    float slowDownSpeed;
+    [HideInInspector] public float slowDownSpeed;
     Transform spriteObj;
 
     bool dumbFix = true;
