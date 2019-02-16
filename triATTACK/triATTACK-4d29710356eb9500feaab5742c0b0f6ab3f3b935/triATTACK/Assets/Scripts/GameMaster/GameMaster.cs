@@ -96,26 +96,26 @@ public class GameMaster : MonoBehaviour {
             Destroy(bullet);
         }
 
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        /*GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (player != null)
         {
             player.GetComponent<PlayerMovement>().enabled = false;
             player.GetComponent<Player>().enabled = false;
             player.GetComponent<PlayerShooting>().enabled = false;
-        }
+        }*/
     }
 
     public void StartGame()
     {
         gameObject.GetComponent<EnemySpawner>().enabled = true;
         gameObject.GetComponent<EnemySpawner>().SpawnEnemy();
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        /*GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (player != null)
         {
             player.GetComponent<PlayerMovement>().enabled = true;
             player.GetComponent<Player>().enabled = true;
             player.GetComponent<PlayerShooting>().enabled = true;
-        }
+        }*/
     }
 
 

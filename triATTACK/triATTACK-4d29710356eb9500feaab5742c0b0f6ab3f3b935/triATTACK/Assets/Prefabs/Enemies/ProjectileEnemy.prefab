@@ -85,7 +85,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c429e5768105714583bfbee1cc8e6bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
+  moveSpeed: 7
   rotateSpeed: 60
   enemyDamage: 1
   deathParticlePrefab: {fileID: 4713524029299932, guid: ef550291ebc65ce44bfc6c4e8352f5e8,

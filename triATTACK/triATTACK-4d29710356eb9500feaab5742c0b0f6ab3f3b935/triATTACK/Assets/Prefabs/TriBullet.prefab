@@ -362,8 +362,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletSpeed: 25
+  rb: {fileID: 0}
   rotateSpeed: 500
   slowDownDivider: 1.01
+  slowDownSpeed: 0
 --- !u!114 &114846563306777742
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -378,7 +380,7 @@ MonoBehaviour:
   bulletDamage: 1
   addScoreEnemyHit: 5
   flashObj: {fileID: 4674653849547896, guid: 5d93db66c10c99d4c9ef8d590fa1fa76, type: 2}
-  freezeFrameDuration: 0.05
+  startFreezeDuration: 0.05
   addFreezeDuration: 0.025
 --- !u!212 &212216039485020228
 SpriteRenderer:

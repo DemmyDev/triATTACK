@@ -9,7 +9,8 @@ public class BulletCollision : MonoBehaviour
     ScoreText scoreText;
     [SerializeField] int addScoreEnemyHit;
     [SerializeField] Transform flashObj;
-    [SerializeField] float freezeFrameDuration;
+    [SerializeField] float startFreezeDuration;
+    float freezeDuration;
     [SerializeField] float addFreezeDuration;
 
     AudioSource enemyHitSound;
@@ -21,14 +22,19 @@ public class BulletCollision : MonoBehaviour
         bullet = gameObject.transform.parent.GetComponent<Bullet>();
         enemyHitSound = gameObject.GetComponent<AudioSource>();
         scoreText = GameObject.Find("ScoreText").GetComponent<ScoreText>();
+        freezeDuration = startFreezeDuration;
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Enemy"))
         {
-            GameMaster.gm.Freeze(freezeFrameDuration);
-            freezeFrameDuration += addFreezeDuration;
+            GameMaster.gm.Freeze(freezeDuration);
+            Debug.Log(freezeDuration);
+            if (freezeDuration < .15f)
+            {
+                freezeDuration += addFreezeDuration;
+            }
 
             // Make the flash object animate
             var flashInst = Instantiate(flashObj, other.transform.position, Quaternion.identity);
