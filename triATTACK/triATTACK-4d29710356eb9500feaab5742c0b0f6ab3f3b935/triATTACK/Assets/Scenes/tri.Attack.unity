@@ -334,6 +334,11 @@ Prefab:
       propertyPath: tris.Array.data[2]
       value: 
       objectReference: {fileID: 914992206}
+    - target: {fileID: 82942214748684562, guid: 3b7af739aea3aa34a8e464c11d2d032c,
+        type: 2}
+      propertyPath: m_Volume
+      value: 0.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3b7af739aea3aa34a8e464c11d2d032c, type: 2}
   m_IsPrefabAsset: 0
