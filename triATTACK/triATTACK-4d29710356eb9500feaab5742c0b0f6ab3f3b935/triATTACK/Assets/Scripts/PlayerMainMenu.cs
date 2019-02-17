@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerShooting: MonoBehaviour
+public class PlayerMainMenu : MonoBehaviour
 {
-    [SerializeField] int damage;
-
     [SerializeField] Transform bulletTrailPrefab;
 
     Transform firePoint;
@@ -35,13 +33,13 @@ public class PlayerShooting: MonoBehaviour
         isRecalling = false;
     }
 
-    void Update ()
+    void Update()
     {
         if (!PauseMenu.isPaused)
         {
             if (canShoot && Input.GetMouseButton(0))
             {
-                spriteR.sprite = recallSprite; 
+                spriteR.sprite = recallSprite;
                 trail.SetActive(false);
                 Shoot();
                 hasShot = true;

@@ -5,17 +5,19 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu: MonoBehaviour {
 
-    private Animation anim;
+    [SerializeField] GameObject fadeObj;
+    Animation anim;
 
-    private void Start()
+    void Start()
     {
-        anim = GetComponent<Animation>();
+        anim = fadeObj.GetComponent<Animation>();
     }
 
     public void StartGame()
     {
-        Debug.Log("Start Game");
+        fadeObj.SetActive(true);
         anim.Play();
+        Debug.Log("Start Game");
         Invoke("LoadGame", 1f);
     }
 

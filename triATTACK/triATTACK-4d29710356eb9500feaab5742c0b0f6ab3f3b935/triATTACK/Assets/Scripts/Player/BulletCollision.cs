@@ -45,7 +45,6 @@ public class BulletCollision : MonoBehaviour
 
             HomingEnemy homingEnemy = other.gameObject.GetComponent<HomingEnemy>();
             ShootingEnemy shootingEnemy = other.gameObject.GetComponent<ShootingEnemy>();
-            ProjectileEnemy projectileEnemy = other.gameObject.GetComponent<ProjectileEnemy>();
 
             Vector3 bulletPos = gameObject.transform.position;
             Quaternion bulletRot = gameObject.transform.rotation;
@@ -57,10 +56,6 @@ public class BulletCollision : MonoBehaviour
             else if (shootingEnemy)
             {
                 shootingEnemy.DamageEnemy(bulletDamage, bulletPos, bulletRot);
-            }
-            else if (projectileEnemy)
-            {
-                projectileEnemy.DamageEnemy(bulletDamage, bulletPos, bulletRot);
             }
             
             scoreText.SetScore(5);
