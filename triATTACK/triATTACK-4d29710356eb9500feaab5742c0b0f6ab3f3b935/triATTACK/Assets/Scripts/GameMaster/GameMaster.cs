@@ -8,17 +8,14 @@ public class GameMaster : MonoBehaviour {
     public static GameMaster gm;
 
     float freezeFrameDuration;
-    float addFreezeDuration = .025f;
     bool isFrozen;
     float pendingFreezeDuration = 0f;
 
     EnemySpawner spawner;
-    AudioSource gameSound;
 
     void Start()
     {
         spawner = gameObject.GetComponent<EnemySpawner>();
-        gameSound = gameObject.GetComponent<AudioSource>();
         if (gm == null)
         {
             gm = this;
@@ -49,13 +46,6 @@ public class GameMaster : MonoBehaviour {
         Time.timeScale = 1f;
         pendingFreezeDuration = 0f;
         isFrozen = false;
-    }
-
-    public void PlaySound(AudioSource sound)
-    {
-        gameSound.clip = sound.clip;
-        gameSound.pitch = sound.pitch;
-        sound.Play();
     }
 
     public void RestartScene()
@@ -94,8 +84,7 @@ public class GameMaster : MonoBehaviour {
         spawner.enabled = true;
         spawner.SpawnEnemy();
     }
-
-
+    
     public void DeleteObjectsOnPlayerDeath()
     {
         gameObject.GetComponent<EnemySpawner>().enabled = false;

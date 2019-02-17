@@ -13,14 +13,13 @@ public class BulletCollision : MonoBehaviour
     float freezeDuration;
     [SerializeField] float addFreezeDuration;
 
-    AudioSource enemyHitSound;
+    public float pitch = .3f;
 
     Bullet bullet;
 
     void Start()
     {
         bullet = gameObject.transform.parent.GetComponent<Bullet>();
-        enemyHitSound = gameObject.GetComponent<AudioSource>();
         scoreText = GameObject.Find("ScoreText").GetComponent<ScoreText>();
         freezeDuration = startFreezeDuration;
     }
@@ -30,7 +29,6 @@ public class BulletCollision : MonoBehaviour
         if (other.CompareTag("Enemy"))
         {
             GameMaster.gm.Freeze(freezeDuration);
-            Debug.Log(freezeDuration);
             if (freezeDuration < .15f)
             {
                 freezeDuration += addFreezeDuration;
@@ -40,8 +38,8 @@ public class BulletCollision : MonoBehaviour
             var flashInst = Instantiate(flashObj, other.transform.position, Quaternion.identity);
             Destroy(flashInst.gameObject, .25f);
 
-            GameMaster.gm.PlaySound(enemyHitSound);
-            enemyHitSound.pitch += .05f;
+            FindObjectOfType<AudioManager>().Play("EnemyHit");
+            pitch += .05f;
 
             HomingEnemy homingEnemy = other.gameObject.GetComponent<HomingEnemy>();
             ShootingEnemy shootingEnemy = other.gameObject.GetComponent<ShootingEnemy>();

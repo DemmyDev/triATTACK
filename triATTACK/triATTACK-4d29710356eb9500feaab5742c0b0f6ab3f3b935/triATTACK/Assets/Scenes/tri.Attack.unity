@@ -149,7 +149,7 @@ Transform:
   - {fileID: 589357315}
   - {fileID: 1457888587}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &70594476
 GameObject:
@@ -209,7 +209,7 @@ Transform:
   - {fileID: 1592347076}
   - {fileID: 1132650138}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &173681808
 GameObject:
@@ -302,7 +302,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4939757754031760, guid: 3b7af739aea3aa34a8e464c11d2d032c, type: 2}
       propertyPath: m_RootOrder
-      value: 4
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 114790102937942614, guid: 3b7af739aea3aa34a8e464c11d2d032c,
         type: 2}
@@ -334,11 +334,6 @@ Prefab:
       propertyPath: tris.Array.data[2]
       value: 
       objectReference: {fileID: 914992206}
-    - target: {fileID: 82942214748684562, guid: 3b7af739aea3aa34a8e464c11d2d032c,
-        type: 2}
-      propertyPath: m_Volume
-      value: 0.5
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3b7af739aea3aa34a8e464c11d2d032c, type: 2}
   m_IsPrefabAsset: 0
@@ -452,7 +447,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4625455602170546, guid: beb3614e7b92eb24dbabfd3b5451ed92, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: beb3614e7b92eb24dbabfd3b5451ed92, type: 2}
@@ -593,7 +588,7 @@ MonoBehaviour:
   - {fileID: 652492810}
   - {fileID: 589357315}
   - {fileID: 1457888587}
-  startTimeBtwSpawns: 2
+  startTimeBtwSpawns: 2.25
   subtractTime: 0.25
 --- !u!82 &414285926
 AudioSource:
@@ -1572,7 +1567,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1088040506
 BoxCollider2D:
@@ -1809,6 +1804,61 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1152422016}
   m_CullTransparentMesh: 0
+--- !u!1 &1327586228
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1327586230}
+  - component: {fileID: 1327586229}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1327586229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1327586228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 176996bb0ba46a34daae3035d65c7b69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: PlayerHit
+    clip: {fileID: 8300000, guid: eec5546d06332f54daf9d53bc48aba9e, type: 3}
+    volume: 0.5
+    pitch: 1.25
+    source: {fileID: 0}
+    loop: 0
+    playOnAwake: 0
+  - name: EnemyHit
+    clip: {fileID: 8300000, guid: 9b37ef0089447764e97b84d8ab631af6, type: 3}
+    volume: 0.8
+    pitch: 0.75
+    source: {fileID: 0}
+    loop: 0
+    playOnAwake: 0
+--- !u!4 &1327586230
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1327586228}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1348490973
 GameObject:
   m_ObjectHideFlags: 0
@@ -2636,7 +2686,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4785968517274068, guid: f4bd40dbddcd5074ca04d5c6b7c899e0, type: 2}
       propertyPath: m_RootOrder
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f4bd40dbddcd5074ca04d5c6b7c899e0, type: 2}
