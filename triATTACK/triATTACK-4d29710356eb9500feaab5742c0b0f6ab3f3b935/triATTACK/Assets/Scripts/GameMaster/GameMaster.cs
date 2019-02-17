@@ -23,7 +23,6 @@ public class GameMaster : MonoBehaviour {
         {
             gm = this;
         }
-        Cursor.visible = false;
     }
 
     void Update()
