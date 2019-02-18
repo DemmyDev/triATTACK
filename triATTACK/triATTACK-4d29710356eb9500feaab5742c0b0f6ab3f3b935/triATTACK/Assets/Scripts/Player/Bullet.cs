@@ -42,6 +42,7 @@ public class Bullet : MonoBehaviour
         }
         else if (isRecalling)
         {
+            // Just to prevent velocity being set to zero each frame
             if (dumbFix)
             {
                 rb.velocity = Vector2.zero;

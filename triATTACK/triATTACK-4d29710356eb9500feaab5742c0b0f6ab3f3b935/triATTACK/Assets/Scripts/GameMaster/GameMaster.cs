@@ -57,7 +57,7 @@ public class GameMaster : MonoBehaviour {
     {
         spawner.enabled = false;
 
-        /*GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
         foreach (GameObject enemy in enemies)
         {
             if (enemy.name == "HomingEnemy(Clone)")
@@ -76,7 +76,7 @@ public class GameMaster : MonoBehaviour {
         foreach (GameObject bullet in bullets)
         {
             Destroy(bullet);
-        }*/
+        }
     }
 
     public void StartGame()

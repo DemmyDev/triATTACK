@@ -8,11 +8,14 @@ public class PauseMenu : MonoBehaviour {
     public static bool isPaused = false;
 
     [SerializeField] GameObject pauseMenuUI;
+    [SerializeField] GameObject fadeObj;
+    Animation anim;
 
     GlitchEffect glitch;
 
     void Start()
     {
+        anim = fadeObj.GetComponent<Animation>();
         glitch = Camera.main.GetComponent<GlitchEffect>();
     }
 
@@ -51,6 +54,14 @@ public class PauseMenu : MonoBehaviour {
     {
         isPaused = false;
         Time.timeScale = 1f;
+        GameMaster.gm.DisableObjectScripts();
+        anim.Play();
+        Invoke("LoadMenu", 1f);
+    }
+
+    void LoadMenu()
+    {
+        anim.Stop();
         SceneManager.LoadScene(0);
     }
 
@@ -58,7 +69,7 @@ public class PauseMenu : MonoBehaviour {
     {
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
-        glitch.enabled = true;
+        //glitch.enabled = true;
         GameMaster gm = GameObject.FindGameObjectWithTag("GameMaster").GetComponent<GameMaster>();
         gm.DisableObjectScripts();
         gm.Invoke("RestartScene", 1f);

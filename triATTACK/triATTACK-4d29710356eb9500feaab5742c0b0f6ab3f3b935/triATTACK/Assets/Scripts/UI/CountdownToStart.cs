@@ -12,8 +12,11 @@ public class CountdownToStart : MonoBehaviour {
     bool timeIsZero = false;
     GameMaster gm;
 
+    Animation anim;
+
 	void Start ()
     {
+        anim = gameObject.GetComponent<Animation>();
         gm = GameObject.FindGameObjectWithTag("GameMaster").GetComponent<GameMaster>();
         gm.DisableObjectScripts();
         text = GetComponent<Text>();
@@ -33,12 +36,19 @@ public class CountdownToStart : MonoBehaviour {
             timeIsZero = true;
             text.text = "tri.Begin();";
             gm.StartGame();
-            Invoke("Disable", 1f);
+            Invoke("FadeOut", 1f);
         }
+    }
+
+    void FadeOut()
+    {
+        anim.Play();
+        Invoke("Disable", .5f);
     }
 
     void Disable()
     {
-        gameObject.SetActive(false);        
+        anim.Stop();
+        gameObject.SetActive(false);
     }
 }

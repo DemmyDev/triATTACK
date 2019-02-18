@@ -87,3 +87,10 @@ MonoBehaviour:
     source: {fileID: 0}
     loop: 0
     playOnAwake: 0
+  - name: GlitchSound
+    clip: {fileID: 8300000, guid: 571c7cc829bae5c43a6d374974cde6af, type: 3}
+    volume: 0.5
+    pitch: 1
+    source: {fileID: 0}
+    loop: 0
+    playOnAwake: 0

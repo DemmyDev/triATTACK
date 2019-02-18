@@ -61,7 +61,10 @@ public class BulletCollision : MonoBehaviour
 
         if (other.CompareTag("Wall"))
         {
-            FindObjectOfType<AudioManager>().Play("BulletWallHit");
+            if (!Bullet.isRecalling)
+            {
+                FindObjectOfType<AudioManager>().Play("BulletWallHit");
+            }
             bullet.slowDownSpeed = 0f;
             bullet.rb.velocity = Vector2.zero;
         }
