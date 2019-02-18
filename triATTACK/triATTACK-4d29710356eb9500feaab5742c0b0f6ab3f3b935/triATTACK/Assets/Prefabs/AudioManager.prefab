@@ -1,0 +1,89 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1546823064808818}
+  m_IsPrefabAsset: 1
+--- !u!1 &1546823064808818
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4591488501936738}
+  - component: {fileID: 114837772162999620}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4591488501936738
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1546823064808818}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114837772162999620
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1546823064808818}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 176996bb0ba46a34daae3035d65c7b69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: PlayerHit
+    clip: {fileID: 8300000, guid: eec5546d06332f54daf9d53bc48aba9e, type: 3}
+    volume: 0.5
+    pitch: 1.25
+    source: {fileID: 0}
+    loop: 0
+    playOnAwake: 0
+  - name: EnemyHit
+    clip: {fileID: 8300000, guid: 9b37ef0089447764e97b84d8ab631af6, type: 3}
+    volume: 0.6
+    pitch: 1.1
+    source: {fileID: 0}
+    loop: 0
+    playOnAwake: 0
+  - name: PlayerShoot
+    clip: {fileID: 8300000, guid: 07da8085239294c4780b6c6211831531, type: 3}
+    volume: 0.1
+    pitch: 0.8
+    source: {fileID: 0}
+    loop: 0
+    playOnAwake: 0
+  - name: PlayerRecall
+    clip: {fileID: 8300000, guid: 993ef2521f0dfb447ad46c8a12405a3c, type: 3}
+    volume: 0.4
+    pitch: 1.1
+    source: {fileID: 0}
+    loop: 0
+    playOnAwake: 0
+  - name: BulletWallHit
+    clip: {fileID: 8300000, guid: dff77f173f1443f4b888289fa1f05d22, type: 3}
+    volume: 0.5
+    pitch: 1.75
+    source: {fileID: 0}
+    loop: 0
+    playOnAwake: 0

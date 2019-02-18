@@ -59,6 +59,7 @@ public class PlayerShooting: MonoBehaviour
 
     void Shoot()
     {
+        FindObjectOfType<AudioManager>().Play("PlayerShoot");
         Instantiate(bulletTrailPrefab, firePoint.position, gameObject.transform.rotation);
         shake.Shake(shakeDuration, shakeIntensity);
     }
@@ -85,6 +86,7 @@ public class PlayerShooting: MonoBehaviour
             isRecalling = false;
             canRecall = false;
             // Animation for recharging?
+            FindObjectOfType<AudioManager>().Play("PlayerRecall");
             Invoke("CanShoot", .25f);
         }
     }

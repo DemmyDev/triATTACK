@@ -57,6 +57,7 @@ public class PlayerMainMenu : MonoBehaviour
 
     void Shoot()
     {
+        FindObjectOfType<AudioManager>().Play("PlayerShoot");
         Instantiate(bulletTrailPrefab, firePoint.position, gameObject.transform.rotation);
         shake.Shake(shakeDuration, shakeIntensity);
     }
@@ -75,6 +76,7 @@ public class PlayerMainMenu : MonoBehaviour
     {
         if (other.CompareTag("TriBullet") && (isRecalling || canRecall))
         {
+            FindObjectOfType<AudioManager>().Play("PlayerRecall");
             spriteR.sprite = normalSprite;
             trail.SetActive(true);
             shake.Shake(shakeDuration, shakeIntensity * 2f);

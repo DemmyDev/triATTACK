@@ -15,6 +15,7 @@ public class BulletCollisionMainMenu : MonoBehaviour
     {
         if (other.CompareTag("Wall"))
         {
+            FindObjectOfType<AudioManager>().Play("BulletWallHit");
             bullet.slowDownSpeed = 0f;
             bullet.rb.velocity = Vector2.zero;
         }
