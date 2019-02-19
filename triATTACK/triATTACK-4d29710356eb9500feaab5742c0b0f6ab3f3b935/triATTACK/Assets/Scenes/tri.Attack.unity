@@ -575,8 +575,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemy:
-  - {fileID: 1465479379708000, guid: e2568be6851cf04409819f554df975f5, type: 2}
   - {fileID: 1989745196843296, guid: 5517bf9b1222d4c40bba546d2ee56f86, type: 2}
+  - {fileID: 1465479379708000, guid: e2568be6851cf04409819f554df975f5, type: 2}
   spawner:
   - {fileID: 556554553}
   - {fileID: 1094766755}
@@ -590,6 +590,7 @@ MonoBehaviour:
   - {fileID: 1457888587}
   startTimeBtwSpawns: 2.25
   subtractTime: 0.25
+  shootingEnemyTotal: 0
 --- !u!82 &414285926
 AudioSource:
   m_ObjectHideFlags: 0

@@ -67,6 +67,7 @@ public class ShootingEnemy : MonoBehaviour
 
             if (timeBtwShots <= 0)
             {
+                FindObjectOfType<AudioManager>().Play("EnemyShoot");
                 Instantiate(bulletTrailPrefab, firePoint.position, firePoint.rotation);
                 timeBtwShots = startTimeBtwShots;
             }
@@ -84,6 +85,7 @@ public class ShootingEnemy : MonoBehaviour
         {
             EnemySpawner spawner = GameObject.FindGameObjectWithTag("GameMaster").GetComponent<EnemySpawner>();
             spawner.KilledEnemyCounter();
+            spawner.SubtractShootingEnemyCounter();
 
             Instantiate(deathParticlePrefab, gameObject.transform.position, gameObject.transform.rotation);
             scoreText.SetScore(addScoreDeath);

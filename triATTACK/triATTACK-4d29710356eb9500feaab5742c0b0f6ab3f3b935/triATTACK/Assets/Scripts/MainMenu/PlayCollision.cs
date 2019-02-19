@@ -7,9 +7,11 @@ public class PlayCollision : MonoBehaviour
 {
     Text playText;
     MainMenu mainMenu;
+    BoxCollider2D col;
 
     void Start()
     {
+        col = gameObject.GetComponent<BoxCollider2D>();
         playText = gameObject.GetComponent<Text>();
         mainMenu = gameObject.transform.parent.GetComponent<MainMenu>();
     }
@@ -18,7 +20,7 @@ public class PlayCollision : MonoBehaviour
     {
         if (other.CompareTag("TriBullet"))
         {
-            Debug.Log("Enter");
+            FindObjectOfType<AudioManager>().Play("TextEnter");
             playText.CrossFadeAlpha(2f, 0f, true);
         }
     }
@@ -27,6 +29,8 @@ public class PlayCollision : MonoBehaviour
     {
         if (other.CompareTag("TriBullet"))
         {
+            col.enabled = false;
+            FindObjectOfType<AudioManager>().Play("TextExit");
             playText.CrossFadeAlpha(1f, 0f, true);
             mainMenu.StartGame();
         }

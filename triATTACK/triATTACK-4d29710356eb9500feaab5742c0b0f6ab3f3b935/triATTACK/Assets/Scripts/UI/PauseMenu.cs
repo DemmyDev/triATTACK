@@ -69,6 +69,7 @@ public class PauseMenu : MonoBehaviour {
     {
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
+        anim.Play();
         //glitch.enabled = true;
         GameMaster gm = GameObject.FindGameObjectWithTag("GameMaster").GetComponent<GameMaster>();
         gm.DisableObjectScripts();

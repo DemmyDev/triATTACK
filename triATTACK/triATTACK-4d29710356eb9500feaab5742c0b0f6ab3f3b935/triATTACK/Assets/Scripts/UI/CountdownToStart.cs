@@ -21,23 +21,33 @@ public class CountdownToStart : MonoBehaviour {
         gm.DisableObjectScripts();
         text = GetComponent<Text>();
         timer = mainTimer;
-	}
+
+        PlayCountdownSound();
+        Invoke("PlayCountdownSound", .97f);
+        Invoke("PlayCountdownSound", 1.97f);
+    }
 
     void Update()
     {
         if (timer > 0f)
         {
             timer -= Time.deltaTime;
-            text.text = "tri.TimeUntilStart = " + timer.ToString("F2") + ";";
-            
+            text.text = "tri.TimeUntilStart = " + timer.ToString("F1") + ";";
         }
-        else if (timer <= 0.01f && !timeIsZero)
+        else if (timer <= 0.09f && !timeIsZero)
         {
+            FindObjectOfType<AudioManager>().Play("GameStart");
             timeIsZero = true;
             text.text = "tri.Begin();";
             gm.StartGame();
             Invoke("FadeOut", 1f);
         }
+    }
+
+    void PlayCountdownSound()
+    {
+        FindObjectOfType<AudioManager>().Play("Countdown");
+        Debug.Log(timer);
     }
 
     void FadeOut()

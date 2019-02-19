@@ -23,8 +23,14 @@ public class MainMenu: MonoBehaviour {
 
     public void QuitGame()
     {
+        anim.Play();
+        Invoke("Quit", 1f);
+    }
+
+    void Quit()
+    {
         Debug.Log("please end me i'm in pain");
-        Application.Quit();
+        Application.Quit();   
     }
 
     public void LoadGame()

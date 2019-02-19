@@ -11,6 +11,7 @@ public class EnemySpawner : MonoBehaviour {
     [SerializeField] float subtractTime;
     int enemyInt;
     int enemiesKilled = 0;
+    public int shootingEnemyTotal;
 
     // On start
 	void Start ()
@@ -36,15 +37,21 @@ public class EnemySpawner : MonoBehaviour {
     {
         int arrayInt = Random.Range(0, spawner.Length); // Chooses random integer for spawner array
         int randomInt = Random.Range(0, 100); // Chooses random integer for enemy array
-        if (randomInt < 50)
+        if (randomInt > 60 && shootingEnemyTotal < 5)
         {
-            enemyInt = 0;
+            enemyInt = 0; // Shooting enemy
+            shootingEnemyTotal++;
         }
         else
         {
-            enemyInt = 1;
+            enemyInt = 1; // Homing enemy
         }
         Instantiate(enemy[enemyInt], spawner[arrayInt].position, Quaternion.identity); // Spawns enemy object at spawner location
+    }
+
+    public void SubtractShootingEnemyCounter()
+    {
+        shootingEnemyTotal--;
     }
 
     public void KilledEnemyCounter()

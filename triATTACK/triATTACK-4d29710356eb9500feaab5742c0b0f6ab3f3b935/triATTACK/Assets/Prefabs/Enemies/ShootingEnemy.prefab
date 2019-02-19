@@ -119,10 +119,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f8ff0fbada2af84b900eee377aa02b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 6
+  speed: 7
   stoppingDistance: 12
   retreatDistance: 10
-  startTimeBtwShots: 1.5
+  startTimeBtwShots: 1.66
   bulletTrailPrefab: {fileID: 1114150222734168, guid: 82bb33601bc16e148870af20aba51086,
     type: 2}
   deathParticlePrefab: {fileID: 4675210404812272, guid: e2f83a310b0c9b94ea601219e3d90107,
