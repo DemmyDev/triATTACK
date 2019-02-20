@@ -22,16 +22,7 @@ public class EndCollision : MonoBehaviour
         {
             FindObjectOfType<AudioManager>().Play("TextEnter");
             playText.CrossFadeAlpha(2f, 0f, true);
-        }
-    }
-
-    void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.CompareTag("TriBullet"))
-        {
             col.enabled = false;
-            FindObjectOfType<AudioManager>().Play("TextExit");
-            playText.CrossFadeAlpha(1f, 0f, true);
             mainMenu.QuitGame();
         }
     }
