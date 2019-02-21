@@ -7,7 +7,9 @@ public class BulletCollision : MonoBehaviour
     [SerializeField] int bulletDamage;
 
     ScoreText scoreText;
-    [SerializeField] int addScoreEnemyHit;
+    [SerializeField] int addScoreShootingHit;
+    [SerializeField] int addScoreHomingHit;
+    int addScoreStacking = 0;
     [SerializeField] Transform flashObj;
     [SerializeField] float startFreezeDuration;
     float freezeDuration;
@@ -50,13 +52,15 @@ public class BulletCollision : MonoBehaviour
             if (homingEnemy)
             {
                 homingEnemy.DamageEnemy(bulletDamage);
+                scoreText.SetScore(addScoreHomingHit + addScoreStacking);
             }
             else if (shootingEnemy)
             {
                 shootingEnemy.DamageEnemy(bulletDamage, bulletPos, bulletRot);
+                scoreText.SetScore(addScoreShootingHit + addScoreStacking);
             }
-            
-            scoreText.SetScore(5);
+
+            addScoreStacking += 100;
         }
 
         if (other.CompareTag("Wall"))

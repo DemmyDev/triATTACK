@@ -23,17 +23,12 @@ public class ShootingEnemy : MonoBehaviour
     [SerializeField] float shakeDuration;
     ScreenShake shake;
 
-    ScoreText scoreText;
-    [SerializeField] int addScoreDeath;
-
     [SerializeField] int health;
     
 
     void Start()
     {
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
-        GameObject text = GameObject.Find("ScoreText");
-        scoreText = text.GetComponent<ScoreText>();
         timeBtwShots = startTimeBtwShots;
 
         firePoint = transform.Find("BulletSpawn");
@@ -88,7 +83,6 @@ public class ShootingEnemy : MonoBehaviour
             spawner.SubtractShootingEnemyCounter();
 
             Instantiate(deathParticlePrefab, gameObject.transform.position, gameObject.transform.rotation);
-            scoreText.SetScore(addScoreDeath);
             Destroy(gameObject);
             shake.Shake(shakeDuration, shakeIntensity);
         }

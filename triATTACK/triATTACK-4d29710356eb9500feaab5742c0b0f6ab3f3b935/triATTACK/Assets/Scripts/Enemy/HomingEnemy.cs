@@ -15,15 +15,11 @@ public class HomingEnemy : MonoBehaviour
     [SerializeField] float shakeDuration;
     ScreenShake shake;
 
-    ScoreText scoreText;
-    [SerializeField] int addScoreDeath;
-
     [SerializeField] Transform homingParticlePrefab;
 
     void Start()
     {
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
-        scoreText = GameObject.Find("ScoreText").GetComponent<ScoreText>();
         shake = Camera.main.GetComponent<ScreenShake>();
         if (shake == null)
         {
@@ -48,7 +44,6 @@ public class HomingEnemy : MonoBehaviour
             spawner.KilledEnemyCounter();
 
             Instantiate(homingParticlePrefab, gameObject.transform.position, gameObject.transform.rotation);
-            scoreText.SetScore(addScoreDeath);
             Destroy(gameObject);
             shake.Shake(shakeDuration, shakeIntensity);
         }
