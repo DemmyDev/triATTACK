@@ -41,7 +41,7 @@ public class PlayerShooting: MonoBehaviour
     {
         if (!PauseMenu.isPaused)
         {
-            if (canShoot && Input.GetMouseButton(0))
+            if (canShoot && Input.GetMouseButtonDown(0))
             {
                 spriteR.sprite = recallSprite;
                 trailRend.enabled = false;
@@ -50,7 +50,7 @@ public class PlayerShooting: MonoBehaviour
                 canShoot = false;
                 Invoke("CanRecall", .25f);
             }
-            else if (hasShot && canRecall && Input.GetMouseButton(0)) // Change spacebar to right mouse
+            else if (hasShot && canRecall && Input.GetMouseButtonDown(0))
             {
                 Bullet.isRecalling = true;
                 isRecalling = true;
