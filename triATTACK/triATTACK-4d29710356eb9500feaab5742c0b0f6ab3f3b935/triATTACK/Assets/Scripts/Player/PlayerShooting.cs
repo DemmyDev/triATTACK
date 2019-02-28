@@ -52,6 +52,7 @@ public class PlayerShooting: MonoBehaviour
             }
             else if (hasShot && canRecall && Input.GetMouseButtonDown(0))
             {
+                FindObjectOfType<AudioManager>().Play("PlayerRecall");
                 Bullet.isRecalling = true;
                 isRecalling = true;
                 canRecall = false;
@@ -88,7 +89,8 @@ public class PlayerShooting: MonoBehaviour
             isRecalling = false;
             canRecall = false;
             // Animation for recharging?
-            FindObjectOfType<AudioManager>().Play("PlayerRecall");
+            FindObjectOfType<AudioManager>().Play("PlayerTriHit");
+            FindObjectOfType<ComboUI>().ResetCounter();
             Invoke("CanShoot", .25f);
         }
     }

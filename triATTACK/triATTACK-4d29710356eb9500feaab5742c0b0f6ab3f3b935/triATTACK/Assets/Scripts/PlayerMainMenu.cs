@@ -46,8 +46,9 @@ public class PlayerMainMenu : MonoBehaviour
                 canShoot = false;
                 Invoke("CanRecall", .25f);
             }
-            else if (hasShot && canRecall && Input.GetMouseButton(0)) // Change spacebar to right mouse
+            else if (hasShot && canRecall && Input.GetMouseButton(0))
             {
+                FindObjectOfType<AudioManager>().Play("PlayerRecall");
                 Bullet.isRecalling = true;
                 isRecalling = true;
                 canRecall = false;
@@ -76,7 +77,7 @@ public class PlayerMainMenu : MonoBehaviour
     {
         if (other.CompareTag("TriBullet") && (isRecalling || canRecall))
         {
-            FindObjectOfType<AudioManager>().Play("PlayerRecall");
+            FindObjectOfType<AudioManager>().Play("PlayerTriHit");
             spriteR.sprite = normalSprite;
             trail.SetActive(true);
             shake.Shake(shakeDuration, shakeIntensity * 2f);

@@ -51,13 +51,15 @@ public class BulletCollision : MonoBehaviour
 
             if (homingEnemy)
             {
-                homingEnemy.DamageEnemy(bulletDamage);
                 scoreText.SetScore(addScoreHomingHit + addScoreStacking);
+                FindObjectOfType<ComboUI>().SetCounter(addScoreHomingHit + addScoreStacking, homingEnemy.transform.position);
+                homingEnemy.DamageEnemy(bulletDamage);
             }
             else if (shootingEnemy)
             {
-                shootingEnemy.DamageEnemy(bulletDamage, bulletPos, bulletRot);
                 scoreText.SetScore(addScoreShootingHit + addScoreStacking);
+                FindObjectOfType<ComboUI>().SetCounter(addScoreShootingHit + addScoreStacking, shootingEnemy.transform.position);
+                shootingEnemy.DamageEnemy(bulletDamage, bulletPos, bulletRot);
             }
 
             addScoreStacking += 100;
