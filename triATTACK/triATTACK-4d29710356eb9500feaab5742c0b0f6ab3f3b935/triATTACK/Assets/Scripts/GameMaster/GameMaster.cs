@@ -92,13 +92,19 @@ public class GameMaster : MonoBehaviour {
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
         foreach (GameObject enemy in enemies)
         {
-            GameObject.Destroy(enemy);
+            Destroy(enemy);
         }
 
         GameObject[] bullets = GameObject.FindGameObjectsWithTag("Bullet");
         foreach (GameObject bullet in bullets)
         {
-            GameObject.Destroy(bullet);
+            Destroy(bullet);
+        }
+
+        SpawningObject[] spawners = FindObjectsOfType<SpawningObject>();
+        foreach (SpawningObject spawner in spawners)
+        {
+            Destroy(spawner.gameObject);
         }
     }
 }

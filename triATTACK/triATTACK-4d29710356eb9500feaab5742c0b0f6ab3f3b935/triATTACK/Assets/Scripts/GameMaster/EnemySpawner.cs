@@ -5,7 +5,6 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour {
 
     [SerializeField] GameObject[] enemy; // Enemy object
-    [SerializeField] Transform[] spawner; // Empty GameObjects to be used for spawn locations
     [SerializeField] float startTimeBtwSpawns; // Adjustable variable for the time between enemy spawns
     float timeBtwSpawns; // Allows time between enemy spawns to be reset
     [SerializeField] float subtractTime;
@@ -35,7 +34,6 @@ public class EnemySpawner : MonoBehaviour {
 
     public void SpawnEnemy()
     {
-        int arrayInt = Random.Range(0, spawner.Length); // Chooses random integer for spawner array
         int randomInt = Random.Range(0, 100); // Chooses random integer for enemy array
         if (randomInt > 60 && shootingEnemyTotal < 5)
         {
@@ -46,7 +44,9 @@ public class EnemySpawner : MonoBehaviour {
         {
             enemyInt = 1; // Homing enemy
         }
-        Instantiate(enemy[enemyInt], spawner[arrayInt].position, Quaternion.identity); // Spawns enemy object at spawner location
+
+        Vector2 spawnPos = new Vector2(Random.Range(-34f, 34f), Random.Range(-18.5f, 18.5f));
+        Instantiate(enemy[enemyInt], spawnPos, Quaternion.identity);
     }
 
     public void SubtractShootingEnemyCounter()
