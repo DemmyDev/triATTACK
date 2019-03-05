@@ -27,11 +27,15 @@ public class Player : MonoBehaviour {
     public static bool isDead = false;
     Animation anim;
     SpriteRenderer sprite;
+    TrailRenderer trail;
+
+    float screenX = 36.25f, screenY = 20.75f;
 
     void Start()
     {
         anim = GetComponent<Animation>();
         sprite = GetComponent<SpriteRenderer>();
+        trail = transform.Find("Trail").GetComponent<TrailRenderer>();
         shake = Camera.main.GetComponent<ScreenShake>();
         if (shake == null)
         {
@@ -41,6 +45,8 @@ public class Player : MonoBehaviour {
 
     void Update()
     {
+        ScreenWrap();
+
         if (health > numOfTris)
         {
             health = numOfTris;
@@ -66,6 +72,46 @@ public class Player : MonoBehaviour {
                 tris[i].enabled = false;
             }
         }
+    }
+
+    void ScreenWrap()
+    {
+        Vector2 pos = transform.position;
+
+        if (pos.x > screenX)
+        {
+            trail.Clear();
+            StartCoroutine(ResetTrail());
+            transform.position = new Vector2(-screenX, pos.y);
+        }
+
+        if (pos.x < -screenX)
+        {
+            trail.Clear();
+            StartCoroutine(ResetTrail());
+            transform.position = new Vector2(screenX, pos.y);
+        }
+
+        if (pos.y > screenY)
+        {
+            trail.Clear();
+            StartCoroutine(ResetTrail());
+            transform.position = new Vector2(pos.x, -screenY);
+        }
+
+        if (pos.y < -screenY)
+        {
+            trail.Clear();
+            StartCoroutine(ResetTrail());
+            transform.position = new Vector2(pos.x, screenY);
+        }
+    }
+
+    IEnumerator ResetTrail()
+    {
+        trail.time = 0;
+        yield return new WaitForSeconds(.1f);
+        trail.time = .5f;
     }
 
     void OnCollisionEnter2D(Collision2D collision)

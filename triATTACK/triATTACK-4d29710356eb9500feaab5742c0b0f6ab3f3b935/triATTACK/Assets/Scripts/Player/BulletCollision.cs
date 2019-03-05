@@ -17,11 +17,8 @@ public class BulletCollision : MonoBehaviour
 
     public float pitch = .3f;
 
-    Bullet bullet;
-
     void Start()
     {
-        bullet = gameObject.transform.parent.GetComponent<Bullet>();
         scoreText = GameObject.Find("ScoreText").GetComponent<ScoreText>();
         freezeDuration = startFreezeDuration;
     }
@@ -63,16 +60,6 @@ public class BulletCollision : MonoBehaviour
             }
 
             addScoreStacking += 100;
-        }
-
-        if (other.CompareTag("Wall"))
-        {
-            if (!Bullet.isRecalling)
-            {
-                FindObjectOfType<AudioManager>().Play("BulletWallHit");
-            }
-            bullet.slowDownSpeed = 0f;
-            bullet.rb.velocity = Vector2.zero;
         }
     }
 }

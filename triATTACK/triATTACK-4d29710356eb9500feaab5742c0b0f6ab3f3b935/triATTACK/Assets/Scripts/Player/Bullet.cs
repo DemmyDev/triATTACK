@@ -17,6 +17,9 @@ public class Bullet : MonoBehaviour
 
     bool dumbFix = true;
 
+    float screenX = 37.25f, screenY = 21.75f;
+    TrailRenderer trail;
+
     void Start()
     {
         spriteObj = GameObject.Find("Sprite").GetComponent<Transform>(); ;
@@ -28,10 +31,14 @@ public class Bullet : MonoBehaviour
         Vector2 direction = new Vector2(transform.up.x, transform.up.y);
         rb.velocity = direction * bulletSpeed;
         slowDownSpeed = rotateSpeed;
+
+        trail = transform.Find("Trail").GetComponent<TrailRenderer>();
     }
 
     void Update()
     {
+        ScreenWrap();
+
         if (!isRecalling)
         {
             if (slowDownSpeed > 10f)
@@ -58,5 +65,45 @@ public class Bullet : MonoBehaviour
             float rotZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.Euler(0f, 0f, rotZ - 90f);
         }
+    }
+
+    void ScreenWrap()
+    {
+        Vector2 pos = transform.position;
+
+        if (pos.x > screenX)
+        {
+            trail.Clear();
+            StartCoroutine(ResetTrail());
+            transform.position = new Vector2(-screenX, pos.y);
+        }
+
+        if (pos.x < -screenX)
+        {
+            trail.Clear();
+            StartCoroutine(ResetTrail());
+            transform.position = new Vector2(screenX, pos.y);
+        }
+
+        if (pos.y > screenY)
+        {
+            trail.Clear();
+            StartCoroutine(ResetTrail());
+            transform.position = new Vector2(pos.x, -screenY);
+        }
+
+        if (pos.y < -screenY)
+        {
+            trail.Clear();
+            StartCoroutine(ResetTrail());
+            transform.position = new Vector2(pos.x, screenY);
+        }
+    }
+
+    IEnumerator ResetTrail()
+    {
+        trail.time = 0;
+        yield return new WaitForSeconds(.2f);
+        trail.time = .5f;
     }
 }

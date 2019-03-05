@@ -15,18 +15,17 @@ public class PlayerShooting: MonoBehaviour
     [SerializeField] float shakeDuration;
     ScreenShake shake;
 
-    [SerializeField] GameObject trail;
-    TrailRenderer trailRend;
-
     SpriteRenderer spriteR;
     [SerializeField] Sprite normalSprite;
     [SerializeField] Sprite recallSprite;
+
+    TrailRenderer trail;
 
     bool canShoot, canRecall, hasShot, isRecalling;
 
     void Start()
     {
-        trailRend = trail.GetComponent<TrailRenderer>();
+        trail = transform.Find("Trail").GetComponent<TrailRenderer>();
         spriteR = gameObject.GetComponent<SpriteRenderer>();
         spriteR.sprite = normalSprite;
         firePoint = transform.Find("BulletSpawn");
@@ -43,8 +42,8 @@ public class PlayerShooting: MonoBehaviour
         {
             if (canShoot && Input.GetMouseButtonDown(0))
             {
+                trail.time = 0;
                 spriteR.sprite = recallSprite;
-                trailRend.enabled = false;
                 Shoot();
                 hasShot = true;
                 canShoot = false;
@@ -81,8 +80,8 @@ public class PlayerShooting: MonoBehaviour
     {
         if (other.CompareTag("TriBullet") && (isRecalling || canRecall))
         {
+            trail.time = .5f;
             spriteR.sprite = normalSprite;
-            trailRend.enabled = true;
             shake.Shake(shakeDuration, shakeIntensity * 2f);
             Destroy(other.transform.parent.gameObject);
             Bullet.isRecalling = false;
