@@ -69,7 +69,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1a21bca23fa3444d9cc6652bceddd3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 16
+  minSpeed: 12
+  maxSpeed: 18
   enemyDamage: 1
   health: 1
   shakeIntensity: 0.5

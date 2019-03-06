@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class HomingEnemy : MonoBehaviour
 {
-    [SerializeField] float speed;
+    [SerializeField] int minSpeed;
+    [SerializeField] int maxSpeed;
+    int speed;
     [SerializeField] int enemyDamage;
     [SerializeField] int health;
 
@@ -19,6 +21,7 @@ public class HomingEnemy : MonoBehaviour
 
     void Start()
     {
+        speed = Random.Range(minSpeed, maxSpeed + 1);
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         shake = Camera.main.GetComponent<ScreenShake>();
         if (shake == null)

@@ -58,7 +58,7 @@ public class EnemySpawner : MonoBehaviour {
     {
         enemiesKilled++;
         
-        if (enemiesKilled == 34 || enemiesKilled == 25 || enemiesKilled == 18 || enemiesKilled == 12 || enemiesKilled == 8 || enemiesKilled == 4)
+        if (enemiesKilled == 40 || enemiesKilled == 28 || enemiesKilled == 20 || enemiesKilled == 12 || enemiesKilled == 6 || enemiesKilled == 3)
         {
             startTimeBtwSpawns -= subtractTime;
         }

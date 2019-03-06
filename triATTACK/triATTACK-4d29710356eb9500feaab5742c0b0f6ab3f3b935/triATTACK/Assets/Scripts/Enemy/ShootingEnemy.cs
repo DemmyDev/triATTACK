@@ -4,14 +4,15 @@ using UnityEngine;
 
 public class ShootingEnemy : MonoBehaviour
 {
-    [SerializeField] float speed;
+    [SerializeField] int minSpeed;
+    [SerializeField] int maxSpeed;
+    int speed;
     [SerializeField] float stoppingDistance;
     [SerializeField] float retreatDistance;
 
     Transform target;
+    float startRateOfFire, rateOfFire;
 
-    float timeBtwShots;
-    [SerializeField] float startTimeBtwShots;
     [SerializeField] GameObject bulletTrailPrefab;
     Transform firePoint;
 
@@ -28,8 +29,25 @@ public class ShootingEnemy : MonoBehaviour
 
     void Start()
     {
+        speed = Random.Range(minSpeed, maxSpeed + 1);
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
-        timeBtwShots = startTimeBtwShots;
+
+        int randNum = Random.Range(1, 4);
+        switch(randNum)
+        {
+            case 1:
+                startRateOfFire = 1f;
+                break;
+            case 2:
+                startRateOfFire = 1.25f;
+                break;
+            case 3:
+                startRateOfFire = 1.5f;
+                break;
+        }
+        Debug.Log(startRateOfFire);
+
+        rateOfFire = startRateOfFire;
 
         firePoint = transform.Find("BulletSpawn");
         if (firePoint == null)
@@ -41,6 +59,7 @@ public class ShootingEnemy : MonoBehaviour
         {
             Debug.LogError("No camera found for screenshake");
         }
+        Invoke("Shoot", .25f);
     }
 
     void Update()
@@ -60,17 +79,22 @@ public class ShootingEnemy : MonoBehaviour
                 transform.position = Vector2.MoveTowards(transform.position, target.position, -speed * Time.deltaTime);
             }
 
-            if (timeBtwShots <= 0)
+            if (rateOfFire <= 0)
             {
-                FindObjectOfType<AudioManager>().Play("EnemyShoot");
-                Instantiate(bulletTrailPrefab, firePoint.position, firePoint.rotation);
-                timeBtwShots = startTimeBtwShots;
+                Shoot();
             }
             else
             {
-                timeBtwShots -= Time.deltaTime;
+                rateOfFire -= Time.deltaTime;
             }
         }
+    }
+
+    void Shoot()
+    {
+        FindObjectOfType<AudioManager>().Play("EnemyShoot");
+        Instantiate(bulletTrailPrefab, firePoint.position, firePoint.rotation);
+        rateOfFire = startRateOfFire;
     }
 
     public void DamageEnemy(int damage, Vector3 bulletPos, Quaternion bulletRot)

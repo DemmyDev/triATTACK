@@ -47,7 +47,6 @@ public class CountdownToStart : MonoBehaviour {
     void PlayCountdownSound()
     {
         FindObjectOfType<AudioManager>().Play("Countdown");
-        Debug.Log(timer);
     }
 
     void FadeOut()
