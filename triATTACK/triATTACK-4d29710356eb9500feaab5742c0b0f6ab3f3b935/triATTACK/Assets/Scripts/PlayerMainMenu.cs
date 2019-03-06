@@ -13,7 +13,9 @@ public class PlayerMainMenu : MonoBehaviour
     [SerializeField] float shakeDuration;
     ScreenShake shake;
 
-    [SerializeField] GameObject trail;
+    TrailRenderer trail;
+
+    float screenX = 36.25f, screenY = 20.75f;
 
     SpriteRenderer spriteR;
     [SerializeField] Sprite normalSprite;
@@ -23,6 +25,7 @@ public class PlayerMainMenu : MonoBehaviour
 
     void Start()
     {
+        trail = transform.Find("Trail").GetComponent<TrailRenderer>();
         spriteR = gameObject.GetComponent<SpriteRenderer>();
         spriteR.sprite = normalSprite;
         firePoint = transform.Find("BulletSpawn");
@@ -35,25 +38,64 @@ public class PlayerMainMenu : MonoBehaviour
 
     void Update()
     {
-        if (!PauseMenu.isPaused)
+        ScreenWrap();
+
+        if (canShoot && Input.GetMouseButton(0))
         {
-            if (canShoot && Input.GetMouseButton(0))
-            {
-                spriteR.sprite = recallSprite;
-                trail.SetActive(false);
-                Shoot();
-                hasShot = true;
-                canShoot = false;
-                Invoke("CanRecall", .25f);
-            }
-            else if (hasShot && canRecall && Input.GetMouseButton(0))
-            {
-                FindObjectOfType<AudioManager>().Play("PlayerRecall");
-                Bullet.isRecalling = true;
-                isRecalling = true;
-                canRecall = false;
-            }
+            spriteR.sprite = recallSprite;
+            trail.time = 0;
+            Shoot();
+            hasShot = true;
+            canShoot = false;
+            Invoke("CanRecall", .25f);
         }
+        else if (hasShot && canRecall && Input.GetMouseButton(0))
+        {
+            FindObjectOfType<AudioManager>().Play("PlayerRecall");
+            Bullet.isRecalling = true;
+            isRecalling = true;
+            canRecall = false;
+        }
+    }
+
+    void ScreenWrap()
+    {
+        Vector2 pos = transform.position;
+
+        if (pos.x > screenX)
+        {
+            trail.Clear();
+            StartCoroutine(ResetTrail());
+            transform.position = new Vector2(-screenX, pos.y);
+        }
+
+        if (pos.x < -screenX)
+        {
+            trail.Clear();
+            StartCoroutine(ResetTrail());
+            transform.position = new Vector2(screenX, pos.y);
+        }
+
+        if (pos.y > screenY)
+        {
+            trail.Clear();
+            StartCoroutine(ResetTrail());
+            transform.position = new Vector2(pos.x, -screenY);
+        }
+
+        if (pos.y < -screenY)
+        {
+            trail.Clear();
+            StartCoroutine(ResetTrail());
+            transform.position = new Vector2(pos.x, screenY);
+        }
+    }
+
+    IEnumerator ResetTrail()
+    {
+        trail.time = 0;
+        yield return new WaitForSeconds(.1f);
+        trail.time = .5f;
     }
 
     void Shoot()
@@ -79,7 +121,7 @@ public class PlayerMainMenu : MonoBehaviour
         {
             FindObjectOfType<AudioManager>().Play("PlayerTriHit");
             spriteR.sprite = normalSprite;
-            trail.SetActive(true);
+            trail.time = .5f;
             shake.Shake(shakeDuration, shakeIntensity * 2f);
             Destroy(other.transform.parent.gameObject);
             Bullet.isRecalling = false;
