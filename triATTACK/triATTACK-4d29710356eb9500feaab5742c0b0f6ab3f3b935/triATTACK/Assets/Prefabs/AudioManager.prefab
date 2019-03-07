@@ -73,7 +73,7 @@ MonoBehaviour:
     source: {fileID: 0}
     loop: 0
     playOnAwake: 0
-  - name: PlayerRecall
+  - name: PlayerTriHit
     clip: {fileID: 8300000, guid: 993ef2521f0dfb447ad46c8a12405a3c, type: 3}
     volume: 0.4
     pitch: 1.1
@@ -119,6 +119,13 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: a1fafc4ffd05a024791828dd611f0f08, type: 3}
     volume: 0.5
     pitch: 1
+    source: {fileID: 0}
+    loop: 0
+    playOnAwake: 0
+  - name: PlayerRecall
+    clip: {fileID: 8300000, guid: 07da8085239294c4780b6c6211831531, type: 3}
+    volume: 0.1
+    pitch: 0.7
     source: {fileID: 0}
     loop: 0
     playOnAwake: 0

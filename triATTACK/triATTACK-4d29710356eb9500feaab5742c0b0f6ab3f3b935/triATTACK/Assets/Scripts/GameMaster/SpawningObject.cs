@@ -17,7 +17,7 @@ public class SpawningObject : MonoBehaviour {
 
     void SpawnEnemy()
     {
-        Instantiate(enemyObj, transform.position, Quaternion.identity);
+        Instantiate(enemyObj, transform.position, transform.rotation);
         Destroy(gameObject);
     }
 }

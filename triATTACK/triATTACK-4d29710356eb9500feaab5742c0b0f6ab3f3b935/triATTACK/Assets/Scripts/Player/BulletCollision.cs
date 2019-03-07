@@ -14,6 +14,7 @@ public class BulletCollision : MonoBehaviour
     [SerializeField] float startFreezeDuration;
     float freezeDuration;
     [SerializeField] float addFreezeDuration;
+    float colorNum = .15f;
 
     public float pitch = .3f;
 
@@ -27,6 +28,13 @@ public class BulletCollision : MonoBehaviour
     {
         if (other.CompareTag("Enemy"))
         {
+            StartCoroutine(GameMaster.gm.CamBackgroundColorChange(colorNum));
+            if (colorNum < .35f)
+            {
+                colorNum += .05f;
+            }
+
+
             GameMaster.gm.Freeze(freezeDuration);
             if (freezeDuration < .15f)
             {

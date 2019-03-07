@@ -40,6 +40,7 @@ public class GameMaster : MonoBehaviour {
     {
         isFrozen = true;
         Time.timeScale = 0f;
+        Debug.Log("Do freeze");
 
         yield return new WaitForSecondsRealtime(freezeFrameDuration);
 
@@ -106,5 +107,13 @@ public class GameMaster : MonoBehaviour {
         {
             Destroy(spawner.gameObject);
         }
+    }
+
+    public IEnumerator CamBackgroundColorChange(float colorNum)
+    {
+        Camera cam = Camera.main;
+        cam.backgroundColor = new Color(colorNum, colorNum, colorNum);
+        yield return new WaitForSecondsRealtime(.075f);
+        cam.backgroundColor = Color.black;
     }
 }
