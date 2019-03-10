@@ -28,12 +28,11 @@ public class BulletCollision : MonoBehaviour
     {
         if (other.CompareTag("Enemy"))
         {
-            StartCoroutine(GameMaster.gm.CamBackgroundColorChange(colorNum));
+            GameMaster.gm.ChangeBackColor(colorNum);
             if (colorNum < .35f)
             {
                 colorNum += .05f;
             }
-
 
             GameMaster.gm.Freeze(freezeDuration);
             if (freezeDuration < .15f)

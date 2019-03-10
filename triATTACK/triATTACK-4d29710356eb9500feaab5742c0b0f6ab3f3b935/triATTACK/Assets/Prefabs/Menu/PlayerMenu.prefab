@@ -302,11 +302,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5442ee066296bba4394cfa98711c004b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletTrailPrefab: {fileID: 0}
-  shakeIntensity: 0
-  shakeDuration: 0
-  normalSprite: {fileID: 0}
-  recallSprite: {fileID: 0}
+  bulletTrailPrefab: {fileID: 4483494038694336, guid: 6cfe0a54b05f52f4a8f713de9528b9fe,
+    type: 2}
+  shakeIntensity: 0.5
+  shakeDuration: 0.25
+  normalSprite: {fileID: 21300000, guid: 905cd9f3539338046873f36c7f0db7b4, type: 3}
+  recallSprite: {fileID: 21300000, guid: b9b51d0f7516720418fa8ad317e07d89, type: 3}
 --- !u!212 &212090447737864294
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -109,7 +109,12 @@ public class GameMaster : MonoBehaviour {
         }
     }
 
-    public IEnumerator CamBackgroundColorChange(float colorNum)
+    public void ChangeBackColor(float colorNum)
+    {
+        StartCoroutine(CamBackgroundColorChange(colorNum));
+    }
+
+    IEnumerator CamBackgroundColorChange(float colorNum)
     {
         Camera cam = Camera.main;
         cam.backgroundColor = new Color(colorNum, colorNum, colorNum);
