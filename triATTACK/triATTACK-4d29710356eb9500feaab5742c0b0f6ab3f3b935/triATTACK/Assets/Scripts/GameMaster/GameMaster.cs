@@ -16,6 +16,7 @@ public class GameMaster : MonoBehaviour {
     void Start()
     {
         spawner = gameObject.GetComponent<EnemySpawner>();
+        DisableObjectScripts();
         if (gm == null)
         {
             gm = this;

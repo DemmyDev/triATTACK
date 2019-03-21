@@ -1,6 +1,7 @@
 ﻿using UnityEngine.Audio;
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class AudioManager : MonoBehaviour
 {
@@ -28,6 +29,11 @@ public class AudioManager : MonoBehaviour
             s.source.pitch = s.pitch;
             s.source.playOnAwake = s.playOnAwake;
             s.source.loop = s.loop;
+        }
+
+        if (SceneManager.GetActiveScene().buildIndex == 1)
+        {
+            Play("CountdownToStart");
         }
     }
 

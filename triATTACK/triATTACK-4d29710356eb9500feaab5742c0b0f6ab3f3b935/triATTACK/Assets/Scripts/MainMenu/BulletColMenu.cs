@@ -22,10 +22,6 @@ public class BulletColMenu : MonoBehaviour
         if (other.CompareTag("Enemy"))
         {
             GameMaster.gm.ChangeBackColor(colorNum);
-            if (colorNum < .35f)
-            {
-                colorNum += .05f;
-            }
 
             GameMaster.gm.Freeze(freezeDuration);
             if (freezeDuration < .15f)
@@ -37,8 +33,7 @@ public class BulletColMenu : MonoBehaviour
             var flashInst = Instantiate(flashObj, other.transform.position, Quaternion.identity);
             Destroy(flashInst.gameObject, .25f);
 
-            FindObjectOfType<AudioManager>().Play("EnemyHit");
-            pitch += .05f;
+            FindObjectOfType<AudioManager>().Play("TextEnter");
         }
     }
 }

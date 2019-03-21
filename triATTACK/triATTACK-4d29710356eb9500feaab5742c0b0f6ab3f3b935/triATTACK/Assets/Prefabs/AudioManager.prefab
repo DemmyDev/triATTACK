@@ -108,7 +108,7 @@ MonoBehaviour:
     source: {fileID: 0}
     loop: 0
     playOnAwake: 0
-  - name: Countdown
+  - name: CountdownToStart
     clip: {fileID: 8300000, guid: 264a8fb7850b5f04d9ccddb20b51b4f2, type: 3}
     volume: 0.5
     pitch: 0.5

@@ -10,19 +10,17 @@ public class CountdownToStart : MonoBehaviour {
 
     float timer;
     bool timeIsZero = false;
-    GameMaster gm;
 
     Animation anim;
+    AudioManager audioManager;    
 
 	void Start ()
     {
         anim = gameObject.GetComponent<Animation>();
-        gm = GameObject.FindGameObjectWithTag("GameMaster").GetComponent<GameMaster>();
-        gm.DisableObjectScripts();
         text = GetComponent<Text>();
         timer = mainTimer;
+        audioManager = FindObjectOfType<AudioManager>().GetComponent<AudioManager>();
 
-        PlayCountdownSound();
         Invoke("PlayCountdownSound", .97f);
         Invoke("PlayCountdownSound", 1.97f);
     }
@@ -36,17 +34,17 @@ public class CountdownToStart : MonoBehaviour {
         }
         else if (timer <= 0.09f && !timeIsZero)
         {
-            FindObjectOfType<AudioManager>().Play("GameStart");
+            audioManager.Play("GameStart");
             timeIsZero = true;
             text.text = "tri.Begin();";
-            gm.StartGame();
+            GameMaster.gm.StartGame();
             Invoke("FadeOut", 1f);
         }
     }
 
     void PlayCountdownSound()
     {
-        FindObjectOfType<AudioManager>().Play("Countdown");
+        audioManager.Play("CountdownToStart");
     }
 
     void FadeOut()
