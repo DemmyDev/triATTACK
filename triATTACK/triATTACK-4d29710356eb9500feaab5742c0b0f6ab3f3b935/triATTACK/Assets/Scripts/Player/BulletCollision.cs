@@ -18,10 +18,30 @@ public class BulletCollision : MonoBehaviour
 
     public float pitch = .3f;
 
+    bool isShaking = false;
+
     void Start()
     {
         scoreText = GameObject.Find("ScoreText").GetComponent<ScoreText>();
         freezeDuration = startFreezeDuration;
+        Invoke("ObjectShake", 2f);
+    }
+
+    void ObjectShake()
+    {
+        isShaking = true;
+    }
+
+    void Update()
+    {
+        if (isShaking && !Bullet.isRecalling)
+        {
+            transform.localPosition = new Vector2(Random.Range(-.2f, .2f), Random.Range(-.2f, .2f));
+        }
+        else if (Bullet.isRecalling)
+        {
+            transform.localPosition = Vector2.zero;
+        }
     }
 
     void OnTriggerEnter2D(Collider2D other)

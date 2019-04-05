@@ -33,6 +33,7 @@ public class Bullet : MonoBehaviour
         slowDownSpeed = rotateSpeed;
 
         trail = transform.Find("Trail").GetComponent<TrailRenderer>();
+        StartCoroutine(AutoRecall());
     }
 
     void Update()
@@ -45,6 +46,10 @@ public class Bullet : MonoBehaviour
             {
                 slowDownSpeed /= slowDownDivider;
                 spriteObj.Rotate(Vector3.forward * Time.deltaTime * slowDownSpeed);
+            }
+            else
+            {
+                isRecalling = true;
             }
         }
         else if (isRecalling)
@@ -97,6 +102,16 @@ public class Bullet : MonoBehaviour
             trail.Clear();
             StartCoroutine(ResetTrail());
             transform.position = new Vector2(pos.x, screenY);
+        }
+    }
+
+    IEnumerator AutoRecall()
+    {
+        yield return new WaitForSeconds(3f);
+        if (!isRecalling)
+        {
+            FindObjectOfType<AudioManager>().Play("PlayerRecall");
+            isRecalling = true;
         }
     }
 

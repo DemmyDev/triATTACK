@@ -49,12 +49,12 @@ public class PlayerShooting: MonoBehaviour
                 canShoot = false;
                 Invoke("CanRecall", .25f);
             }
-            else if (hasShot && canRecall && Input.GetMouseButtonDown(0))
+            else if (!Bullet.isRecalling && hasShot && canRecall && Input.GetMouseButtonDown(0))
             {
                 FindObjectOfType<AudioManager>().Play("PlayerRecall");
                 Bullet.isRecalling = true;
-                isRecalling = true;
                 canRecall = false;
+                isRecalling = true;
             }
         }
     }
@@ -85,8 +85,8 @@ public class PlayerShooting: MonoBehaviour
             shake.Shake(shakeDuration, shakeIntensity * 2f);
             Destroy(other.transform.parent.gameObject);
             Bullet.isRecalling = false;
-            isRecalling = false;
             canRecall = false;
+            isRecalling = false;
             // Animation for recharging?
             FindObjectOfType<AudioManager>().Play("PlayerTriHit");
             FindObjectOfType<ComboUI>().ResetCounter();
