@@ -9,6 +9,7 @@ public class BulletCollision : MonoBehaviour
     ScoreText scoreText;
     [SerializeField] int addScoreShootingHit;
     [SerializeField] int addScoreHomingHit;
+    [SerializeField] int addScoreSittingHit;
     int addScoreStacking = 0;
     [SerializeField] Transform flashObj;
     [SerializeField] float startFreezeDuration;
@@ -69,6 +70,7 @@ public class BulletCollision : MonoBehaviour
 
             HomingEnemy homingEnemy = other.gameObject.GetComponent<HomingEnemy>();
             ShootingEnemy shootingEnemy = other.gameObject.GetComponent<ShootingEnemy>();
+            SittingEnemy sittingEnemy = other.gameObject.GetComponent<SittingEnemy>();
 
             Vector3 bulletPos = gameObject.transform.position;
             Quaternion bulletRot = gameObject.transform.rotation;
@@ -84,6 +86,12 @@ public class BulletCollision : MonoBehaviour
                 scoreText.SetScore(addScoreShootingHit + addScoreStacking);
                 FindObjectOfType<ComboUI>().SetCounter(addScoreShootingHit + addScoreStacking, shootingEnemy.transform.position);
                 shootingEnemy.DamageEnemy(bulletDamage, bulletPos, bulletRot);
+            }
+            else if (sittingEnemy)
+            {
+                scoreText.SetScore(addScoreSittingHit + addScoreStacking);
+                FindObjectOfType<ComboUI>().SetCounter(addScoreSittingHit + addScoreStacking, sittingEnemy.transform.position);
+                sittingEnemy.DamageEnemy(bulletDamage, bulletPos, bulletRot);
             }
 
             addScoreStacking += 100;

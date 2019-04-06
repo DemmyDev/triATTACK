@@ -54,10 +54,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemy:
   - {fileID: 1480013317877966, guid: 87dcd3f09a653be4e9d26b08db511e66, type: 2}
+  - {fileID: 1327271936335038, guid: 12f683023da499943b365282273e7d56, type: 2}
   - {fileID: 1294183768238216, guid: a255fa32be018454a9f97c4a55ddb2b2, type: 2}
   startTimeBtwSpawns: 2
   subtractTime: 0.25
   shootingEnemyTotal: 0
+  sittingEnemyTotal: 0
 --- !u!114 &114892248361305560
 MonoBehaviour:
   m_ObjectHideFlags: 1

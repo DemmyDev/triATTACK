@@ -129,9 +129,9 @@ MonoBehaviour:
   retreatDistance: 10
   bulletTrailPrefab: {fileID: 1114150222734168, guid: 82bb33601bc16e148870af20aba51086,
     type: 2}
-  deathParticlePrefab: {fileID: 4675210404812272, guid: e2f83a310b0c9b94ea601219e3d90107,
+  deathParticlePrefab: {fileID: 4283317528949316, guid: 6a4bf7e64f1887d428eb42a10f049047,
     type: 2}
-  dmgParticlePrefab: {fileID: 4993422432062980, guid: d19ccc1532c339d4f8a27e8a186a4501,
+  dmgParticlePrefab: {fileID: 4283317528949316, guid: 6a4bf7e64f1887d428eb42a10f049047,
     type: 2}
   shakeIntensity: 0.5
   shakeDuration: 0.1

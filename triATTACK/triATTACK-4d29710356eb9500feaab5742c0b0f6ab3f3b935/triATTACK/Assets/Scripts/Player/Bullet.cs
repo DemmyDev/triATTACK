@@ -44,8 +44,8 @@ public class Bullet : MonoBehaviour
         {
             if (slowDownSpeed > 10f)
             {
-                slowDownSpeed /= slowDownDivider;
                 spriteObj.Rotate(Vector3.forward * Time.deltaTime * slowDownSpeed);
+                slowDownSpeed /= slowDownDivider;
             }
             else
             {

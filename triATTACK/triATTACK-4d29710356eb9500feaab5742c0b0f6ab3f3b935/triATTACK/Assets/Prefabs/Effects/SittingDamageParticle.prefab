@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 198581455403265106}
   - component: {fileID: 199945641922969180}
   m_Layer: 0
-  m_Name: ShootingDamageParticle
+  m_Name: SittingDamageParticle
   m_TagString: Particle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
