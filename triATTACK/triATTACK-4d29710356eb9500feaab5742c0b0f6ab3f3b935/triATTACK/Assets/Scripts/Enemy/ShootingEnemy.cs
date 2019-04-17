@@ -45,7 +45,6 @@ public class ShootingEnemy : MonoBehaviour
                 startRateOfFire = 1.5f;
                 break;
         }
-        Debug.Log(startRateOfFire);
 
         rateOfFire = startRateOfFire;
 
@@ -104,7 +103,6 @@ public class ShootingEnemy : MonoBehaviour
         {
             EnemySpawner spawner = GameObject.FindGameObjectWithTag("GameMaster").GetComponent<EnemySpawner>();
             spawner.KilledEnemyCounter();
-            spawner.SubtractShootingEnemyCounter();
 
             Instantiate(deathParticlePrefab, gameObject.transform.position, gameObject.transform.rotation);
             Destroy(gameObject);

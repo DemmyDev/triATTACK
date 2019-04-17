@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class PlayerShooting: MonoBehaviour
 {
-    [SerializeField] int damage;
-
     [SerializeField] Transform bulletTrailPrefab;
 
     Transform firePoint;

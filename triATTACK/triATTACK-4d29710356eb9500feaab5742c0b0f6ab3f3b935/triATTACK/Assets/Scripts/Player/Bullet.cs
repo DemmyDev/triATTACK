@@ -107,7 +107,7 @@ public class Bullet : MonoBehaviour
 
     IEnumerator AutoRecall()
     {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(5f);
         if (!isRecalling)
         {
             FindObjectOfType<AudioManager>().Play("PlayerRecall");

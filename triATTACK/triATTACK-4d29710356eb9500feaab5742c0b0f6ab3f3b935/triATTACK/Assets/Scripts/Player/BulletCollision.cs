@@ -25,7 +25,7 @@ public class BulletCollision : MonoBehaviour
     {
         scoreText = GameObject.Find("ScoreText").GetComponent<ScoreText>();
         freezeDuration = startFreezeDuration;
-        Invoke("ObjectShake", 2f);
+        Invoke("ObjectShake", 4f);
     }
 
     void ObjectShake()

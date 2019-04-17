@@ -37,13 +37,13 @@ public class SittingEnemy : MonoBehaviour
         switch (randNum)
         {
             case 1:
-                startRateOfFire = 1.5f;
+                startRateOfFire = 2f;
                 break;
             case 2:
-                startRateOfFire = 1.75f;
+                startRateOfFire = 2.25f;
                 break;
             case 3:
-                startRateOfFire = 2f;
+                startRateOfFire = 2.5f;
                 break;
         }
 
@@ -106,7 +106,6 @@ public class SittingEnemy : MonoBehaviour
         {
             EnemySpawner spawner = GameObject.FindGameObjectWithTag("GameMaster").GetComponent<EnemySpawner>();
             spawner.KilledEnemyCounter();
-            spawner.SubtractSittingEnemyCounter();
 
             Instantiate(sittingParticlePrefab, gameObject.transform.position, gameObject.transform.rotation);
             Destroy(gameObject);

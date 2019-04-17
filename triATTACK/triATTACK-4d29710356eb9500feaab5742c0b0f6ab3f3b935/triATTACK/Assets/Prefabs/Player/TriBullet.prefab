@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 50861250463751260}
   m_Layer: 0
   m_Name: TriBullet
-  m_TagString: Bullet
+  m_TagString: TriBullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -267,7 +267,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletSpeed: 28
   rb: {fileID: 0}
-  rotateSpeed: 500
+  rotateSpeed: 700
   slowDownDivider: 1.01
   slowDownSpeed: 0
 --- !u!114 &114846563306777742
