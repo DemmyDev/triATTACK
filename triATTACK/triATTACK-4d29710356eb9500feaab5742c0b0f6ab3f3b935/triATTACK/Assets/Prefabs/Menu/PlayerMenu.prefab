@@ -97,7 +97,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1938187992790404}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 15, y: -4, z: 0}
   m_LocalScale: {x: 0.65, y: 0.65, z: 1}
   m_Children:
   - {fileID: 4096434826044792}
@@ -302,7 +302,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5442ee066296bba4394cfa98711c004b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletTrailPrefab: {fileID: 4483494038694336, guid: 6cfe0a54b05f52f4a8f713de9528b9fe,
+  bulletTrailPrefab: {fileID: 4946427457667988, guid: 7058f91c868c19e4ba069d5c4a7c92bc,
     type: 2}
   shakeIntensity: 0.5
   shakeDuration: 0.25

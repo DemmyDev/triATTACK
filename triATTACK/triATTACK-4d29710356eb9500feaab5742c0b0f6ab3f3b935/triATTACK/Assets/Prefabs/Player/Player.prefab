@@ -23,7 +23,6 @@ GameObject:
   - component: {fileID: 114777091590867534}
   - component: {fileID: 114877197309127128}
   - component: {fileID: 114944444271023380}
-  - component: {fileID: 114095422895792506}
   - component: {fileID: 114169351164171336}
   - component: {fileID: 50598371561346872}
   - component: {fileID: 60537956764895454}
@@ -270,23 +269,6 @@ Animation:
   m_PlayAutomatically: 0
   m_AnimatePhysics: 0
   m_CullingType: 0
---- !u!114 &114095422895792506
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1297802079624882}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 988e17cfa68a79d408a795ce8905ec0e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bulletTrailPrefab: {fileID: 4486507701744908, guid: 4b6fa2e49cdcdd54087e962d84d39b49,
-    type: 2}
-  shakeIntensity: 0.15
-  shakeDuration: 0.1
-  normalSprite: {fileID: 21300000, guid: 905cd9f3539338046873f36c7f0db7b4, type: 3}
-  recallSprite: {fileID: 21300000, guid: b9b51d0f7516720418fa8ad317e07d89, type: 3}
 --- !u!114 &114169351164171336
 MonoBehaviour:
   m_ObjectHideFlags: 1

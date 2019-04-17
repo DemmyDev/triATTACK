@@ -47,10 +47,10 @@ public class PlayerShooting: MonoBehaviour
                 canShoot = false;
                 Invoke("CanRecall", .25f);
             }
-            else if (!Bullet.isRecalling && hasShot && canRecall && Input.GetMouseButtonDown(0))
+            else if (!isRecalling && hasShot && canRecall && Input.GetMouseButtonDown(0))
             {
                 FindObjectOfType<AudioManager>().Play("PlayerRecall");
-                Bullet.isRecalling = true;
+                GameObject.FindGameObjectWithTag("TriBullet").GetComponent<Bullet>().SetIsRecalling(true);
                 canRecall = false;
                 isRecalling = true;
             }
@@ -82,7 +82,6 @@ public class PlayerShooting: MonoBehaviour
             spriteR.sprite = normalSprite;
             shake.Shake(shakeDuration, shakeIntensity * 2f);
             Destroy(other.transform.parent.gameObject);
-            Bullet.isRecalling = false;
             canRecall = false;
             isRecalling = false;
             // Animation for recharging?

@@ -20,9 +20,11 @@ public class BulletCollision : MonoBehaviour
     public float pitch = .3f;
 
     bool isShaking = false;
+    Bullet parent;
 
     void Start()
     {
+        parent = transform.parent.GetComponent<Bullet>();
         scoreText = GameObject.Find("ScoreText").GetComponent<ScoreText>();
         freezeDuration = startFreezeDuration;
         Invoke("ObjectShake", 4f);
@@ -35,11 +37,11 @@ public class BulletCollision : MonoBehaviour
 
     void Update()
     {
-        if (isShaking && !Bullet.isRecalling)
+        if (isShaking && !parent.GetIsRecalling())
         {
             transform.localPosition = new Vector2(Random.Range(-.2f, .2f), Random.Range(-.2f, .2f));
         }
-        else if (Bullet.isRecalling)
+        else if (parent.GetIsRecalling())
         {
             transform.localPosition = Vector2.zero;
         }

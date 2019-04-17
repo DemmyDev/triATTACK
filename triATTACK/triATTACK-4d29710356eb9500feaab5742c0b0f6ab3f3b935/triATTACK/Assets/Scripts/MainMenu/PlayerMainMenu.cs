@@ -52,7 +52,7 @@ public class PlayerMainMenu : MonoBehaviour
         else if (hasShot && canRecall && Input.GetMouseButton(0))
         {
             FindObjectOfType<AudioManager>().Play("PlayerRecall");
-            Bullet.isRecalling = true;
+            GameObject.FindGameObjectWithTag("TriBullet").GetComponent<Bullet>().SetIsRecalling(true);
             isRecalling = true;
             canRecall = false;
         }
@@ -122,9 +122,8 @@ public class PlayerMainMenu : MonoBehaviour
             FindObjectOfType<AudioManager>().Play("PlayerTriHit");
             spriteR.sprite = normalSprite;
             trail.time = .5f;
-            shake.Shake(shakeDuration, shakeIntensity * 2f);
+            shake.Shake(shakeDuration, shakeIntensity);
             Destroy(other.transform.parent.gameObject);
-            Bullet.isRecalling = false;
             isRecalling = false;
             canRecall = false;
             // Animation for recharging?

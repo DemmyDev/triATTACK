@@ -6,7 +6,7 @@ public class Bullet : MonoBehaviour
 {
     [SerializeField] int bulletSpeed;
 
-    public static bool isRecalling;
+    [HideInInspector] public bool isRecalling;
     Transform target;
     [HideInInspector] public Rigidbody2D rb;
 
@@ -44,7 +44,7 @@ public class Bullet : MonoBehaviour
         {
             if (slowDownSpeed > 10f)
             {
-                spriteObj.Rotate(Vector3.forward * Time.deltaTime * slowDownSpeed);
+                spriteObj.Rotate(transform.forward * Time.deltaTime * slowDownSpeed);
                 slowDownSpeed /= slowDownDivider;
             }
             else
@@ -64,11 +64,6 @@ public class Bullet : MonoBehaviour
             
             spriteObj.Rotate(Vector3.forward * Time.deltaTime * rotateSpeed);
             transform.position = Vector2.MoveTowards(transform.position, target.position, bulletSpeed * 2f * Time.deltaTime );
-
-            Vector3 difference = target.transform.position - transform.position;
-            difference.Normalize();
-            float rotZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.Euler(0f, 0f, rotZ - 90f);
         }
     }
 
@@ -120,5 +115,15 @@ public class Bullet : MonoBehaviour
         trail.time = 0;
         yield return new WaitForSeconds(.2f);
         trail.time = .5f;
+    }
+
+    public bool GetIsRecalling()
+    {
+        return isRecalling;
+    }
+
+    public void SetIsRecalling(bool recalling)
+    {
+        isRecalling = recalling;
     }
 }

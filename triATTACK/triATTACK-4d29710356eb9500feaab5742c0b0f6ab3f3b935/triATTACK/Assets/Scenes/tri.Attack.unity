@@ -2310,18 +2310,7 @@ Prefab:
       propertyPath: tris.Array.data[2]
       value: 
       objectReference: {fileID: 914992206}
-    - target: {fileID: 114169351164171336, guid: 3b7af739aea3aa34a8e464c11d2d032c,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114095422895792506, guid: 3b7af739aea3aa34a8e464c11d2d032c,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 114095422895792506, guid: 3b7af739aea3aa34a8e464c11d2d032c, type: 2}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3b7af739aea3aa34a8e464c11d2d032c, type: 2}
   m_IsPrefabAsset: 0
 --- !u!1 &2072800644
