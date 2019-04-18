@@ -2,9 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerShooting: MonoBehaviour
+public class PlayerShooting : MonoBehaviour
 {
-    [SerializeField] Transform bulletTrailPrefab;
+    [SerializeField] Transform[] bulletPrefabs;
+    public enum Bullets { Default = 0, Triple = 1 };
+    // Bullets enum will be used to assign bullet types from main menu
+    public Bullets bullets;
+    int bulletInt = 0;
 
     Transform firePoint;
 
@@ -32,9 +36,23 @@ public class PlayerShooting: MonoBehaviour
         canRecall = false;
         hasShot = false;
         isRecalling = false;
+
+        // Add to this when adding more bullet types
+        switch (bullets)
+        {
+            case 0:
+                bulletInt = 0;
+                break;
+            case (Bullets)1:
+                bulletInt = 1;
+                break;
+            default:
+                Debug.LogError("No bullet found in enumeration.");
+                break;
+        }
     }
 
-    void Update ()
+    void Update()
     {
         if (!PauseMenu.isPaused)
         {
@@ -50,7 +68,7 @@ public class PlayerShooting: MonoBehaviour
             else if (!isRecalling && hasShot && canRecall && Input.GetMouseButtonDown(0))
             {
                 FindObjectOfType<AudioManager>().Play("PlayerRecall");
-                GameObject.FindGameObjectWithTag("TriBullet").GetComponent<Bullet>().SetIsRecalling(true);
+                FindBullet();
                 canRecall = false;
                 isRecalling = true;
             }
@@ -60,8 +78,24 @@ public class PlayerShooting: MonoBehaviour
     void Shoot()
     {
         FindObjectOfType<AudioManager>().Play("PlayerShoot");
-        Instantiate(bulletTrailPrefab, firePoint.position, gameObject.transform.rotation);
+        Instantiate(bulletPrefabs[bulletInt], firePoint.position, gameObject.transform.rotation);
         shake.Shake(shakeDuration, shakeIntensity);
+    }
+
+    void FindBullet()
+    {
+        switch (bullets)
+        {
+            case 0:
+                GameObject.FindGameObjectWithTag("TriBullet").GetComponent<Bullet>().SetIsRecalling(true);
+                break;
+            case (Bullets)1:
+                // Get SetIsRecalling of TripleBullet script and set to true
+                break;
+            default:
+                Debug.LogError("Could not find bullet");
+                break;
+        }
     }
 
     void CanRecall()

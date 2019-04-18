@@ -29,5 +29,11 @@ public class SittingEnemyBullet : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        if (other.CompareTag("TriBullet"))
+        {
+            Instantiate(destroyParticlePrefab, gameObject.transform.position, gameObject.transform.rotation);
+            Destroy(gameObject);
+        }
     }
 }

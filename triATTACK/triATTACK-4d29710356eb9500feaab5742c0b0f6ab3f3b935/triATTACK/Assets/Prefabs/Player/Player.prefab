@@ -21,9 +21,9 @@ GameObject:
   - component: {fileID: 4223845747557416}
   - component: {fileID: 212601097368175162}
   - component: {fileID: 114777091590867534}
+  - component: {fileID: 114169351164171336}
   - component: {fileID: 114877197309127128}
   - component: {fileID: 114944444271023380}
-  - component: {fileID: 114169351164171336}
   - component: {fileID: 50598371561346872}
   - component: {fileID: 60537956764895454}
   - component: {fileID: 111546207149099394}
@@ -280,8 +280,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d05c74e668de804db154167ad3189c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletTrailPrefab: {fileID: 4486507701744908, guid: 4b6fa2e49cdcdd54087e962d84d39b49,
-    type: 2}
+  bulletPrefabs:
+  - {fileID: 4486507701744908, guid: 4b6fa2e49cdcdd54087e962d84d39b49, type: 2}
+  - {fileID: 4465409535602278, guid: f58b2ebad42688441a23ac8a620c0d4c, type: 2}
+  bullets: 0
   shakeIntensity: 0.15
   shakeDuration: 0.1
   normalSprite: {fileID: 21300000, guid: 905cd9f3539338046873f36c7f0db7b4, type: 3}
