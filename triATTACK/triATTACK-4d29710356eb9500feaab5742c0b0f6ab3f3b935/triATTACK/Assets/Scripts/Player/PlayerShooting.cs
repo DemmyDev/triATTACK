@@ -39,19 +39,7 @@ public class PlayerShooting : MonoBehaviour
         hasShot = false;
         isRecalling = false;
 
-        // Add to this when adding more bullet types
-        switch (bullets)
-        {
-            case 0:
-                bulletInt = 0;
-                break;
-            case (Bullets)1:
-                bulletInt = 1;
-                break;
-            default:
-                Debug.LogError("No bullet found in enumeration.");
-                break;
-        }
+        bulletInt = (int)bullets;
     }
 
     void Update()
@@ -69,10 +57,8 @@ public class PlayerShooting : MonoBehaviour
             }
             else if (!isRecalling && hasShot && canRecall && Input.GetMouseButtonDown(0))
             {
-                FindObjectOfType<AudioManager>().Play("PlayerRecall");
-                //FindBullet();
-                //GameObject.FindGameObjectWithTag("TriBullet").GetComponent<Bullet>().SetIsRecalling(true);
-                instBullet.GetComponent<Bullet>().SetIsRecalling(true);
+                AudioManager.am.Play("PlayerRecall");
+                FindBullet();
                 canRecall = false;
                 isRecalling = true;
             }
@@ -81,20 +67,24 @@ public class PlayerShooting : MonoBehaviour
 
     void Shoot()
     {
-        FindObjectOfType<AudioManager>().Play("PlayerShoot");
+        AudioManager.am.Play("PlayerShoot");
         instBullet = Instantiate(bulletPrefabs[bulletInt], firePoint.position, gameObject.transform.rotation);
         shake.Shake(shakeDuration, shakeIntensity);
     }
 
     void FindBullet()
     {
-        switch (bullets)
+        switch (bulletInt)
         {
+            // Default bullet
             case 0:
-                GameObject.FindGameObjectWithTag("TriBullet").GetComponent<Bullet>().SetIsRecalling(true);
+                instBullet.GetComponent<Bullet>().rb.velocity = Vector2.zero;
+                instBullet.GetComponent<Bullet>().SetIsRecalling(true);
                 break;
-            case (Bullets)1:
-                // Get SetIsRecalling of TripleBullet script and set to true
+            // Triple bullet
+            case 1:
+                
+                instBullet.GetComponent<TripleBullet>().SetIsRecalling(true);
                 break;
             default:
                 Debug.LogError("Could not find bullet");
@@ -124,7 +114,7 @@ public class PlayerShooting : MonoBehaviour
             canRecall = false;
             isRecalling = false;
             // Animation for recharging?
-            FindObjectOfType<AudioManager>().Play("PlayerTriHit");
+            AudioManager.am.Play("PlayerTriHit");
             FindObjectOfType<ComboUI>().ResetCounter();
             Invoke("CanShoot", .25f);
         }

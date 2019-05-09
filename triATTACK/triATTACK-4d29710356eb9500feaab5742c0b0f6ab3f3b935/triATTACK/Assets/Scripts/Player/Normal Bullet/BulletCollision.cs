@@ -20,11 +20,11 @@ public class BulletCollision : MonoBehaviour
     public float pitch = .3f;
 
     bool isShaking = false;
-    Bullet parent;
+    Bullet parentBul;
 
     void Start()
     {
-        parent = transform.parent.GetComponent<Bullet>();
+        parentBul = transform.parent.GetComponent<Bullet>();
         scoreText = GameObject.Find("ScoreText").GetComponent<ScoreText>();
         freezeDuration = startFreezeDuration;
         Invoke("ObjectShake", 4f);
@@ -37,11 +37,11 @@ public class BulletCollision : MonoBehaviour
 
     void Update()
     {
-        if (isShaking && !parent.GetIsRecalling())
+        if (isShaking && !parentBul.GetIsRecalling())
         {
             transform.localPosition = new Vector2(Random.Range(-.2f, .2f), Random.Range(-.2f, .2f));
         }
-        else if (parent.GetIsRecalling())
+        else if (parentBul.GetIsRecalling())
         {
             transform.localPosition = Vector2.zero;
         }
@@ -67,7 +67,7 @@ public class BulletCollision : MonoBehaviour
             var flashInst = Instantiate(flashObj, other.transform.position, Quaternion.identity);
             Destroy(flashInst.gameObject, .25f);
 
-            FindObjectOfType<AudioManager>().Play("EnemyHit");
+            AudioManager.am.Play("EnemyHit", pitch);
             pitch += .05f;
 
             HomingEnemy homingEnemy = other.gameObject.GetComponent<HomingEnemy>();

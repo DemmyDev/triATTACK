@@ -5,12 +5,18 @@ using UnityEngine.SceneManagement;
 
 public class AudioManager : MonoBehaviour
 {
+    public static AudioManager am;
 
     public Sound[] sounds;
     public static AudioManager instance;
 
     void Start()
     {
+        if (am == null)
+        {
+            am = this;
+        }
+
         if (instance == null)
         {
             instance = this;
@@ -46,12 +52,19 @@ public class AudioManager : MonoBehaviour
             return;
         }
 
-        // For pitch changing on enemy hit sound
-        if (s.clip.name == "EnemyHit")
+        s.source.Play();
+    }
+
+    public void Play(string name, float pitch)
+    {
+        Sound s = Array.Find(sounds, sound => sound.name == name);
+        if (s == null)
         {
-            s.source.pitch = FindObjectOfType<BulletCollision>().pitch;
+            Debug.LogError("Sound " + name + " cannot be found.");
+            return;
         }
 
+        s.source.pitch = pitch;
         s.source.Play();
     }
 

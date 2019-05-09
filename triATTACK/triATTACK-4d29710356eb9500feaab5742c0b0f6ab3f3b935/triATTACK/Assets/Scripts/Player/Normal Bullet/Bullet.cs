@@ -15,8 +15,6 @@ public class Bullet : MonoBehaviour
     [HideInInspector] public float slowDownSpeed;
     Transform spriteObj;
 
-    bool dumbFix = true;
-
     float screenX = 37.25f, screenY = 21.75f;
     TrailRenderer trail;
 
@@ -54,14 +52,6 @@ public class Bullet : MonoBehaviour
         }
         else if (isRecalling)
         {
-            // Just to prevent velocity being set to zero each frame
-            if (dumbFix)
-            {
-                rb.velocity = Vector2.zero;
-                dumbFix = false;
-                // im a bad programmer ayy
-            }
-            
             spriteObj.Rotate(Vector3.forward * Time.deltaTime * rotateSpeed);
             transform.position = Vector2.MoveTowards(transform.position, target.position, bulletSpeed * 2f * Time.deltaTime );
         }

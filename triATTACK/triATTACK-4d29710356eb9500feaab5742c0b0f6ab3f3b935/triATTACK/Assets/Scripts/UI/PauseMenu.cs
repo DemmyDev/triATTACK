@@ -62,6 +62,7 @@ public class PauseMenu : MonoBehaviour {
     void LoadMenu()
     {
         anim.Stop();
+        Player.isDead = false;
         SceneManager.LoadScene(0);
     }
 

@@ -17,10 +17,7 @@ public class GameMaster : MonoBehaviour {
     {
         spawner = gameObject.GetComponent<EnemySpawner>();
         DisableObjectScripts();
-        if (gm == null)
-        {
-            gm = this;
-        }
+        if (gm == null) gm = this;
     }
 
     void Update()
@@ -70,15 +67,17 @@ public class GameMaster : MonoBehaviour {
             else if(enemy.name == "ShootingEnemy(Clone)")
             {
                 enemy.GetComponent<ShootingEnemy>().enabled = false;
+                enemy.GetComponent<PolygonCollider2D>().enabled = false;
+            }
+            else if (enemy.name == "SittingEnemy(Clone)")
+            {
+                enemy.GetComponent<SittingEnemy>().enabled = false;
                 enemy.GetComponent<BoxCollider2D>().enabled = false;
             }
         }
 
         GameObject[] bullets = GameObject.FindGameObjectsWithTag("Bullet");
-        foreach (GameObject bullet in bullets)
-        {
-            Destroy(bullet);
-        }
+        foreach (GameObject bullet in bullets) Destroy(bullet);
     }
 
     public void StartGame()
@@ -86,28 +85,22 @@ public class GameMaster : MonoBehaviour {
         spawner.enabled = true;
         spawner.SpawnEnemy();
     }
-    
+
     public void DeleteObjectsOnPlayerDeath()
     {
         gameObject.GetComponent<EnemySpawner>().enabled = false;
 
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
-        foreach (GameObject enemy in enemies)
-        {
-            Destroy(enemy);
-        }
+        foreach (GameObject enemy in enemies) Destroy(enemy);
 
         GameObject[] bullets = GameObject.FindGameObjectsWithTag("Bullet");
-        foreach (GameObject bullet in bullets)
-        {
-            Destroy(bullet);
-        }
+        foreach (GameObject bullet in bullets) Destroy(bullet);
+
+        Bullet triBullet = FindObjectOfType<Bullet>();
+        if (triBullet != null) Destroy(triBullet.gameObject);
 
         SpawningObject[] spawners = FindObjectsOfType<SpawningObject>();
-        foreach (SpawningObject spawner in spawners)
-        {
-            Destroy(spawner.gameObject);
-        }
+        foreach (SpawningObject spawner in spawners) Destroy(spawner.gameObject);
     }
 
     public void ChangeBackColor(float colorNum)
