@@ -22,8 +22,14 @@ public class BulletCollision : MonoBehaviour
     bool isShaking = false;
     Bullet parentBul;
 
+    [Range(0f, 2f)]
+    [SerializeField] float shakeIntensity;
+    [SerializeField] float shakeDuration;
+    ScreenShake shake;
+
     void Start()
     {
+        shake = Camera.main.GetComponent<ScreenShake>();
         parentBul = transform.parent.GetComponent<Bullet>();
         scoreText = GameObject.Find("ScoreText").GetComponent<ScoreText>();
         freezeDuration = startFreezeDuration;
@@ -97,6 +103,19 @@ public class BulletCollision : MonoBehaviour
             }
 
             addScoreStacking += 100;
+        }
+
+        if (other.CompareTag("Player"))
+        {
+            PlayerShooting playerShooting = other.GetComponent<PlayerShooting>();
+
+            if (playerShooting.isRecalling || playerShooting.canRecall)
+            {
+                shake.Shake(shakeDuration, shakeIntensity);
+                AudioManager.am.Play("PlayerTriHit");
+                playerShooting.BulletHit();
+                Destroy(parentBul.gameObject);
+            }
         }
     }
 }

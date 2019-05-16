@@ -4,14 +4,15 @@ using UnityEngine;
 
 public class TripleCollision : MonoBehaviour {
 
-    // Screen Wrapping
     // Movement and rotation
     // Recall trigger with player
     // Add recalledBullets to TripleBullet parent
     // Auto Recall
     // Trail stuff
 
-    [SerializeField] int bulletSpeed;
+    [SerializeField] int bulletSpeed = 28;
+
+    [SerializeField] float rotateSpeed = 700;
     float slowDownDivider = 1.01f;
     [HideInInspector] public float slowDownSpeed;
     [HideInInspector] public Rigidbody2D rb;
@@ -19,6 +20,7 @@ public class TripleCollision : MonoBehaviour {
     float screenX = 37.25f, screenY = 21.75f;
     TrailRenderer trail;
 
+    GameObject player;
     Transform target;
 
     TripleBullet parentBul;
@@ -27,15 +29,17 @@ public class TripleCollision : MonoBehaviour {
 
 	void Start ()
     {
-        target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        player = GameObject.FindGameObjectWithTag("Player");
+        target = player.GetComponent<Transform>();
         trail = transform.Find("Trail").GetComponent<TrailRenderer>();
         rb = gameObject.GetComponent<Rigidbody2D>();
         parentBul = transform.parent.GetComponent<TripleBullet>();
+        slowDownSpeed = rotateSpeed;
 
-        // How do we do direction??
-
-
+        Vector2 direction = new Vector2(transform.right.x, transform.right.y);
+        rb.velocity = direction * bulletSpeed;
 	}
+    
 
     void Update()
     {
@@ -74,12 +78,16 @@ public class TripleCollision : MonoBehaviour {
     // Called every frame in TripleBullet, if it is not recalling
     public void NormalMove ()
     {
-		// Rotation
+        // Rotation
         // Slowing rotation
-        // Movement at -45, 0, or 45 degree angle (compared to parent)
+        // Movement
         // Slowing movement
-
-
+        if (slowDownSpeed > 10f)
+        {
+            transform.Rotate(Vector3.forward * Time.deltaTime * slowDownSpeed);
+            slowDownSpeed /= slowDownDivider;
+        }
+        else parentBul.SetIsRecalling(true);
 	}
 
     // Called every frame in TripleBullet, if it is recalling
@@ -87,6 +95,8 @@ public class TripleCollision : MonoBehaviour {
     {
         // Rotation
         // Movement directly towards player object (world space)
+        transform.Rotate(Vector3.forward * Time.deltaTime * rotateSpeed);
+        transform.position = Vector2.MoveTowards(transform.position, target.position, bulletSpeed * 2f * Time.deltaTime);
     }
 
     void ObjectShake()
@@ -98,6 +108,7 @@ public class TripleCollision : MonoBehaviour {
     {
         trail.time = 0;
         yield return new WaitForSeconds(.2f);
+        trail.time = .5f;
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -105,6 +116,18 @@ public class TripleCollision : MonoBehaviour {
         if (other.CompareTag("Enemy"))
         {
             parentBul.EnemyHit(other.gameObject, transform.position, transform.rotation);
+        }
+
+        if (other.CompareTag("Player"))
+        {
+            PlayerShooting playerShooting = other.GetComponent<PlayerShooting>();
+
+            if (playerShooting.isRecalling || playerShooting.canRecall)
+            {
+                AudioManager.am.Play("PlayerTriHit");
+                parentBul.BulletRecalled(playerShooting);
+                gameObject.SetActive(false);
+            }
         }
     }
 }

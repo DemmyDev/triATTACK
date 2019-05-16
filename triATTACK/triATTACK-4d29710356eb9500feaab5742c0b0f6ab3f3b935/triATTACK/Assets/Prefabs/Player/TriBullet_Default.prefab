@@ -290,6 +290,8 @@ MonoBehaviour:
   startFreezeDuration: 0.05
   addFreezeDuration: 0.025
   pitch: 0.35
+  shakeIntensity: 0.3
+  shakeDuration: 0.1
 --- !u!212 &212216039485020228
 SpriteRenderer:
   m_ObjectHideFlags: 1

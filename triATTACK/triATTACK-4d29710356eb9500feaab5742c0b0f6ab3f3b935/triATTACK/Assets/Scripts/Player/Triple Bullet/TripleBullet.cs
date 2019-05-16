@@ -26,13 +26,20 @@ public class TripleBullet : MonoBehaviour {
     ScoreText scoreText;
     ComboUI comboUI;
 
-	void Start ()
+    [Range(0f, 2f)]
+    [SerializeField] float shakeIntensity;
+    [SerializeField] float shakeDuration;
+    ScreenShake shake;
+
+    void Start ()
     {
+        shake = Camera.main.GetComponent<ScreenShake>();
         scoreText = FindObjectOfType<ScoreText>().GetComponent<ScoreText>();
         comboUI = FindObjectOfType<ComboUI>().GetComponent<ComboUI>();
 
         freezeDuration = startFreezeDuration;
         isRecalling = false;
+        StartCoroutine(AutoRecall());
 	}
 	
 	void Update ()
@@ -47,11 +54,16 @@ public class TripleBullet : MonoBehaviour {
         }
     }
 
-    public void BulletRecalled()
+    public void BulletRecalled(PlayerShooting player)
     {
         recalledBullets++;
+        shake.Shake(shakeDuration, shakeIntensity);
 
-        if (recalledBullets == 3) Destroy(this);
+        if (recalledBullets == 3)
+        {
+            player.BulletHit();
+            Destroy(gameObject);
+        }
     }
 
     public bool GetIsRecalling()
@@ -86,6 +98,7 @@ public class TripleBullet : MonoBehaviour {
         Destroy(flashInst.gameObject, .25f);
 
         AudioManager.am.Play("EnemyHit", hitPitch);
+        hitPitch += .05f;
 
         HomingEnemy homing = enemy.GetComponent<HomingEnemy>();
         ShootingEnemy shooting = enemy.GetComponent<ShootingEnemy>();
@@ -109,5 +122,7 @@ public class TripleBullet : MonoBehaviour {
             comboUI.SetCounter(addScoreSittingHit + addScoreStacking, sitting.transform.position);
             sitting.DamageEnemy(1, bulletPos, bulletRot);
         }
+
+        addScoreStacking += 100;
     }
 }

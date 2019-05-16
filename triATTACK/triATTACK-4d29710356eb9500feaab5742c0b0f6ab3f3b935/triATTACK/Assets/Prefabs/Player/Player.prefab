@@ -282,12 +282,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPrefabs:
   - {fileID: 4486507701744908, guid: 4b6fa2e49cdcdd54087e962d84d39b49, type: 2}
-  - {fileID: 4465409535602278, guid: f58b2ebad42688441a23ac8a620c0d4c, type: 2}
+  - {fileID: 4562812362609014, guid: f58b2ebad42688441a23ac8a620c0d4c, type: 2}
   bullets: 0
   shakeIntensity: 0.15
   shakeDuration: 0.1
   normalSprite: {fileID: 21300000, guid: 905cd9f3539338046873f36c7f0db7b4, type: 3}
   recallSprite: {fileID: 21300000, guid: b9b51d0f7516720418fa8ad317e07d89, type: 3}
+  isRecalling: 0
+  canRecall: 0
 --- !u!114 &114777091590867534
 MonoBehaviour:
   m_ObjectHideFlags: 1

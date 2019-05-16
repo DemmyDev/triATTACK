@@ -99,6 +99,9 @@ public class GameMaster : MonoBehaviour {
         Bullet triBullet = FindObjectOfType<Bullet>();
         if (triBullet != null) Destroy(triBullet.gameObject);
 
+        TripleBullet tripleBullet = FindObjectOfType<TripleBullet>();
+        if (tripleBullet != null) Destroy(tripleBullet.gameObject);
+
         SpawningObject[] spawners = FindObjectsOfType<SpawningObject>();
         foreach (SpawningObject spawner in spawners) Destroy(spawner.gameObject);
     }

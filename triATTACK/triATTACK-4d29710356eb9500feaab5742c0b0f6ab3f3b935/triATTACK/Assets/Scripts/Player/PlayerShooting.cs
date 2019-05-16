@@ -25,7 +25,8 @@ public class PlayerShooting : MonoBehaviour
 
     TrailRenderer trail;
 
-    bool canShoot, canRecall, hasShot, isRecalling;
+    bool canShoot, hasShot;
+    [HideInInspector] public bool isRecalling, canRecall;
 
     void Start()
     {
@@ -83,7 +84,6 @@ public class PlayerShooting : MonoBehaviour
                 break;
             // Triple bullet
             case 1:
-                
                 instBullet.GetComponent<TripleBullet>().SetIsRecalling(true);
                 break;
             default:
@@ -106,17 +106,28 @@ public class PlayerShooting : MonoBehaviour
     {
         if (other.CompareTag("TriBullet") && (isRecalling || canRecall))
         {
-            trail.time = .5f;
-            spriteR.sprite = normalSprite;
-            shake.Shake(shakeDuration, shakeIntensity * 2f);
-            Destroy(other.transform.parent.gameObject);
-            instBullet = null;
-            canRecall = false;
-            isRecalling = false;
+            trail.time = .5f; // Need here
+            spriteR.sprite = normalSprite; // Need here
+            shake.Shake(shakeDuration, shakeIntensity * 2f); // Need here
+            Destroy(other.transform.parent.gameObject); // Don't technically need here + needs to change based on bullet type
+            instBullet = null; // Need here
+            canRecall = false; // Don't technically need here
+            isRecalling = false; // Don't technically need here
             // Animation for recharging?
-            AudioManager.am.Play("PlayerTriHit");
-            FindObjectOfType<ComboUI>().ResetCounter();
-            Invoke("CanShoot", .25f);
+            AudioManager.am.Play("PlayerTriHit"); // Don't need here
+            FindObjectOfType<ComboUI>().ResetCounter(); // Don't need here
+            Invoke("CanShoot", .25f); // Need here
         }
+    }
+
+    public void BulletHit()
+    {
+        trail.time = .5f;
+        spriteR.sprite = normalSprite;
+        instBullet = null;
+        canRecall = false;
+        isRecalling = false;
+        FindObjectOfType<ComboUI>().ResetCounter();
+        Invoke("CanShoot", .25f);
     }
 }
