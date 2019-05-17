@@ -17,15 +17,13 @@ public class TripleCollision : MonoBehaviour {
     [HideInInspector] public float slowDownSpeed;
     [HideInInspector] public Rigidbody2D rb;
 
-    float screenX = 37.25f, screenY = 21.75f;
+    float screenX = 36.25f, screenY = 20.9f;
     TrailRenderer trail;
 
     GameObject player;
     Transform target;
 
     TripleBullet parentBul;
-
-    bool isShaking = false;
 
 	void Start ()
     {
@@ -78,10 +76,6 @@ public class TripleCollision : MonoBehaviour {
     // Called every frame in TripleBullet, if it is not recalling
     public void NormalMove ()
     {
-        // Rotation
-        // Slowing rotation
-        // Movement
-        // Slowing movement
         if (slowDownSpeed > 10f)
         {
             transform.Rotate(Vector3.forward * Time.deltaTime * slowDownSpeed);
@@ -93,15 +87,8 @@ public class TripleCollision : MonoBehaviour {
     // Called every frame in TripleBullet, if it is recalling
     public void RecallMove()
     {
-        // Rotation
-        // Movement directly towards player object (world space)
         transform.Rotate(Vector3.forward * Time.deltaTime * rotateSpeed);
         transform.position = Vector2.MoveTowards(transform.position, target.position, bulletSpeed * 2f * Time.deltaTime);
-    }
-
-    void ObjectShake()
-    {
-        isShaking = true;
     }
 
     IEnumerator ResetTrail()

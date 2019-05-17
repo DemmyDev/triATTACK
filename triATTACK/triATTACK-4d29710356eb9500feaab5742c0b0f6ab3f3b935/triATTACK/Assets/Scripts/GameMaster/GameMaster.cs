@@ -11,11 +11,8 @@ public class GameMaster : MonoBehaviour {
     bool isFrozen;
     float pendingFreezeDuration = 0f;
 
-    EnemySpawner spawner;
-
     void Start()
     {
-        spawner = gameObject.GetComponent<EnemySpawner>();
         DisableObjectScripts();
         if (gm == null) gm = this;
     }
@@ -38,7 +35,6 @@ public class GameMaster : MonoBehaviour {
     {
         isFrozen = true;
         Time.timeScale = 0f;
-        Debug.Log("Do freeze");
 
         yield return new WaitForSecondsRealtime(freezeFrameDuration);
 
@@ -54,7 +50,7 @@ public class GameMaster : MonoBehaviour {
 
     public void DisableObjectScripts()
     {
-        spawner.enabled = false;
+        EnemySpawner.spawner.enabled = false;
 
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
         foreach (GameObject enemy in enemies)
@@ -82,13 +78,13 @@ public class GameMaster : MonoBehaviour {
 
     public void StartGame()
     {
-        spawner.enabled = true;
-        spawner.SpawnEnemy();
+        EnemySpawner.spawner.enabled = true;
+        EnemySpawner.spawner.SpawnEnemy();
     }
 
     public void DeleteObjectsOnPlayerDeath()
     {
-        gameObject.GetComponent<EnemySpawner>().enabled = false;
+        EnemySpawner.spawner.enabled = false;
 
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
         foreach (GameObject enemy in enemies) Destroy(enemy);
@@ -102,8 +98,8 @@ public class GameMaster : MonoBehaviour {
         TripleBullet tripleBullet = FindObjectOfType<TripleBullet>();
         if (tripleBullet != null) Destroy(tripleBullet.gameObject);
 
-        SpawningObject[] spawners = FindObjectsOfType<SpawningObject>();
-        foreach (SpawningObject spawner in spawners) Destroy(spawner.gameObject);
+        SpawningObject[] spawningObjects = FindObjectsOfType<SpawningObject>();
+        foreach (SpawningObject spawningObj in spawningObjects) Destroy(spawningObj.gameObject);
     }
 
     public void ChangeBackColor(float colorNum)

@@ -31,8 +31,12 @@ public class TripleBullet : MonoBehaviour {
     [SerializeField] float shakeDuration;
     ScreenShake shake;
 
+    bool isShaking = false;
+    Vector2 originalPos;
+
     void Start ()
     {
+        originalPos = transform.position;
         shake = Camera.main.GetComponent<ScreenShake>();
         scoreText = FindObjectOfType<ScoreText>().GetComponent<ScoreText>();
         comboUI = FindObjectOfType<ComboUI>().GetComponent<ComboUI>();
@@ -40,10 +44,12 @@ public class TripleBullet : MonoBehaviour {
         freezeDuration = startFreezeDuration;
         isRecalling = false;
         StartCoroutine(AutoRecall());
+        Invoke("ObjectShake", 4f);
 	}
 	
 	void Update ()
     {
+        // Movement
 	    if (!isRecalling)
         {
             foreach (TripleCollision bullet in bullets) bullet.NormalMove();
@@ -52,6 +58,24 @@ public class TripleBullet : MonoBehaviour {
         {
             foreach (TripleCollision bullet in bullets) bullet.RecallMove();
         }
+
+        // Shaking
+        if (isShaking && !isRecalling)
+        {
+            Vector2 shakePos = new Vector2(Random.Range(-.2f, .2f), Random.Range(-.2f, .2f));
+            shakePos += originalPos;
+            transform.position = shakePos;
+
+        }
+        else if (isRecalling)
+        {
+            transform.position = originalPos;
+        }
+    }
+
+    void ObjectShake()
+    {
+        isShaking = true;
     }
 
     public void BulletRecalled(PlayerShooting player)

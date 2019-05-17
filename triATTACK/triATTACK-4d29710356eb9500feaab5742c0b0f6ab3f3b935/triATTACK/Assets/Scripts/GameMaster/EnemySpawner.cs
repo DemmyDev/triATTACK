@@ -4,19 +4,20 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour {
 
+    public static EnemySpawner spawner;
+
     [SerializeField] GameObject[] enemy; // Enemy object
     [SerializeField] float startTimeBtwSpawns; // Adjustable variable for the time between enemy spawns
     float timeBtwSpawns; // Allows time between enemy spawns to be reset
     [SerializeField] float subtractTime;
     int enemiesKilled = 0;
 
-    // On start
     void Start()
     {
+        if (spawner == null) spawner = this;
         timeBtwSpawns = startTimeBtwSpawns; // Set time between spawns to adjustable variable
     }
 
-    // Each frame
     void Update()
     {
         if (timeBtwSpawns <= 0)

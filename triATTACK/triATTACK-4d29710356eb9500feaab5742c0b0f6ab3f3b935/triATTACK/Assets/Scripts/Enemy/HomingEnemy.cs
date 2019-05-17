@@ -43,8 +43,7 @@ public class HomingEnemy : MonoBehaviour
         health -= damage;
         if (health <= 0)
         {
-            EnemySpawner spawner = GameObject.FindGameObjectWithTag("GameMaster").GetComponent<EnemySpawner>();
-            spawner.KilledEnemyCounter();
+            EnemySpawner.spawner.KilledEnemyCounter();
 
             Instantiate(homingParticlePrefab, gameObject.transform.position, gameObject.transform.rotation);
             Destroy(gameObject);
