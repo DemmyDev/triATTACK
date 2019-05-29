@@ -11,7 +11,7 @@ public class EnemyBullet : MonoBehaviour {
 
     void Start ()
     {
-        gameObject.transform.eulerAngles = new Vector3(gameObject.transform.eulerAngles.x, gameObject.transform.eulerAngles.y, gameObject.transform.eulerAngles.z + Random.Range(-5f, 5f));
+        gameObject.transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, transform.eulerAngles.z + Random.Range(-5f, 5f));
 	}
 	
 	void Update ()
@@ -23,7 +23,7 @@ public class EnemyBullet : MonoBehaviour {
     {
         if (other.CompareTag("Player"))
         {
-            Instantiate(destroyParticlePrefab, gameObject.transform.position, gameObject.transform.rotation);
+            Instantiate(destroyParticlePrefab, transform.position, transform.rotation);
             Player player = other.gameObject.GetComponent<Player>();
             player.DamagePlayer(bulletDamage);
             Destroy(gameObject);
@@ -36,7 +36,13 @@ public class EnemyBullet : MonoBehaviour {
 
         if (other.CompareTag("TriBullet"))
         {
-            Instantiate(destroyParticlePrefab, gameObject.transform.position, gameObject.transform.rotation);
+            Instantiate(destroyParticlePrefab, transform.position, transform.rotation);
+            Destroy(gameObject);
+        }
+
+        if (other.GetComponent<TripleCollision>() != null)
+        {
+            Instantiate(destroyParticlePrefab, transform.position, transform.rotation);
             Destroy(gameObject);
         }
     }

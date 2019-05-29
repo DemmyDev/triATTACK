@@ -21,9 +21,9 @@ public class BulletColMenu : MonoBehaviour
     {
         if (other.CompareTag("Enemy"))
         {
-            GameMaster.gm.ChangeBackColor(colorNum);
+            GameMaster.Instance.ChangeBackColor(colorNum);
 
-            GameMaster.gm.Freeze(freezeDuration);
+            GameMaster.Instance.Freeze(freezeDuration);
             if (freezeDuration < .15f)
             {
                 freezeDuration += addFreezeDuration;

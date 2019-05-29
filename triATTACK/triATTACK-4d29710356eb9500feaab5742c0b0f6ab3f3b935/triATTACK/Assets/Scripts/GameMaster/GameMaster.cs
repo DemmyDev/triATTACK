@@ -3,19 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameMaster : MonoBehaviour {
-
-    public static GameMaster gm;
-
+public class GameMaster : Singleton<GameMaster>
+{
     float freezeFrameDuration;
     bool isFrozen;
     float pendingFreezeDuration = 0f;
-
-    void Start()
-    {
-        DisableObjectScripts();
-        if (gm == null) gm = this;
-    }
 
     void Update()
     {
@@ -45,7 +37,7 @@ public class GameMaster : MonoBehaviour {
 
     public void RestartScene()
     {
-        SceneManager.LoadScene(1);
+        LoadingManager.Instance.LoadScene("tri.Attack", gameObject.scene);
     }
 
     public void DisableObjectScripts()

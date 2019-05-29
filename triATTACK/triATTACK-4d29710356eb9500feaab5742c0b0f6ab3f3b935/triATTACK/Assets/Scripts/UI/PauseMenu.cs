@@ -54,7 +54,7 @@ public class PauseMenu : MonoBehaviour {
     {
         isPaused = false;
         Time.timeScale = 1f;
-        GameMaster.gm.DisableObjectScripts();
+        GameMaster.Instance.DisableObjectScripts();
         anim.Play();
         Invoke("LoadMenu", 1f);
     }
@@ -63,7 +63,7 @@ public class PauseMenu : MonoBehaviour {
     {
         anim.Stop();
         Player.isDead = false;
-        SceneManager.LoadScene(0);
+        LoadingManager.Instance.LoadScene("MainMenu", gameObject.scene);
     }
 
     public void RestartGame()
@@ -72,9 +72,8 @@ public class PauseMenu : MonoBehaviour {
         Time.timeScale = 1f;
         anim.Play();
         //glitch.enabled = true;
-        GameMaster gm = GameObject.FindGameObjectWithTag("GameMaster").GetComponent<GameMaster>();
-        gm.DisableObjectScripts();
-        gm.Invoke("RestartScene", 1f);
+        GameMaster.Instance.DisableObjectScripts();
+        GameMaster.Instance.Invoke("RestartScene", 1f);
         Invoke("Resume", 1f);        
     }
 }

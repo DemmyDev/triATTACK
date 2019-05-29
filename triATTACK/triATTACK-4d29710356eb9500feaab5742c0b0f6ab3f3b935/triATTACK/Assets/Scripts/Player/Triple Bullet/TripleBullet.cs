@@ -112,16 +112,16 @@ public class TripleBullet : MonoBehaviour {
 
     public void EnemyHit(GameObject enemy, Vector3 bulletPos, Quaternion bulletRot)
     {
-        GameMaster.gm.ChangeBackColor(colorNum);
+        GameMaster.Instance.ChangeBackColor(colorNum);
         if (colorNum < .35f) colorNum += .05f;
 
-        GameMaster.gm.Freeze(freezeDuration);
+        GameMaster.Instance.Freeze(freezeDuration);
         if (freezeDuration < .15f) freezeDuration += addFreezeDuration;
 
         var flashInst = Instantiate(flashObj, enemy.transform.position, Quaternion.identity);
         Destroy(flashInst.gameObject, .25f);
 
-        AudioManager.am.Play("EnemyHit", hitPitch);
+        AudioManager.Instance.Play("EnemyHit", hitPitch);
         hitPitch += .05f;
 
         HomingEnemy homing = enemy.GetComponent<HomingEnemy>();

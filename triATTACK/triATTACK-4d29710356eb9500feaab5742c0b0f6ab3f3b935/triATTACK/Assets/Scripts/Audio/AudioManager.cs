@@ -3,30 +3,12 @@ using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class AudioManager : MonoBehaviour
+public class AudioManager : Singleton<AudioManager>
 {
-    public static AudioManager am;
-
     public Sound[] sounds;
-    public static AudioManager instance;
 
-    void Start()
+    void Awake()
     {
-        if (am == null)
-        {
-            am = this;
-        }
-
-        if (instance == null)
-        {
-            instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-            return;
-        }
-
         foreach (Sound s in sounds)
         {
             s.source = gameObject.AddComponent<AudioSource>();
@@ -35,11 +17,6 @@ public class AudioManager : MonoBehaviour
             s.source.pitch = s.pitch;
             s.source.playOnAwake = s.playOnAwake;
             s.source.loop = s.loop;
-        }
-
-        if (SceneManager.GetActiveScene().buildIndex == 1)
-        {
-            Play("CountdownToStart");
         }
     }
 

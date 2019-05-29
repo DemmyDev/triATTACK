@@ -15,6 +15,7 @@ public class EnemySpawner : MonoBehaviour {
     void Start()
     {
         if (spawner == null) spawner = this;
+        GameMaster.Instance.DisableObjectScripts();
         timeBtwSpawns = startTimeBtwSpawns; // Set time between spawns to adjustable variable
     }
 

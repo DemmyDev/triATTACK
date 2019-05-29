@@ -30,13 +30,13 @@ public class MainMenu: MonoBehaviour {
     void Quit()
     {
         Debug.Log("please end me i'm in pain");
-        Application.Quit();   
+        Application.Quit();
     }
 
     public void LoadGame()
     {
         anim.Stop();
         Debug.Log("Load Game");
-        SceneManager.LoadScene(1);
+        LoadingManager.Instance.LoadScene("tri.Attack", gameObject.scene);
     }
 }

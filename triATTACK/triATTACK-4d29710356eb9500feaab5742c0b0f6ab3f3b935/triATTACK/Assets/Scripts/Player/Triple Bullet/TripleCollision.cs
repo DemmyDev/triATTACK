@@ -111,7 +111,7 @@ public class TripleCollision : MonoBehaviour {
 
             if (playerShooting.isRecalling || playerShooting.canRecall)
             {
-                AudioManager.am.Play("PlayerTriHit");
+                AudioManager.Instance.Play("PlayerTriHit");
                 parentBul.BulletRecalled(playerShooting);
                 gameObject.SetActive(false);
             }

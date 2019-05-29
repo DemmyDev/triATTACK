@@ -57,13 +57,13 @@ public class BulletCollision : MonoBehaviour
     {
         if (other.CompareTag("Enemy"))
         {
-            GameMaster.gm.ChangeBackColor(colorNum);
+            GameMaster.Instance.ChangeBackColor(colorNum);
             if (colorNum < .35f)
             {
                 colorNum += .05f;
             }
 
-            GameMaster.gm.Freeze(freezeDuration);
+            GameMaster.Instance.Freeze(freezeDuration);
             if (freezeDuration < .15f)
             {
                 freezeDuration += addFreezeDuration;
@@ -73,7 +73,7 @@ public class BulletCollision : MonoBehaviour
             var flashInst = Instantiate(flashObj, other.transform.position, Quaternion.identity);
             Destroy(flashInst.gameObject, .25f);
 
-            AudioManager.am.Play("EnemyHit", pitch);
+            AudioManager.Instance.Play("EnemyHit", pitch);
             pitch += .05f;
 
             HomingEnemy homingEnemy = other.gameObject.GetComponent<HomingEnemy>();
@@ -112,7 +112,7 @@ public class BulletCollision : MonoBehaviour
             if (playerShooting.isRecalling || playerShooting.canRecall)
             {
                 shake.Shake(shakeDuration, shakeIntensity);
-                AudioManager.am.Play("PlayerTriHit");
+                AudioManager.Instance.Play("PlayerTriHit");
                 playerShooting.BulletHit();
                 Destroy(parentBul.gameObject);
             }

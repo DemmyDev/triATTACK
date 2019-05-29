@@ -58,7 +58,7 @@ public class PlayerShooting : MonoBehaviour
             }
             else if (!isRecalling && hasShot && canRecall && Input.GetMouseButtonDown(0))
             {
-                AudioManager.am.Play("PlayerRecall");
+                AudioManager.Instance.Play("PlayerRecall");
                 FindBullet();
                 canRecall = false;
                 isRecalling = true;
@@ -68,7 +68,7 @@ public class PlayerShooting : MonoBehaviour
 
     void Shoot()
     {
-        AudioManager.am.Play("PlayerShoot");
+        AudioManager.Instance.Play("PlayerShoot");
         instBullet = Instantiate(bulletPrefabs[bulletInt], firePoint.position, gameObject.transform.rotation);
         shake.Shake(shakeDuration, shakeIntensity);
     }
@@ -114,7 +114,7 @@ public class PlayerShooting : MonoBehaviour
             canRecall = false; // Don't technically need here
             isRecalling = false; // Don't technically need here
             // Animation for recharging?
-            AudioManager.am.Play("PlayerTriHit"); // Don't need here
+            AudioManager.Instance.Play("PlayerTriHit"); // Don't need here
             FindObjectOfType<ComboUI>().ResetCounter(); // Don't need here
             Invoke("CanShoot", .25f); // Need here
         }

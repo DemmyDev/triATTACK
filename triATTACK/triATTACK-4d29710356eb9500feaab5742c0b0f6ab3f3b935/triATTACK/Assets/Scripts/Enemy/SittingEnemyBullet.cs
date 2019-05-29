@@ -19,7 +19,7 @@ public class SittingEnemyBullet : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Instantiate(destroyParticlePrefab, gameObject.transform.position, gameObject.transform.rotation);
+            Instantiate(destroyParticlePrefab, transform.position, transform.rotation);
             Player player = other.gameObject.GetComponent<Player>();
             player.DamagePlayer(bulletDamage);
             Destroy(gameObject);
@@ -32,7 +32,13 @@ public class SittingEnemyBullet : MonoBehaviour
 
         if (other.CompareTag("TriBullet"))
         {
-            Instantiate(destroyParticlePrefab, gameObject.transform.position, gameObject.transform.rotation);
+            Instantiate(destroyParticlePrefab, transform.position, transform.rotation);
+            Destroy(gameObject);
+        }
+
+        if (other.GetComponent<TripleCollision>() != null)
+        {
+            Instantiate(destroyParticlePrefab, transform.position, transform.rotation);
             Destroy(gameObject);
         }
     }

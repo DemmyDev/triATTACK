@@ -12,15 +12,14 @@ public class CountdownToStart : MonoBehaviour {
     bool timeIsZero = false;
 
     Animation anim;
-    AudioManager audioManager;    
 
 	void Start ()
     {
         anim = gameObject.GetComponent<Animation>();
         text = GetComponent<Text>();
         timer = mainTimer;
-        audioManager = FindObjectOfType<AudioManager>().GetComponent<AudioManager>();
 
+        PlayCountdownSound();
         Invoke("PlayCountdownSound", .97f);
         Invoke("PlayCountdownSound", 1.97f);
     }
@@ -34,17 +33,17 @@ public class CountdownToStart : MonoBehaviour {
         }
         else if (timer <= 0.09f && !timeIsZero)
         {
-            audioManager.Play("GameStart");
+            AudioManager.Instance.Play("GameStart");
             timeIsZero = true;
             text.text = "tri.Begin();";
-            GameMaster.gm.StartGame();
+            GameMaster.Instance.StartGame();
             Invoke("FadeOut", 1f);
         }
     }
 
     void PlayCountdownSound()
     {
-        audioManager.Play("CountdownToStart");
+        AudioManager.Instance.Play("CountdownToStart");
     }
 
     void FadeOut()
