@@ -129,3 +129,10 @@ MonoBehaviour:
     source: {fileID: 0}
     loop: 0
     playOnAwake: 0
+  - name: HitEnemyBullet
+    clip: {fileID: 8300000, guid: 760bcd2af4a558246addb7bd0b1984d6, type: 3}
+    volume: 0.5
+    pitch: 1
+    source: {fileID: 0}
+    loop: 0
+    playOnAwake: 0

@@ -31,8 +31,11 @@ public class Player : MonoBehaviour {
 
     float screenX = 36.25f, screenY = 20.75f;
 
+    PlayerShooting shooting;
+
     void Start()
     {
+        shooting = GetComponent<PlayerShooting>();
         anim = GetComponent<Animation>();
         sprite = GetComponent<SpriteRenderer>();
         trail = transform.Find("Trail").GetComponent<TrailRenderer>();
@@ -80,36 +83,47 @@ public class Player : MonoBehaviour {
 
         if (pos.x > screenX)
         {
-            trail.Clear();
-            StartCoroutine(ResetTrail());
+            if (!shooting.GetHasShot())
+            {
+                trail.time = 0;
+                StartCoroutine(ResetTrail());
+            }
             transform.position = new Vector2(-screenX, pos.y);
         }
 
         if (pos.x < -screenX)
         {
-            trail.Clear();
-            StartCoroutine(ResetTrail());
+            if (!shooting.GetHasShot())
+            {
+                trail.time = 0;
+                StartCoroutine(ResetTrail());
+            }
             transform.position = new Vector2(screenX, pos.y);
         }
 
         if (pos.y > screenY)
         {
-            trail.Clear();
-            StartCoroutine(ResetTrail());
+            if (!shooting.GetHasShot())
+            {
+                trail.time = 0;
+                StartCoroutine(ResetTrail());
+            }
             transform.position = new Vector2(pos.x, -screenY);
         }
 
         if (pos.y < -screenY)
         {
-            trail.Clear();
-            StartCoroutine(ResetTrail());
+            if (!shooting.GetHasShot())
+            {
+                trail.time = 0;
+                StartCoroutine(ResetTrail());
+            }
             transform.position = new Vector2(pos.x, screenY);
         }
     }
 
     IEnumerator ResetTrail()
     {
-        trail.time = 0;
         yield return new WaitForSeconds(.1f);
         trail.time = .5f;
     }

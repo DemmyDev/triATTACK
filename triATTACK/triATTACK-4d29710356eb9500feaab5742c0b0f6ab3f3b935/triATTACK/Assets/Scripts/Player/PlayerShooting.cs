@@ -102,21 +102,26 @@ public class PlayerShooting : MonoBehaviour
         canShoot = true;
     }
 
+    public bool GetHasShot()
+    {
+        return hasShot;
+    }
+
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("TriBullet") && (isRecalling || canRecall))
         {
-            trail.time = .5f; // Need here
-            spriteR.sprite = normalSprite; // Need here
-            shake.Shake(shakeDuration, shakeIntensity * 2f); // Need here
-            Destroy(other.transform.parent.gameObject); // Don't technically need here + needs to change based on bullet type
-            instBullet = null; // Need here
-            canRecall = false; // Don't technically need here
-            isRecalling = false; // Don't technically need here
+            trail.time = .5f;
+            spriteR.sprite = normalSprite;
+            shake.Shake(shakeDuration, shakeIntensity * 2f);
+            Destroy(other.transform.parent.gameObject);
+            instBullet = null;
+            canRecall = false;
+            isRecalling = false;
             // Animation for recharging?
-            AudioManager.Instance.Play("PlayerTriHit"); // Don't need here
-            FindObjectOfType<ComboUI>().ResetCounter(); // Don't need here
-            Invoke("CanShoot", .25f); // Need here
+            AudioManager.Instance.Play("PlayerTriHit");
+            FindObjectOfType<ComboUI>().ResetCounter();
+            Invoke("CanShoot", .25f);
         }
     }
 
@@ -127,6 +132,7 @@ public class PlayerShooting : MonoBehaviour
         instBullet = null;
         canRecall = false;
         isRecalling = false;
+        hasShot = false;
         FindObjectOfType<ComboUI>().ResetCounter();
         Invoke("CanShoot", .25f);
     }

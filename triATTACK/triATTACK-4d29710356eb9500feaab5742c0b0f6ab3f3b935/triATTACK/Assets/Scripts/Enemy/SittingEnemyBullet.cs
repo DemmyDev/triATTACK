@@ -32,12 +32,14 @@ public class SittingEnemyBullet : MonoBehaviour
 
         if (other.CompareTag("TriBullet"))
         {
+            AudioManager.Instance.Play("HitEnemyBullet");
             Instantiate(destroyParticlePrefab, transform.position, transform.rotation);
             Destroy(gameObject);
         }
 
         if (other.GetComponent<TripleCollision>() != null)
         {
+            AudioManager.Instance.Play("HitEnemyBullet");
             Instantiate(destroyParticlePrefab, transform.position, transform.rotation);
             Destroy(gameObject);
         }
