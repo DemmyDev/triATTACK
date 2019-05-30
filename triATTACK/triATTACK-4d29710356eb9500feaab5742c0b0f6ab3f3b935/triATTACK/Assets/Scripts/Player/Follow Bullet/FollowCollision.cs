@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletCollision : MonoBehaviour
+public class FollowCollision : MonoBehaviour
 {
     ScoreText scoreText;
     [SerializeField] int addScoreShootingHit;
@@ -18,28 +18,23 @@ public class BulletCollision : MonoBehaviour
     public float pitch = .3f;
 
     bool isShaking = false;
-    Bullet parentBul;
+    FollowBullet parentBul;
 
     [Range(0f, 2f)]
     [SerializeField] float shakeIntensity;
     [SerializeField] float shakeDuration;
     ScreenShake shake;
 
-    void Start()
+    void Start ()
     {
         shake = Camera.main.GetComponent<ScreenShake>();
-        parentBul = transform.parent.GetComponent<Bullet>();
+        parentBul = transform.parent.GetComponent<FollowBullet>();
         scoreText = GameObject.Find("ScoreText").GetComponent<ScoreText>();
         freezeDuration = startFreezeDuration;
-        Invoke("ObjectShake", 4f);
+        Invoke("ObjectShake", 2f);
     }
-
-    void ObjectShake()
-    {
-        isShaking = true;
-    }
-
-    void Update()
+	
+	void Update ()
     {
         if (isShaking && !parentBul.GetIsRecalling())
         {
@@ -49,6 +44,11 @@ public class BulletCollision : MonoBehaviour
         {
             transform.localPosition = Vector2.zero;
         }
+    }
+
+    void ObjectShake()
+    {
+        isShaking = true;
     }
 
     void OnTriggerEnter2D(Collider2D other)

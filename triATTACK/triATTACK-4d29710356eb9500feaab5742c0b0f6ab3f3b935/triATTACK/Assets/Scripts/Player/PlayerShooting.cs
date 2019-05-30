@@ -5,10 +5,9 @@ using UnityEngine;
 public class PlayerShooting : MonoBehaviour
 {
     [SerializeField] Transform[] bulletPrefabs;
-    public enum Bullets { Default = 0, Triple = 1 };
-    // Bullets enum will be used to assign bullet types from main menu
+    public enum Bullets { Default = 0, Triple = 1, Follow = 2 };
+    // Bullets enum will be used to assign bullet types from main menu (and the inspector)
     public Bullets bullets;
-    int bulletInt = 0;
 
     Transform instBullet;
 
@@ -39,8 +38,6 @@ public class PlayerShooting : MonoBehaviour
         canRecall = false;
         hasShot = false;
         isRecalling = false;
-
-        bulletInt = (int)bullets;
     }
 
     void Update()
@@ -69,22 +66,23 @@ public class PlayerShooting : MonoBehaviour
     void Shoot()
     {
         AudioManager.Instance.Play("PlayerShoot");
-        instBullet = Instantiate(bulletPrefabs[bulletInt], firePoint.position, gameObject.transform.rotation);
+        instBullet = Instantiate(bulletPrefabs[(int)bullets], firePoint.position, gameObject.transform.rotation);
         shake.Shake(shakeDuration, shakeIntensity);
     }
 
     void FindBullet()
     {
-        switch (bulletInt)
+        switch (bullets)
         {
-            // Default bullet
-            case 0:
+            case Bullets.Default:
                 instBullet.GetComponent<Bullet>().rb.velocity = Vector2.zero;
                 instBullet.GetComponent<Bullet>().SetIsRecalling(true);
                 break;
-            // Triple bullet
-            case 1:
+            case Bullets.Triple:
                 instBullet.GetComponent<TripleBullet>().SetIsRecalling(true);
+                break;
+            case Bullets.Follow:
+                instBullet.GetComponent<FollowBullet>().SetIsRecalling(true);
                 break;
             default:
                 Debug.LogError("Could not find bullet");

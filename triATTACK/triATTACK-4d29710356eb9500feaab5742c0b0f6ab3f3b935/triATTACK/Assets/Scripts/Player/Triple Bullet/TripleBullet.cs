@@ -132,19 +132,19 @@ public class TripleBullet : MonoBehaviour {
         {
             scoreText.SetScore(addScoreHomingHit + addScoreStacking);
             comboUI.SetCounter(addScoreHomingHit + addScoreStacking, homing.transform.position);
-            homing.DamageEnemy(1);
+            homing.DamageEnemy();
         }
         else if (shooting)
         {
             scoreText.SetScore(addScoreShootingHit + addScoreStacking);
             comboUI.SetCounter(addScoreShootingHit + addScoreStacking, shooting.transform.position);
-            shooting.DamageEnemy(1, bulletPos, bulletRot);
+            shooting.DamageEnemy(bulletPos, bulletRot);
         }
         else if (sitting)
         {
             scoreText.SetScore(addScoreSittingHit + addScoreStacking);
             comboUI.SetCounter(addScoreSittingHit + addScoreStacking, sitting.transform.position);
-            sitting.DamageEnemy(1, bulletPos, bulletRot);
+            sitting.DamageEnemy(bulletPos, bulletRot);
         }
 
         addScoreStacking += 100;

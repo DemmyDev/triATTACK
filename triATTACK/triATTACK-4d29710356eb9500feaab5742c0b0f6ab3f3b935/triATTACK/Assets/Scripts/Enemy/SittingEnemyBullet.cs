@@ -21,7 +21,7 @@ public class SittingEnemyBullet : MonoBehaviour
         {
             Instantiate(destroyParticlePrefab, transform.position, transform.rotation);
             Player player = other.gameObject.GetComponent<Player>();
-            player.DamagePlayer(bulletDamage);
+            player.DamagePlayer();
             Destroy(gameObject);
         }
 

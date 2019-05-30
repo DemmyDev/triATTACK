@@ -130,20 +130,20 @@ public class Player : MonoBehaviour {
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.tag == "Enemy")
+        if (collision.gameObject.tag == "Enemy")
         {
-            DamagePlayer(1);
+            DamagePlayer();
         }
     }
 
-    public void DamagePlayer(int damage)
+    public void DamagePlayer()
     {
         if (!isInvincible)
         {
             Instantiate(playerParticlePrefab, gameObject.transform.position, gameObject.transform.rotation);
             shake.Shake(shakeDuration, shakeIntensity);
 
-            health -= damage;
+            health -= 1;
             if (health <= 0)
             {
                 isDead = true;
@@ -156,6 +156,7 @@ public class Player : MonoBehaviour {
                 hUI.DisableUI();
                 dText.EnableText();
                 sText.MoveText();
+                sText.SetHighScore();
                 gameObject.SetActive(false);
             }
 

@@ -94,21 +94,16 @@ public class SittingEnemy : MonoBehaviour
         {
             Instantiate(sittingParticlePrefab, gameObject.transform.position, gameObject.transform.rotation);
             Player player = other.gameObject.GetComponent<Player>();
-            player.DamagePlayer(1);
+            player.DamagePlayer();
             Destroy(gameObject);
         }
     }
 
-    public void DamageEnemy(int damage, Vector3 bulletPos, Quaternion bulletRot)
+    public void DamageEnemy(Vector3 bulletPos, Quaternion bulletRot)
     {
-        health -= damage;
-        if (health <= 0)
-        {
-            EnemySpawner.spawner.KilledEnemyCounter();
-
-            Instantiate(sittingParticlePrefab, gameObject.transform.position, gameObject.transform.rotation);
-            Destroy(gameObject);
-            shake.Shake(shakeDuration, shakeIntensity);
-        }
+        EnemySpawner.spawner.KilledEnemyCounter();
+        Instantiate(sittingParticlePrefab, gameObject.transform.position, gameObject.transform.rotation);
+        Destroy(gameObject);
+        shake.Shake(shakeDuration, shakeIntensity);
     }
 }

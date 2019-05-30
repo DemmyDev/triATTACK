@@ -90,6 +90,9 @@ public class GameMaster : Singleton<GameMaster>
         TripleBullet tripleBullet = FindObjectOfType<TripleBullet>();
         if (tripleBullet != null) Destroy(tripleBullet.gameObject);
 
+        FollowBullet followBullet = FindObjectOfType<FollowBullet>();
+        if (followBullet != null) Destroy(followBullet.gameObject);
+
         SpawningObject[] spawningObjects = FindObjectsOfType<SpawningObject>();
         foreach (SpawningObject spawningObj in spawningObjects) Destroy(spawningObj.gameObject);
     }

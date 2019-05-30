@@ -282,7 +282,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7483b4450e7597a488fb64dc93c26a5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletDamage: 1
   addScoreShootingHit: 300
   addScoreHomingHit: 200
   addScoreSittingHit: 400

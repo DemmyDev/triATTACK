@@ -38,17 +38,12 @@ public class HomingEnemy : MonoBehaviour
         }        
     }
 
-    public void DamageEnemy(int damage)
+    public void DamageEnemy()
     {
-        health -= damage;
-        if (health <= 0)
-        {
-            EnemySpawner.spawner.KilledEnemyCounter();
-
-            Instantiate(homingParticlePrefab, gameObject.transform.position, gameObject.transform.rotation);
-            Destroy(gameObject);
-            shake.Shake(shakeDuration, shakeIntensity);
-        }
+        EnemySpawner.spawner.KilledEnemyCounter();
+        Instantiate(homingParticlePrefab, gameObject.transform.position, gameObject.transform.rotation);
+        Destroy(gameObject);
+        shake.Shake(shakeDuration, shakeIntensity);
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -57,7 +52,7 @@ public class HomingEnemy : MonoBehaviour
         {
             Instantiate(homingParticlePrefab, gameObject.transform.position, gameObject.transform.rotation);
             Player player = other.gameObject.GetComponent<Player>();
-            player.DamagePlayer(enemyDamage);
+            player.DamagePlayer();
             Destroy(gameObject);
         }
     }

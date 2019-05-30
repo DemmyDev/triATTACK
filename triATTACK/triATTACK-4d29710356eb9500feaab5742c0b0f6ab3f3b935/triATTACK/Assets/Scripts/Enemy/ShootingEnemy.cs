@@ -96,21 +96,11 @@ public class ShootingEnemy : MonoBehaviour
         rateOfFire = startRateOfFire;
     }
 
-    public void DamageEnemy(int damage, Vector3 bulletPos, Quaternion bulletRot)
+    public void DamageEnemy(Vector3 bulletPos, Quaternion bulletRot)
     {
-        health -= damage;
-        if (health <= 0)
-        {
-            EnemySpawner.spawner.KilledEnemyCounter();
-
-            Instantiate(deathParticlePrefab, gameObject.transform.position, gameObject.transform.rotation);
-            Destroy(gameObject);
-            shake.Shake(shakeDuration, shakeIntensity);
-        }
-        else if (health > 0)
-        {
-            Instantiate(dmgParticlePrefab, bulletPos, bulletRot);
-            shake.Shake(shakeDuration, shakeIntensity / 4);
-        }
+        EnemySpawner.spawner.KilledEnemyCounter();
+        Instantiate(deathParticlePrefab, gameObject.transform.position, gameObject.transform.rotation);
+        Destroy(gameObject);
+        shake.Shake(shakeDuration, shakeIntensity);
     }
 }

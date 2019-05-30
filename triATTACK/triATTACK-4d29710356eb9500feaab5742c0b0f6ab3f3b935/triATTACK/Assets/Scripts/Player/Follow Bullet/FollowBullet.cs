@@ -2,58 +2,43 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class FollowBullet : MonoBehaviour
 {
     [SerializeField] int bulletSpeed;
 
-    [HideInInspector] public bool isRecalling;
-    Transform target;
-    [HideInInspector] public Rigidbody2D rb;
+    bool isRecalling;
+    Transform player, spriteObj;
 
     [SerializeField] float rotateSpeed;
-    [SerializeField] float slowDownDivider = 1.01f;
-    [HideInInspector] public float slowDownSpeed;
-    Transform spriteObj;
 
     float screenX = 37.25f, screenY = 21.75f;
     TrailRenderer trail;
 
-    void Start()
+    void Start ()
     {
-        spriteObj = GameObject.Find("Sprite").GetComponent<Transform>(); ;
-        isRecalling = false;
-        target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
-        rb = gameObject.GetComponent<Rigidbody2D>();
-        transform.rotation = target.rotation;
-
-        Vector2 direction = new Vector2(transform.up.x, transform.up.y);
-        rb.velocity = direction * bulletSpeed;
-        slowDownSpeed = rotateSpeed;
-
+        spriteObj = transform.Find("Sprite");
         trail = transform.Find("Trail").GetComponent<TrailRenderer>();
+        isRecalling = false;
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        transform.rotation = player.rotation;
         StartCoroutine(AutoRecall());
-    }
-
-    void Update()
+	}
+	
+	void Update ()
     {
         ScreenWrap();
 
         if (!isRecalling)
         {
-            if (slowDownSpeed > 10f)
-            {
-                spriteObj.Rotate(transform.forward * Time.deltaTime * slowDownSpeed);
-                slowDownSpeed /= slowDownDivider;
-            }
-            else
-            {
-                isRecalling = true;
-            }
+            spriteObj.Rotate(transform.forward * Time.deltaTime * (rotateSpeed / 2));
+
+            Vector2 cursorPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            transform.position = Vector2.MoveTowards(transform.position, cursorPos, bulletSpeed * Time.deltaTime);
         }
         else
         {
-            spriteObj.Rotate(Vector3.forward * Time.deltaTime * rotateSpeed);
-            transform.position = Vector2.MoveTowards(transform.position, target.position, bulletSpeed * 2f * Time.deltaTime );
+            spriteObj.Rotate(transform.forward * Time.deltaTime * rotateSpeed);
+            transform.position = Vector2.MoveTowards(transform.position, player.position, bulletSpeed * 3f * Time.deltaTime);
         }
     }
 
@@ -92,7 +77,7 @@ public class Bullet : MonoBehaviour
 
     IEnumerator AutoRecall()
     {
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(3f);
         if (!isRecalling)
         {
             AudioManager.Instance.Play("PlayerRecall");
