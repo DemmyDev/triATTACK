@@ -58,7 +58,6 @@ public class ShootingEnemy : MonoBehaviour
         {
             Debug.LogError("No camera found for screenshake");
         }
-        Invoke("Shoot", .25f);
     }
 
     void Update()

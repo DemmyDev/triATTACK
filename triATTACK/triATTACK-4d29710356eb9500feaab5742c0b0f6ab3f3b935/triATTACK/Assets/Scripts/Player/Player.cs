@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour {
 
@@ -55,24 +56,27 @@ public class Player : MonoBehaviour {
             health = numOfTris;
         }
 
-        for (int i = 0; i < tris.Length; i++)
+        if (SceneManager.GetActiveScene().name == "tri.Attack")
         {
-            if (i < health)
+            for (int i = 0; i < tris.Length; i++)
             {
-                tris[i].sprite = fullTri;
-            }
-            else
-            {
-                tris[i].sprite = emptyTri;
-            }
+                if (i < health)
+                {
+                    tris[i].sprite = fullTri;
+                }
+                else
+                {
+                    tris[i].sprite = emptyTri;
+                }
 
-            if (i < numOfTris)
-            {
-                tris[i].enabled = true;
-            }
-            else
-            {
-                tris[i].enabled = false;
+                if (i < numOfTris)
+                {
+                    tris[i].enabled = true;
+                }
+                else
+                {
+                    tris[i].enabled = false;
+                }
             }
         }
     }

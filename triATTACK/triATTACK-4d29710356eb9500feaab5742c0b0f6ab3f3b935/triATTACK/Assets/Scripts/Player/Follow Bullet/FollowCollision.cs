@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class FollowCollision : MonoBehaviour
 {
@@ -29,12 +30,16 @@ public class FollowCollision : MonoBehaviour
     {
         shake = Camera.main.GetComponent<ScreenShake>();
         parentBul = transform.parent.GetComponent<FollowBullet>();
-        scoreText = GameObject.Find("ScoreText").GetComponent<ScoreText>();
         freezeDuration = startFreezeDuration;
         Invoke("ObjectShake", 2f);
+
+        if (SceneManager.GetActiveScene().name == "tri.Attack")
+        {
+            scoreText = GameObject.Find("ScoreText").GetComponent<ScoreText>();
+        }
     }
-	
-	void Update ()
+
+    void Update ()
     {
         if (isShaking && !parentBul.GetIsRecalling())
         {

@@ -7,6 +7,7 @@ public class PlayCollision : MonoBehaviour
 {
     [SerializeField] Transform hitParticle;
     [SerializeField] Transform flashObj;
+    [SerializeField] Transform selectUI;
     Text playText;
     MainMenu mainMenu;
     BoxCollider2D col;
@@ -25,11 +26,12 @@ public class PlayCollision : MonoBehaviour
         if (other.CompareTag("TriBullet"))
         {
             shake.Shake(.1f, .5f);
-            FindObjectOfType<AudioManager>().Play("TextEnter");
+            AudioManager.Instance.Play("TextEnter");
             Instantiate(flashObj, transform.position, Quaternion.identity);
             Instantiate(hitParticle, transform.position, Quaternion.identity);
             playText.enabled = false;
             col.enabled = false;
+            selectUI.GetComponent<BulletSelect>().DisableUI();
             mainMenu.StartGame();
         }
     }

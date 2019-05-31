@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TripleBullet : MonoBehaviour {
 
@@ -38,16 +39,19 @@ public class TripleBullet : MonoBehaviour {
     {
         originalPos = transform.position;
         shake = Camera.main.GetComponent<ScreenShake>();
-        scoreText = FindObjectOfType<ScoreText>().GetComponent<ScoreText>();
-        comboUI = FindObjectOfType<ComboUI>().GetComponent<ComboUI>();
-
         freezeDuration = startFreezeDuration;
         isRecalling = false;
         StartCoroutine(AutoRecall());
         Invoke("ObjectShake", 4f);
-	}
-	
-	void Update ()
+
+        if (SceneManager.GetActiveScene().name == "tri.Attack")
+        {
+            scoreText = FindObjectOfType<ScoreText>().GetComponent<ScoreText>();
+            comboUI = FindObjectOfType<ComboUI>().GetComponent<ComboUI>();
+        }
+    }
+
+    void Update ()
     {
         // Movement
 	    if (!isRecalling)

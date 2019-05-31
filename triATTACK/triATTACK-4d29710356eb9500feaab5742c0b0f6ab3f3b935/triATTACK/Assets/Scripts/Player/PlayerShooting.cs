@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerShooting : MonoBehaviour
 {
@@ -38,6 +39,7 @@ public class PlayerShooting : MonoBehaviour
         canRecall = false;
         hasShot = false;
         isRecalling = false;
+        bullets = (Bullets)PlayerPrefs.GetInt("BulletType", 0);
     }
 
     void Update()
@@ -107,7 +109,8 @@ public class PlayerShooting : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("TriBullet") && (isRecalling || canRecall))
+        // Refactor BulletHit(), delete this
+        if (other.CompareTag("TriBullet") && (isRecalling || canRecall) && other.gameObject.GetComponent<TripleCollision>() == null)
         {
             trail.time = .5f;
             spriteR.sprite = normalSprite;
@@ -125,13 +128,22 @@ public class PlayerShooting : MonoBehaviour
 
     public void BulletHit()
     {
+        // Refactor w/ switch statement for bullet types?
         trail.time = .5f;
         spriteR.sprite = normalSprite;
         instBullet = null;
         canRecall = false;
         isRecalling = false;
         hasShot = false;
-        FindObjectOfType<ComboUI>().ResetCounter();
         Invoke("CanShoot", .25f);
+
+        if (SceneManager.GetActiveScene().name == "tri.Attack")
+        {
+            FindObjectOfType<ComboUI>().ResetCounter();
+        }
+        else if (bullets != (Bullets)PlayerPrefs.GetInt("BulletType", 0))
+        {
+            bullets = (Bullets)PlayerPrefs.GetInt("BulletType", 0);
+        }
     }
 }

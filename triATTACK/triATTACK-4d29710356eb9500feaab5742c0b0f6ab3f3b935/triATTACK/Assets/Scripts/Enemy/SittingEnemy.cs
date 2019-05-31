@@ -48,8 +48,6 @@ public class SittingEnemy : MonoBehaviour
         }
 
         rateOfFire = startRateOfFire;
-
-        Invoke("Shoot", .5f);
     }
 
     void Update()
