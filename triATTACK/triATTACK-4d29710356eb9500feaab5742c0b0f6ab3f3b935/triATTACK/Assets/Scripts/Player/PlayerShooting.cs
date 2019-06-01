@@ -107,28 +107,8 @@ public class PlayerShooting : MonoBehaviour
         return hasShot;
     }
 
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        // Refactor BulletHit(), delete this
-        if (other.CompareTag("TriBullet") && (isRecalling || canRecall) && other.gameObject.GetComponent<TripleCollision>() == null)
-        {
-            trail.time = .5f;
-            spriteR.sprite = normalSprite;
-            shake.Shake(shakeDuration, shakeIntensity * 2f);
-            Destroy(other.transform.parent.gameObject);
-            instBullet = null;
-            canRecall = false;
-            isRecalling = false;
-            // Animation for recharging?
-            AudioManager.Instance.Play("PlayerTriHit");
-            FindObjectOfType<ComboUI>().ResetCounter();
-            Invoke("CanShoot", .25f);
-        }
-    }
-
     public void BulletHit()
     {
-        // Refactor w/ switch statement for bullet types?
         trail.time = .5f;
         spriteR.sprite = normalSprite;
         instBullet = null;

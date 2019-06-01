@@ -17,7 +17,6 @@ public class MainMenu: MonoBehaviour {
     {
         fadeObj.SetActive(true);
         anim.Play();
-        Debug.Log("Start Game");
         Invoke("LoadGame", 1f);
     }
 
@@ -36,7 +35,6 @@ public class MainMenu: MonoBehaviour {
     public void LoadGame()
     {
         anim.Stop();
-        Debug.Log("Load Game");
         LoadingManager.Instance.LoadScene("tri.Attack", gameObject.scene);
     }
 }
