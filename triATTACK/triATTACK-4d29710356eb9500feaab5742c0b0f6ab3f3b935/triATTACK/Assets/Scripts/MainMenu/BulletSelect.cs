@@ -45,9 +45,4 @@ public class BulletSelect : MonoBehaviour {
                 break;
         }
     }
-
-    public void DisableUI()
-    {
-        foreach (Text child in childUI) child.gameObject.GetComponent<BoxCollider2D>().enabled = false;
-    }
 }

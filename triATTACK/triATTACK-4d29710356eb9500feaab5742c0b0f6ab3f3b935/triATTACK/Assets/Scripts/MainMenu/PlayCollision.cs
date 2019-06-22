@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class PlayCollision : MonoBehaviour
 {
     [SerializeField] Transform hitParticle;
-    [SerializeField] Transform flashObj;
     [SerializeField] Transform selectUI;
     Text playText;
     MainMenu mainMenu;
@@ -16,9 +15,9 @@ public class PlayCollision : MonoBehaviour
     void Start()
     {
         shake = Camera.main.GetComponent<ScreenShake>();
-        col = gameObject.GetComponent<BoxCollider2D>();
-        playText = gameObject.GetComponent<Text>();
-        mainMenu = gameObject.transform.parent.GetComponent<MainMenu>();
+        col = GetComponent<BoxCollider2D>();
+        playText = GetComponent<Text>();
+        mainMenu = transform.parent.GetComponent<MainMenu>();
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -27,11 +26,9 @@ public class PlayCollision : MonoBehaviour
         {
             shake.Shake(.1f, .5f);
             AudioManager.Instance.Play("TextEnter");
-            Instantiate(flashObj, transform.position, Quaternion.identity);
             Instantiate(hitParticle, transform.position, Quaternion.identity);
             playText.enabled = false;
             col.enabled = false;
-            selectUI.GetComponent<BulletSelect>().DisableUI();
             mainMenu.StartGame();
         }
     }
