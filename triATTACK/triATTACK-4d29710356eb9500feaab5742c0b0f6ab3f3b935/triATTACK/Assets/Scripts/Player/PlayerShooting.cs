@@ -39,7 +39,6 @@ public class PlayerShooting : MonoBehaviour
         canRecall = false;
         hasShot = false;
         isRecalling = false;
-        PlayerPrefs.SetInt("BulletType", 3);
         bullets = (Bullets)PlayerPrefs.GetInt("BulletType", 0);
     }
 

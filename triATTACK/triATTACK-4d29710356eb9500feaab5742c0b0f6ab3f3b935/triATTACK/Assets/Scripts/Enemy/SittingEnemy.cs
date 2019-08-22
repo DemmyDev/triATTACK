@@ -101,7 +101,7 @@ public class SittingEnemy : MonoBehaviour
     {
         EnemySpawner.spawner.KilledEnemyCounter();
         Instantiate(sittingParticlePrefab, gameObject.transform.position, gameObject.transform.rotation);
-        Destroy(gameObject);
         shake.Shake(shakeDuration, shakeIntensity);
+        Destroy(gameObject);
     }
 }

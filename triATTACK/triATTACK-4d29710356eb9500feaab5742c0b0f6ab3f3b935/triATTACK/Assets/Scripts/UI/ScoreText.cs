@@ -12,6 +12,7 @@ public class ScoreText : MonoBehaviour {
 
     void Start ()
     {
+        GameMaster.Instance.SetScoreText(this);
         currentScore = 0;
         scoreText = GetComponent<Text>();
         scoreText.text = "tri.score = " + currentScore.ToString() + ";";

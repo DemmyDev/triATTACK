@@ -5,6 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class GameMaster : Singleton<GameMaster>
 {
+    [SerializeField] Transform player;
+    [SerializeField] int health;
+    HealthUI healthUI;
+    DeathText deathText;
+    ScoreText scoreText;
     float freezeFrameDuration;
     bool isFrozen;
     float pendingFreezeDuration = 0f;
@@ -74,7 +79,7 @@ public class GameMaster : Singleton<GameMaster>
         EnemySpawner.spawner.SpawnEnemy();
     }
 
-    public void DeleteObjectsOnPlayerDeath()
+    void DeleteObjectsOnPlayerDamage(bool playerIsDead)
     {
         EnemySpawner.spawner.enabled = false;
 
@@ -98,6 +103,14 @@ public class GameMaster : Singleton<GameMaster>
 
         SpawningObject[] spawningObjects = FindObjectsOfType<SpawningObject>();
         foreach (SpawningObject spawningObj in spawningObjects) Destroy(spawningObj.gameObject);
+
+        if (playerIsDead)
+        {
+            healthUI.DisableUI();
+            deathText.gameObject.SetActive(true);
+            scoreText.MoveText();
+            scoreText.SetHighScore();
+        }
     }
 
     public void ChangeBackColor(float colorNum)
@@ -111,5 +124,51 @@ public class GameMaster : Singleton<GameMaster>
         cam.backgroundColor = new Color(colorNum, colorNum, colorNum);
         yield return new WaitForSecondsRealtime(.075f);
         cam.backgroundColor = Color.black;
+    }
+
+    public void SetHealthUI(HealthUI UI)
+    {
+        healthUI = UI;
+    }
+
+    public void SetDeathText(DeathText text)
+    {
+        deathText = text;
+    }
+
+    public void SetScoreText(ScoreText text)
+    {
+        scoreText = text;
+    }
+
+    public void Respawn(GameObject playerObj)
+    {
+        health -= 1;
+        healthUI.SetHealthSprites(health);
+
+        if (health <= 0)
+        {
+            DeleteObjectsOnPlayerDamage(true);
+            Player.SetDeathBool(true);
+            Destroy(playerObj);
+        }
+        else StartCoroutine(RespawnPlayer(playerObj));
+    }
+
+    IEnumerator RespawnPlayer(GameObject playerObj)
+    {
+        DeleteObjectsOnPlayerDamage(false);
+        Destroy(playerObj);
+
+        yield return new WaitForSeconds(1f);
+
+        Instantiate(player.gameObject, Vector3.zero, Quaternion.identity);
+        EnemySpawner.spawner.enabled = true;
+        EnemySpawner.spawner.ResetOnPlayerDamage();
+    }
+
+    public void ResetHealth()
+    {
+        health = 3;
     }
 }

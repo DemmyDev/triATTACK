@@ -60,9 +60,18 @@ public class EnemySpawner : MonoBehaviour {
     {
         enemiesKilled++;
         
-        if (enemiesKilled == 40 || enemiesKilled == 28 || enemiesKilled == 20 || enemiesKilled == 12 || enemiesKilled == 6 || enemiesKilled == 3)
+        if (enemiesKilled == 40 || enemiesKilled == 28 || enemiesKilled == 20 || enemiesKilled == 12 || enemiesKilled == 6)
         {
             startTimeBtwSpawns -= subtractTime;
         }
+    }
+
+    public void ResetOnPlayerDamage()
+    {
+        startTimeBtwSpawns += subtractTime;
+
+        if (startTimeBtwSpawns >= 2) startTimeBtwSpawns = 2;
+
+        timeBtwSpawns = .5f;
     }
 }

@@ -40,7 +40,7 @@ public class PauseMenu : MonoBehaviour {
         glitch.enabled = false;
         Time.timeScale = 1f;
         isPaused = false;
-        Player.ResetDeathBool();
+        Player.SetDeathBool(false);
     }
 
     void Pause()
@@ -52,6 +52,7 @@ public class PauseMenu : MonoBehaviour {
 
     public void LoadMainMenu()
     {
+        GameMaster.Instance.ResetHealth();
         isPaused = false;
         Time.timeScale = 1f;
         GameMaster.Instance.DisableObjectScripts();

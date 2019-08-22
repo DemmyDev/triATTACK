@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DeathText : MonoBehaviour {
-
-    public void EnableText()
+public class DeathText : MonoBehaviour
+{
+    void Start()
     {
-        gameObject.SetActive(true);
+        GameMaster.Instance.SetDeathText(this);
+        gameObject.SetActive(false);
     }
 }

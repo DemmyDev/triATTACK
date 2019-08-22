@@ -182,6 +182,11 @@ Prefab:
       propertyPath: tris.Array.data[2]
       value: 
       objectReference: {fileID: 914992206}
+    - target: {fileID: 96867956274622118, guid: 3b7af739aea3aa34a8e464c11d2d032c,
+        type: 2}
+      propertyPath: m_Time
+      value: 0.75
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3b7af739aea3aa34a8e464c11d2d032c, type: 2}
   m_IsPrefabAsset: 0
@@ -509,7 +514,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 59.339985, y: -52.160965}
-  m_SizeDelta: {x: 15, y: 20}
+  m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &421406972
 GameObject:
@@ -1255,7 +1260,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 2.2781243, y: -1.9519604}
-  m_SizeDelta: {x: 15, y: 20}
+  m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &914992205
 CanvasRenderer:
@@ -1727,7 +1732,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1454852656
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1989,6 +1994,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3741eba203a006344a0a27c9d7b44cff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fullTri: {fileID: 21300000, guid: 905cd9f3539338046873f36c7f0db7b4, type: 3}
+  emptyTri: {fileID: 21300000, guid: b9b51d0f7516720418fa8ad317e07d89, type: 3}
 --- !u!1 &1767016540
 GameObject:
   m_ObjectHideFlags: 0
@@ -2022,7 +2029,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 30.483719, y: -27.436113}
-  m_SizeDelta: {x: 15, y: 20}
+  m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1767016542
 CanvasRenderer:
