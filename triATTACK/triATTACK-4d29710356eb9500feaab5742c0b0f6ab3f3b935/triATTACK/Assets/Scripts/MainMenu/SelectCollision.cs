@@ -22,6 +22,7 @@ public class SelectCollision : MonoBehaviour
             foreach (GameObject text in textsToDisable) text.SetActive(false);
 
             selectUI.SetActive(true);
+            selectUI.GetComponent<BulletSelect>().CheckUI();
             toMenu.gameObject.SetActive(true);
 
             toMenu.PassValues(textsToDisable, gameObject, selectUI);

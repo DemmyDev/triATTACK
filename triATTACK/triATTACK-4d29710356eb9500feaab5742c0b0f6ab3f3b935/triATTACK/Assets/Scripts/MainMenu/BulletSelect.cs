@@ -7,42 +7,18 @@ public class BulletSelect : MonoBehaviour {
 
     [SerializeField] Text[] childUI;
 
-    void Start()
-    {
-        CheckUI();
-    }
-
     public void SelectBullet(int bulletNum)
     {
         PlayerPrefs.SetInt("BulletType", bulletNum);
         CheckUI();
     }
 
-    void CheckUI()
+    public void CheckUI()
     {
-        switch (PlayerPrefs.GetInt("BulletType", 0))
+        for (int i = 0; i < childUI.Length; i++)
         {
-            // Normal
-            case 0:
-                childUI[0].CrossFadeAlpha(.33f, 0, true);
-                childUI[1].CrossFadeAlpha(1f, 0, true);
-                childUI[2].CrossFadeAlpha(1f, 0, true);
-                break;
-            // Triple
-            case 1:
-                childUI[0].CrossFadeAlpha(1f, 0, true);
-                childUI[1].CrossFadeAlpha(.33f, 0, true);
-                childUI[2].CrossFadeAlpha(1f, 0, true);
-                break;
-            // Follow
-            case 2:
-                childUI[0].CrossFadeAlpha(1f, 0, true);
-                childUI[1].CrossFadeAlpha(1f, 0, true);
-                childUI[2].CrossFadeAlpha(.33f, 0, true);
-                break;
-            default:
-                Debug.LogError("Bullet type int not within proper bounds");
-                break;
+            if (i == PlayerPrefs.GetInt("BulletType", 0)) childUI[i].CrossFadeAlpha(.33f, 0, true);
+            else childUI[i].CrossFadeAlpha(1f, 0, true);
         }
     }
 }
