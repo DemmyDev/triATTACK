@@ -64,6 +64,7 @@ public class PauseMenu : MonoBehaviour {
     {
         anim.Stop();
         Player.isDead = false;
+        PlayerPrefs.SetInt("BulletType", 0);
         LoadingManager.Instance.LoadScene("MainMenu", gameObject.scene);
     }
 

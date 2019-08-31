@@ -85,7 +85,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1297802079624882}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -2, z: 0}
   m_LocalScale: {x: 0.65, y: 0.65, z: 1}
   m_Children:
   - {fileID: 4821969343019304}
@@ -285,7 +285,7 @@ MonoBehaviour:
   - {fileID: 4562812362609014, guid: f58b2ebad42688441a23ac8a620c0d4c, type: 2}
   - {fileID: 4527432981176050, guid: c98a7e54101f52f4594ada4bc00670a8, type: 2}
   - {fileID: 4846742299349750, guid: 5da4b853a7fcd464bb81277d944a4ea9, type: 2}
-  bullets: 3
+  bullets: 0
   shakeIntensity: 0.15
   shakeDuration: 0.1
   normalSprite: {fileID: 21300000, guid: 905cd9f3539338046873f36c7f0db7b4, type: 3}
@@ -303,19 +303,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ab6e1f9858005845857403792ff7041, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  deathText: {fileID: 0}
-  scoreText: {fileID: 0}
-  healthUI: {fileID: 0}
   playerParticlePrefab: {fileID: 4142216787440106, guid: 053ac74a98befb84c8c4258ef82cedd4,
     type: 2}
   health: 3
-  numOfTris: 3
-  tris:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  fullTri: {fileID: 21300000, guid: 905cd9f3539338046873f36c7f0db7b4, type: 3}
-  emptyTri: {fileID: 21300000, guid: b9b51d0f7516720418fa8ad317e07d89, type: 3}
   shakeIntensity: 0.5
   shakeDuration: 0.25
 --- !u!114 &114877197309127128

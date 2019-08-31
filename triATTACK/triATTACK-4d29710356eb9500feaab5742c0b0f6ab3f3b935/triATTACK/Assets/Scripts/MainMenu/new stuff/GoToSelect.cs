@@ -3,27 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Selector : MonoBehaviour {
-
-    [SerializeField] int bulletNum;
+public class GoToSelect : MonoBehaviour
+{
+    [SerializeField] GameObject plainText;
+    [SerializeField] GameObject selectUI;
     [SerializeField] Transform hitParticle;
-    BulletSelect parentUI;
-
+    Text playText;
     BoxCollider2D col;
     ScreenShake shake;
-    Text selectText;
 
     void Start()
     {
-        parentUI = transform.parent.GetComponent<BulletSelect>();
-        col = GetComponent<BoxCollider2D>();
         shake = Camera.main.GetComponent<ScreenShake>();
-        selectText = GetComponent<Text>();
-    }
-
-    public void DisableCollider()
-    {
-        GetComponent<BoxCollider2D>().enabled = false;
+        col = GetComponent<BoxCollider2D>();
+        playText = GetComponent<Text>();
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -33,10 +26,12 @@ public class Selector : MonoBehaviour {
             shake.Shake(.1f, .5f);
             AudioManager.Instance.Play("TextEnter");
             Instantiate(hitParticle, transform.position, Quaternion.identity);
-            selectText.enabled = false;
+            playText.enabled = false;
             col.enabled = false;
 
-            parentUI.SelectBullet(bulletNum);
+            plainText.SetActive(false);
+            selectUI.SetActive(true);
+            gameObject.SetActive(false);
         }
     }
 }

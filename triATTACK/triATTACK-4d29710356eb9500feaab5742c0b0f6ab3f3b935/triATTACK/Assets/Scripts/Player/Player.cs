@@ -20,7 +20,6 @@ public class Player : MonoBehaviour
     float screenX = 36.25f, screenY = 20.75f;
 
     PlayerShooting shooting;
-    bool isPaused = false;
 
     void Start()
     {
@@ -36,17 +35,6 @@ public class Player : MonoBehaviour
     void Update()
     {
         ScreenWrap();
-
-        if (Input.GetKeyDown(KeyCode.Space) && !isPaused)
-        {
-            isPaused = true;
-            Time.timeScale = 0f;
-        }
-        else if (Input.GetKeyDown(KeyCode.Space) && isPaused)
-        {
-            isPaused = false;
-            Time.timeScale = 1f;
-        }
     }
 
     void ScreenWrap()
