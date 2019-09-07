@@ -26,9 +26,12 @@ public class ShootingEnemy : MonoBehaviour
 
     [SerializeField] int health;
     
+    bool indicateShoot = false;
+    Animator anim;
 
     void Start()
     {
+        anim = GetComponent<Animator>();
         speed = Random.Range(minSpeed, maxSpeed + 1);
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
 
@@ -77,9 +80,17 @@ public class ShootingEnemy : MonoBehaviour
                 transform.position = Vector2.MoveTowards(transform.position, target.position, -speed * Time.deltaTime);
             }
 
+            if (!indicateShoot && rateOfFire <= .5f)
+            {
+                anim.SetTrigger("StartShoot");
+                indicateShoot = true;
+            }
+
             if (rateOfFire <= 0)
             {
                 Shoot();
+                anim.SetTrigger("Shoot");
+                indicateShoot = false; 
             }
             else
             {

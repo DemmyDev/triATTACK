@@ -15,7 +15,10 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        Vector2 moveVelocity = new Vector2(Input.GetAxisRaw("MoveHorizontal"), Input.GetAxisRaw("MoveVertical")).normalized * speed;
-        rb.AddForce(moveVelocity);
+        if (!PauseMenu.isPaused)
+        {
+            Vector2 moveVelocity = new Vector2(Input.GetAxisRaw("MoveHorizontal"), Input.GetAxisRaw("MoveVertical")).normalized * speed;
+            rb.AddForce(moveVelocity);
+        }
     }
 }

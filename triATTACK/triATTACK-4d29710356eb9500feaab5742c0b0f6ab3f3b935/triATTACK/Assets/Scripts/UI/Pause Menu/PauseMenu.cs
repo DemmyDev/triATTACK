@@ -1,22 +1,23 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 
-public class PauseMenu : MonoBehaviour {
-
+public class PauseMenu : MonoBehaviour
+{
     public static bool isPaused = false;
 
-    [SerializeField] GameObject pauseMenuUI;
     [SerializeField] GameObject fadeObj;
-    Animation anim;
+    [SerializeField] GameObject resumeButton;
+    [SerializeField] EventSystem eventSystem;
 
-    GlitchEffect glitch;
+    CanvasGroup canvas;
+    Animation anim;
 
     void Start()
     {
+        canvas = GetComponent<CanvasGroup>();
         anim = fadeObj.GetComponent<Animation>();
-        glitch = Camera.main.GetComponent<GlitchEffect>();
     }
 
     void Update ()
@@ -36,8 +37,9 @@ public class PauseMenu : MonoBehaviour {
 
     public void Resume()
     {
-        pauseMenuUI.SetActive(false);
-        glitch.enabled = false;
+        canvas.alpha = 0;
+        canvas.blocksRaycasts = false;
+        canvas.interactable = false;
         Time.timeScale = 1f;
         isPaused = false;
         Player.SetDeathBool(false);
@@ -45,7 +47,10 @@ public class PauseMenu : MonoBehaviour {
 
     void Pause()
     {
-        pauseMenuUI.SetActive(true);
+        canvas.alpha = 1;
+        canvas.blocksRaycasts = true;
+        canvas.interactable = true;
+        eventSystem.SetSelectedGameObject(resumeButton);
         Time.timeScale = 0f;
         isPaused = true;
     }
@@ -70,10 +75,11 @@ public class PauseMenu : MonoBehaviour {
 
     public void RestartGame()
     {
-        pauseMenuUI.SetActive(false);
+        canvas.alpha = 0;
+        canvas.blocksRaycasts = false;
+        canvas.interactable = false;
         Time.timeScale = 1f;
         anim.Play();
-        //glitch.enabled = true;
         GameMaster.Instance.DisableObjectScripts();
         GameMaster.Instance.Invoke("RestartScene", 1f);
         Invoke("Resume", 1f);        

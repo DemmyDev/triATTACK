@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 212962375313202978}
   - component: {fileID: 114125637949032446}
   - component: {fileID: 61234055717775952}
+  - component: {fileID: 95601499078244884}
   m_Layer: 0
   m_Name: SittingEnemy
   m_TagString: Enemy
@@ -67,6 +68,24 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.56, y: 2.56}
   m_EdgeRadius: 0
+--- !u!95 &95601499078244884
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1064508149057466}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8a4417ab26336324b919d287f8d5cb91, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &114125637949032446
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -80,7 +99,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minRotateSpeed: 25
   maxRotateSpeed: 75
-  startRateOfFire: 1
   bulletTrailPrefab: {fileID: 1250599470520084, guid: 7d29019f1bfc856418450518f8a32ebf,
     type: 2}
   sittingParticlePrefab: {fileID: 4675210404812272, guid: e2f83a310b0c9b94ea601219e3d90107,

@@ -21,9 +21,12 @@ public class SittingEnemy : MonoBehaviour
 
     [SerializeField] int health;
 
+    bool indicateShoot = false;
+    Animator anim;
 
     void Start()
     {
+        anim = GetComponent<Animator>();
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         rotateSpeed = Random.Range(minRotateSpeed, maxRotateSpeed);
 
@@ -56,9 +59,17 @@ public class SittingEnemy : MonoBehaviour
 
         if (target != null)
         {
+            if (!indicateShoot && rateOfFire <= .5f)
+            {
+                anim.SetTrigger("StartShoot");
+                indicateShoot = true;
+            }
+
             if (rateOfFire <= 0)
             {
                 Shoot();
+                anim.SetTrigger("Shoot");
+                indicateShoot = false;
             }
             else
             {

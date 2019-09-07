@@ -107,7 +107,7 @@ public class GameMaster : Singleton<GameMaster>
         if (playerIsDead)
         {
             healthUI.DisableUI();
-            deathText.gameObject.SetActive(true);
+            deathText.EnableText();
             scoreText.MoveText();
             scoreText.SetHighScore();
         }

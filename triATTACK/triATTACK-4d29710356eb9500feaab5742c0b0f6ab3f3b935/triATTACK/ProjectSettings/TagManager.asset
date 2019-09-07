@@ -12,6 +12,7 @@ TagManager:
   - Particle
   - TriBullet
   - Wall
+  - Crosshair
   layers:
   - Default
   - TransparentFX
