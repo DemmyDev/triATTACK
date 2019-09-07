@@ -2,21 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerRotation : MonoBehaviour {
+public class PlayerRotation : MonoBehaviour
+{
+    Transform reticle;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update ()
+    private void Start()
+    {
+        reticle = FindObjectOfType<Crosshair>().transform;
+        reticle.GetComponent<Crosshair>().PlayerRef(transform);
+    }
+
+    void Update ()
     {
         if (!PauseMenu.isPaused)
         {
-            Vector3 mousePosition = Input.mousePosition;
-            mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
-            Vector2 direction = new Vector2(mousePosition.x - transform.position.x, mousePosition.y - transform.position.y);
+            Vector2 direction = new Vector2(reticle.position.x - transform.position.x, reticle.position.y - transform.position.y);
             transform.up = direction;
         }
     }

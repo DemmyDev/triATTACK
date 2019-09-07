@@ -85,7 +85,7 @@ public class Player : MonoBehaviour
     IEnumerator ResetTrail()
     {
         yield return new WaitForSeconds(.1f);
-        trail.time = .5f;
+        trail.time = .75f;
     }
 
     void OnCollisionEnter2D(Collision2D collision)

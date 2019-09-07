@@ -14,8 +14,11 @@ public class FollowBullet : MonoBehaviour
     float screenX = 37.25f, screenY = 21.75f;
     TrailRenderer trail;
 
+    Transform cursor;
+
     void Start ()
     {
+        cursor = FindObjectOfType<Crosshair>().transform;
         spriteObj = transform.Find("Sprite");
         trail = transform.Find("Trail").GetComponent<TrailRenderer>();
         isRecalling = false;
@@ -32,7 +35,7 @@ public class FollowBullet : MonoBehaviour
         {
             spriteObj.Rotate(transform.forward * Time.deltaTime * (rotateSpeed / 2));
 
-            Vector2 cursorPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector2 cursorPos = cursor.position;
             transform.position = Vector2.MoveTowards(transform.position, cursorPos, bulletSpeed * Time.deltaTime);
         }
         else

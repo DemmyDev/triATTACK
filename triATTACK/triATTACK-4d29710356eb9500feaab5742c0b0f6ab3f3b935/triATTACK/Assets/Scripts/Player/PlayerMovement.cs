@@ -2,12 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour {
-
+public class PlayerMovement : MonoBehaviour
+{
     Rigidbody2D rb;
 
     [SerializeField] float speed;
-    Vector2 moveVelocity;
 
     void Start()
     {
@@ -16,8 +15,7 @@ public class PlayerMovement : MonoBehaviour {
 
     void Update()
     {
-        Vector2 moveInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-        moveVelocity = moveInput * speed;
-        rb.MovePosition(rb.position + moveVelocity * Time.fixedDeltaTime);
+        Vector2 moveVelocity = new Vector2(Input.GetAxisRaw("MoveHorizontal"), Input.GetAxisRaw("MoveVertical")).normalized * speed;
+        rb.AddForce(moveVelocity);
     }
 }

@@ -46,7 +46,7 @@ public class PlayerShooting : MonoBehaviour
     {
         if (!PauseMenu.isPaused)
         {
-            if (canShoot && Input.GetMouseButtonDown(0))
+            if (canShoot && Input.GetButtonDown("Shoot"))
             {
                 trail.time = 0;
                 spriteR.sprite = recallSprite;
@@ -55,7 +55,7 @@ public class PlayerShooting : MonoBehaviour
                 canShoot = false;
                 Invoke("CanRecall", .25f);
             }
-            else if (!isRecalling && hasShot && canRecall && Input.GetMouseButtonDown(0))
+            else if (!isRecalling && hasShot && canRecall && Input.GetButtonDown("Shoot"))
             {
                 AudioManager.Instance.Play("PlayerRecall");
                 FindBullet();
@@ -112,7 +112,7 @@ public class PlayerShooting : MonoBehaviour
 
     public void BulletHit()
     {
-        trail.time = .5f;
+        trail.time = .75f;
         spriteR.sprite = normalSprite;
         instBullet = null;
         canRecall = false;
