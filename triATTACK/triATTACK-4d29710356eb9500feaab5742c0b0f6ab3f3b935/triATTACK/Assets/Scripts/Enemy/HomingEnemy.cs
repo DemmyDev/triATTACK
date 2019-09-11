@@ -6,6 +6,7 @@ public class HomingEnemy : MonoBehaviour
 {
     [SerializeField] int minSpeed;
     [SerializeField] int maxSpeed;
+    float currentSpeed = 0;
     int speed;
     [SerializeField] int enemyDamage;
     [SerializeField] int health;
@@ -34,7 +35,8 @@ public class HomingEnemy : MonoBehaviour
     {
         if (target != null)
         {
-            transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
+            currentSpeed = Mathf.Lerp(currentSpeed, speed, Time.deltaTime * speed / 2);
+            transform.position = Vector2.MoveTowards(transform.position, target.position, currentSpeed * Time.deltaTime);
         }        
     }
 

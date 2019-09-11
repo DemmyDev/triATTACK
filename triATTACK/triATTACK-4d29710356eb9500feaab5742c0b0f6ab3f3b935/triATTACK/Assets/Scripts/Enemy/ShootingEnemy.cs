@@ -6,6 +6,7 @@ public class ShootingEnemy : MonoBehaviour
 {
     [SerializeField] int minSpeed;
     [SerializeField] int maxSpeed;
+    float currentSpeed = 0;
     int speed;
     [SerializeField] float stoppingDistance;
     [SerializeField] float retreatDistance;
@@ -69,15 +70,18 @@ public class ShootingEnemy : MonoBehaviour
         {
             if (Vector2.Distance(transform.position, target.position) > stoppingDistance)
             {
+                currentSpeed = Mathf.Lerp(currentSpeed, speed, Time.deltaTime * speed / 4);
                 transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
             }
             else if (Vector2.Distance(transform.position, target.position) < stoppingDistance && Vector2.Distance(transform.position, target.position) > retreatDistance)
             {
-                transform.position = this.transform.position;
+                currentSpeed = Mathf.Lerp(currentSpeed, 0f, Time.deltaTime * speed / 4);
+                transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
             }
             else if (Vector2.Distance(transform.position, target.position) < retreatDistance)
             {
-                transform.position = Vector2.MoveTowards(transform.position, target.position, -speed * Time.deltaTime);
+                currentSpeed = Mathf.Lerp(currentSpeed, -speed, Time.deltaTime * speed / 4);
+                transform.position = Vector2.MoveTowards(transform.position, target.position, currentSpeed * Time.deltaTime);
             }
 
             if (!indicateShoot && rateOfFire <= .5f)

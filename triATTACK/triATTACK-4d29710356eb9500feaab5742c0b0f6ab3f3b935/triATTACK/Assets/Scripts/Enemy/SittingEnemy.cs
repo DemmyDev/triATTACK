@@ -6,6 +6,7 @@ public class SittingEnemy : MonoBehaviour
 {
     [SerializeField] float minRotateSpeed;
     [SerializeField] float maxRotateSpeed;
+    float currentRotateSpeed = 0;
     float rotateSpeed;
     Transform target;
     float rateOfFire, startRateOfFire;
@@ -55,7 +56,8 @@ public class SittingEnemy : MonoBehaviour
 
     void Update()
     {
-        transform.Rotate(Vector3.forward * Time.deltaTime * rotateSpeed);
+        currentRotateSpeed = Mathf.Lerp(currentRotateSpeed, rotateSpeed, Time.deltaTime * rotateSpeed / 8);
+        transform.Rotate(Vector3.forward * Time.deltaTime * currentRotateSpeed);
 
         if (target != null)
         {
