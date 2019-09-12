@@ -40,12 +40,13 @@ public class Bullet : MonoBehaviour
 
         if (!isRecalling)
         {
-            if (slowDownSpeed > 10f)
+            if (slowDownSpeed > 10f && !PauseMenu.isPaused)
             {
                 spriteObj.Rotate(transform.forward * Time.deltaTime * slowDownSpeed);
                 slowDownSpeed /= slowDownDivider;
+                Debug.Log(slowDownSpeed);
             }
-            else
+            else if (!PauseMenu.isPaused)
             {
                 isRecalling = true;
             }

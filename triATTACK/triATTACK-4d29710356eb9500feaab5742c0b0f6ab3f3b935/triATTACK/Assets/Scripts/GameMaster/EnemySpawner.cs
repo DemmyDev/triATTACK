@@ -59,8 +59,9 @@ public class EnemySpawner : MonoBehaviour {
         if (playTime < 12) startTimeBtwSpawns = 2f;
         else if (playTime < 24) startTimeBtwSpawns = 1.75f;
         else if (playTime < 36) startTimeBtwSpawns = 1.5f;
-        else if (playTime < 48) startTimeBtwSpawns = 1.25f;
-        else startTimeBtwSpawns = 1f;
+        else if (playTime < 50) startTimeBtwSpawns = 1.25f;
+        else if (playTime < 75) startTimeBtwSpawns = 1f;
+        else startTimeBtwSpawns = .75f;
         
         timeBtwSpawns = startTimeBtwSpawns;
     }

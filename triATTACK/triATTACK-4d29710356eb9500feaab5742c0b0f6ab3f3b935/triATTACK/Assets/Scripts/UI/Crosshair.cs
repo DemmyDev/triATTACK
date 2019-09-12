@@ -14,62 +14,42 @@ public class Crosshair : MonoBehaviour
 
     bool isUsingController = false;
 
-    void Start()
-    {
-        Cursor.visible = false;
-    }
-
     void Update ()
     {
-        if (PauseMenu.isPaused || Player.isDead)
+        Cursor.visible = false;
+
+        // Controller
+        if ((Input.GetAxisRaw("AimHorizontal") != 0 || Input.GetAxisRaw("AimVertical") != 0) && (!PauseMenu.isPaused || !Player.isDead))
         {
-            if (Input.GetAxisRaw("AimHorizontal") != 0 || Input.GetAxisRaw("AimVertical") != 0)
+            isUsingController = true;
+            // Follow bullet functionality
+            if (PlayerPrefs.GetInt("BulletType") == 2)
             {
                 Vector2 moveVelocity = new Vector2(Input.GetAxisRaw("AimHorizontal"), Input.GetAxisRaw("AimVertical")) * followSpeed;
                 transform.Translate(moveVelocity);
             }
-
-            if (lastMousePosition != Input.mousePosition)
+            else
             {
-                lastMousePosition = Input.mousePosition;
-                transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                transform.position = player.position + new Vector3(Input.GetAxisRaw("AimHorizontal"), Input.GetAxisRaw("AimVertical"), 0f).normalized * offset;
             }
         }
-        else
+        // When controller is used, but analog stick is not in use
+        else if (isUsingController)
         {
-            // Controller
-            if (Input.GetAxisRaw("AimHorizontal") != 0 || Input.GetAxisRaw("AimVertical") != 0)
-            {
-                isUsingController = true;
-                // Follow bullet functionality
-                if (PlayerPrefs.GetInt("BulletType") == 2)
-                {
-                    Vector2 moveVelocity = new Vector2(Input.GetAxisRaw("AimHorizontal"), Input.GetAxisRaw("AimVertical")) * followSpeed;
-                    transform.Translate(moveVelocity);
-                }
-                else
-                {
-                    transform.position = player.position + new Vector3(Input.GetAxisRaw("AimHorizontal"), Input.GetAxisRaw("AimVertical"), 0f).normalized * offset;
-                }
-            }
-            // When controller is used, but not currently aiming
-            else if (isUsingController)
-            {
-                Vector3 playerOffset = player.position - prevPlayerPos;
-                transform.position += playerOffset;
-            }
-
-            // Mouse and keyboard
-            if (lastMousePosition != Input.mousePosition)
-            {
-                isUsingController = false;
-                lastMousePosition = Input.mousePosition;
-                transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            }
-
-            if (player != null) prevPlayerPos = player.position;
+            Vector3 playerOffset = player.position - prevPlayerPos;
+            transform.position += playerOffset;
         }
 
+        // Mouse and keyboard
+        if (lastMousePosition != Input.mousePosition)
+        {
+            isUsingController = false;
+            lastMousePosition = Input.mousePosition;
+            transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        }
+
+        if (player != null) prevPlayerPos = player.position;
+        
         // Ensures crosshair does not go off-screen
         Vector2 pos = transform.position;
         if (pos.x > limitX) transform.position = new Vector2(limitX, pos.y);
