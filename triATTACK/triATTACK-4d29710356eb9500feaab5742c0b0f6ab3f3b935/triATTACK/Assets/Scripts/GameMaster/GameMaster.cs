@@ -47,7 +47,7 @@ public class GameMaster : Singleton<GameMaster>
 
     public void DisableObjectScripts()
     {
-        EnemySpawner.spawner.enabled = false;
+        EnemySpawner.spawner.SetIsSpawning(false);
 
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
         foreach (GameObject enemy in enemies)
@@ -75,13 +75,13 @@ public class GameMaster : Singleton<GameMaster>
 
     public void StartGame()
     {
-        EnemySpawner.spawner.enabled = true;
+        EnemySpawner.spawner.SetIsSpawning(true);
         EnemySpawner.spawner.SpawnEnemy();
     }
 
     void DeleteObjectsOnPlayerDamage(bool playerIsDead)
     {
-        EnemySpawner.spawner.enabled = false;
+        EnemySpawner.spawner.SetIsSpawning(false);
 
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
         foreach (GameObject enemy in enemies) Destroy(enemy);
@@ -163,8 +163,7 @@ public class GameMaster : Singleton<GameMaster>
         yield return new WaitForSeconds(1f);
 
         Instantiate(player.gameObject, Vector3.zero, Quaternion.identity);
-        EnemySpawner.spawner.enabled = true;
-        EnemySpawner.spawner.ResetOnPlayerDamage();
+        EnemySpawner.spawner.SetIsSpawning(true);
     }
 
     public void ResetHealth()

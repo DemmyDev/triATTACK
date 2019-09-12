@@ -112,7 +112,6 @@ public class ShootingEnemy : MonoBehaviour
 
     public void DamageEnemy(Vector3 bulletPos, Quaternion bulletRot)
     {
-        EnemySpawner.spawner.KilledEnemyCounter();
         Instantiate(deathParticlePrefab, gameObject.transform.position, gameObject.transform.rotation);
         Destroy(gameObject);
         shake.Shake(shakeDuration, shakeIntensity);

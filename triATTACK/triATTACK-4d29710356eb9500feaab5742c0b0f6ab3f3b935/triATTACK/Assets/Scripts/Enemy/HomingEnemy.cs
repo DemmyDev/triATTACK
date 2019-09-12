@@ -42,7 +42,6 @@ public class HomingEnemy : MonoBehaviour
 
     public void DamageEnemy()
     {
-        EnemySpawner.spawner.KilledEnemyCounter();
         Instantiate(homingParticlePrefab, gameObject.transform.position, gameObject.transform.rotation);
         Destroy(gameObject);
         shake.Shake(shakeDuration, shakeIntensity);

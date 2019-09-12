@@ -1341,7 +1341,8 @@ MonoBehaviour:
   - {fileID: 1327271936335038, guid: 12f683023da499943b365282273e7d56, type: 2}
   - {fileID: 1294183768238216, guid: a255fa32be018454a9f97c4a55ddb2b2, type: 2}
   startTimeBtwSpawns: 2
-  subtractTime: 0.25
+  shootingEnemySpawnTime: 15
+  sittingEnemySpawnTime: 30
 --- !u!4 &919015923
 Transform:
   m_ObjectHideFlags: 0
@@ -1843,31 +1844,6 @@ CanvasGroup:
   m_Interactable: 0
   m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
---- !u!1 &1530367790 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1486426841926848, guid: f4bd40dbddcd5074ca04d5c6b7c899e0,
-    type: 2}
-  m_PrefabInternal: {fileID: 2140862448}
---- !u!50 &1530367794
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1530367790}
-  m_BodyType: 2
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!1 &1568722966
 GameObject:
   m_ObjectHideFlags: 0
@@ -2295,19 +2271,6 @@ Prefab:
     - target: {fileID: 4785968517274068, guid: f4bd40dbddcd5074ca04d5c6b7c899e0, type: 2}
       propertyPath: m_RootOrder
       value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 61467339577197812, guid: f4bd40dbddcd5074ca04d5c6b7c899e0,
-        type: 2}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1486426841926848, guid: f4bd40dbddcd5074ca04d5c6b7c899e0, type: 2}
-      propertyPath: m_TagString
-      value: Crosshair
-      objectReference: {fileID: 0}
-    - target: {fileID: 1486426841926848, guid: f4bd40dbddcd5074ca04d5c6b7c899e0, type: 2}
-      propertyPath: m_Layer
-      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f4bd40dbddcd5074ca04d5c6b7c899e0, type: 2}

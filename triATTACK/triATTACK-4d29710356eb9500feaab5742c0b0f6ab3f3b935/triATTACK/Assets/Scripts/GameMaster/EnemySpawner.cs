@@ -9,8 +9,10 @@ public class EnemySpawner : MonoBehaviour {
     [SerializeField] GameObject[] enemy; // Enemy object
     [SerializeField] float startTimeBtwSpawns; // Adjustable variable for the time between enemy spawns
     float timeBtwSpawns; // Allows time between enemy spawns to be reset
-    [SerializeField] float subtractTime;
-    int enemiesKilled = 0;
+    [SerializeField] float shootingEnemySpawnTime;
+    [SerializeField] float sittingEnemySpawnTime;
+    float playTime;
+    bool isSpawning = false;
 
     void Start()
     {
@@ -21,28 +23,26 @@ public class EnemySpawner : MonoBehaviour {
 
     void Update()
     {
-        if (timeBtwSpawns <= 0)
+        if (isSpawning)
         {
-            SpawnEnemy();
-            timeBtwSpawns = startTimeBtwSpawns;
-        }
-        else
-        {
-            timeBtwSpawns -= Time.deltaTime;
+            playTime += Time.deltaTime;
+
+            if (timeBtwSpawns <= 0) SpawnEnemy();
+            else timeBtwSpawns -= Time.deltaTime;
         }
     }
 
     public void SpawnEnemy()
     {
-        int randomInt = Random.Range(0, 100); // Chooses random integer for enemy array
-        if (randomInt > 70 && enemiesKilled > 12)
+        int randomInt = Random.Range(1, 101); // Chooses random integer for enemy array
+        if (randomInt > 70 && playTime > sittingEnemySpawnTime)
         {
             // Sitting enemy
             Vector2 spawnPos = new Vector2(Random.Range(-20f, 20f), Random.Range(-10f, 10f));
             var inst = Instantiate(enemy[1], spawnPos, Quaternion.identity);
             inst.transform.eulerAngles = new Vector3(0f, 0f, 45f);
         }
-        else if (randomInt > 40 && enemiesKilled > 6)
+        else if (randomInt > 35 && playTime > shootingEnemySpawnTime)
         {
             // Shooting enemy
             Vector2 spawnPos = new Vector2(Random.Range(-34f, 34f), Random.Range(-18.5f, 18.5f));
@@ -54,24 +54,19 @@ public class EnemySpawner : MonoBehaviour {
             // Homing enemy
             Instantiate(enemy[2], spawnPos, Quaternion.identity);
         }
-    }
 
-    public void KilledEnemyCounter()
-    {
-        enemiesKilled++;
+        // Check spawn rates
+        if (playTime < 12) startTimeBtwSpawns = 2f;
+        else if (playTime < 24) startTimeBtwSpawns = 1.75f;
+        else if (playTime < 36) startTimeBtwSpawns = 1.5f;
+        else if (playTime < 48) startTimeBtwSpawns = 1.25f;
+        else startTimeBtwSpawns = 1f;
         
-        if (enemiesKilled == 40 || enemiesKilled == 28 || enemiesKilled == 20 || enemiesKilled == 12 || enemiesKilled == 6)
-        {
-            startTimeBtwSpawns -= subtractTime;
-        }
+        timeBtwSpawns = startTimeBtwSpawns;
     }
 
-    public void ResetOnPlayerDamage()
+    public void SetIsSpawning(bool spawning)
     {
-        startTimeBtwSpawns += subtractTime;
-
-        if (startTimeBtwSpawns >= 2) startTimeBtwSpawns = 2;
-
-        timeBtwSpawns = .5f;
+        isSpawning = spawning;
     }
 }

@@ -112,7 +112,6 @@ public class SittingEnemy : MonoBehaviour
 
     public void DamageEnemy(Vector3 bulletPos, Quaternion bulletRot)
     {
-        EnemySpawner.spawner.KilledEnemyCounter();
         Instantiate(sittingParticlePrefab, gameObject.transform.position, gameObject.transform.rotation);
         shake.Shake(shakeDuration, shakeIntensity);
         Destroy(gameObject);
