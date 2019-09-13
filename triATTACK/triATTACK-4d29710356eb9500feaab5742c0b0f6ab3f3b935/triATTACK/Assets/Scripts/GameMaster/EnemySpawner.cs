@@ -42,7 +42,7 @@ public class EnemySpawner : MonoBehaviour {
             var inst = Instantiate(enemy[1], spawnPos, Quaternion.identity);
             inst.transform.eulerAngles = new Vector3(0f, 0f, 45f);
         }
-        else if (randomInt > 35 && playTime > shootingEnemySpawnTime)
+        else if (randomInt > 40 && playTime > shootingEnemySpawnTime)
         {
             // Shooting enemy
             Vector2 spawnPos = new Vector2(Random.Range(-34f, 34f), Random.Range(-18.5f, 18.5f));

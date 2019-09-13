@@ -414,16 +414,16 @@ RectTransform:
   m_GameObject: {fileID: 348213303}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.99999017, y: 0.99999017, z: 0.99999017}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1785511179}
-  m_Father: {fileID: 1214382572}
-  m_RootOrder: 4
+  m_Father: {fileID: 406549642}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 250, y: -90}
-  m_SizeDelta: {x: 373.4, y: 80}
+  m_AnchoredPosition: {x: -20, y: 100}
+  m_SizeDelta: {x: 375, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &348213305
 MonoBehaviour:
@@ -457,7 +457,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "tri.Explain\n (\"Hit to Play\");"
+  m_Text: "tri.Explain\n (\"Hit red things\");"
 --- !u!222 &348213306
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -493,7 +493,8 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 348213304}
   m_Father: {fileID: 1007855951}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -538,6 +539,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 979bea98a3e33c847ba66de089cdf9ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  indicatorText: {fileID: 348213303}
   plainText: {fileID: 1214382571}
   selectUI: {fileID: 1270570451}
   hitParticle: {fileID: 4313504409584924, guid: 7adbae7371eae9b48941a615262f8a52,
@@ -747,8 +749,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -200, y: -166}
-  m_SizeDelta: {x: 373.4, y: 80}
+  m_AnchoredPosition: {x: -190, y: -155}
+  m_SizeDelta: {x: 400, y: 125}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &817321561
 MonoBehaviour:
@@ -785,10 +787,13 @@ MonoBehaviour:
   m_Text: 'tri.Move("WASD");
 
 
-    tri.Shoot("LeftMouse");
+    tri.Aim("Move Mouse");
 
 
-    tri.Recall("LeftMouse");'
+    tri.Shoot("Left Mouse");
+
+
+    tri.Recall("Left Mouse");'
 --- !u!222 &817321562
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1047,7 +1052,6 @@ RectTransform:
   - {fileID: 1676653930}
   - {fileID: 1686992403}
   - {fileID: 2080398450}
-  - {fileID: 348213304}
   m_Father: {fileID: 1007855951}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

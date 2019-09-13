@@ -44,7 +44,6 @@ public class Bullet : MonoBehaviour
             {
                 spriteObj.Rotate(transform.forward * Time.deltaTime * slowDownSpeed);
                 slowDownSpeed /= slowDownDivider;
-                Debug.Log(slowDownSpeed);
             }
             else if (!PauseMenu.isPaused)
             {

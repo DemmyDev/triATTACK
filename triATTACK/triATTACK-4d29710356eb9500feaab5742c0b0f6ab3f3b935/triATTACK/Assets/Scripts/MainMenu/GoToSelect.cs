@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class GoToSelect : MonoBehaviour
 {
+    [SerializeField] GameObject indicatorText;
     [SerializeField] GameObject plainText;
     [SerializeField] GameObject selectUI;
     [SerializeField] Transform hitParticle;
@@ -12,8 +13,12 @@ public class GoToSelect : MonoBehaviour
     BoxCollider2D col;
     ScreenShake shake;
 
+    MainMenu mainMenu;
+
     void Start()
     {
+        PlayerPrefs.SetInt("HighScore", 0);
+        mainMenu = transform.parent.GetComponent<MainMenu>();
         shake = Camera.main.GetComponent<ScreenShake>();
         col = GetComponent<BoxCollider2D>();
         playText = GetComponent<Text>();
@@ -28,6 +33,7 @@ public class GoToSelect : MonoBehaviour
             Instantiate(hitParticle, transform.position, Quaternion.identity);
             playText.enabled = false;
             col.enabled = false;
+            indicatorText.SetActive(false);
 
             plainText.SetActive(false);
             selectUI.SetActive(true);
