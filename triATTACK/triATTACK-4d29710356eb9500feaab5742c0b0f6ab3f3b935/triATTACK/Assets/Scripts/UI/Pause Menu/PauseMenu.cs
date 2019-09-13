@@ -28,7 +28,7 @@ public class PauseMenu : MonoBehaviour
             {
                 Resume();
             }
-            else
+            else if (!GameMaster.isFreezing)
             {
                 Pause();
             }

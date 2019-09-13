@@ -13,6 +13,7 @@ public class GameMaster : Singleton<GameMaster>
     float freezeFrameDuration;
     bool isFrozen;
     float pendingFreezeDuration = 0f;
+    public static bool isFreezing = false;
 
     void Update()
     {
@@ -32,12 +33,14 @@ public class GameMaster : Singleton<GameMaster>
     {
         isFrozen = true;
         Time.timeScale = 0f;
+        isFreezing = true;
 
         yield return new WaitForSecondsRealtime(freezeFrameDuration);
 
         Time.timeScale = 1f;
         pendingFreezeDuration = 0f;
         isFrozen = false;
+        isFreezing = false;
     }
 
     public void RestartScene()
