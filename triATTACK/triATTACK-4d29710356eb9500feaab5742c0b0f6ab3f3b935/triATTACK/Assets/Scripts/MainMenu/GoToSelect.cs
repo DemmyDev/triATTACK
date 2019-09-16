@@ -15,9 +15,11 @@ public class GoToSelect : MonoBehaviour
 
     MainMenu mainMenu;
 
+    [SerializeField] bool playtesting;
+
     void Start()
     {
-        PlayerPrefs.SetInt("HighScore", 0);
+        PlayerPrefs.SetInt("BulletType", 0);
         mainMenu = transform.parent.GetComponent<MainMenu>();
         shake = Camera.main.GetComponent<ScreenShake>();
         col = GetComponent<BoxCollider2D>();
@@ -35,9 +37,13 @@ public class GoToSelect : MonoBehaviour
             col.enabled = false;
             indicatorText.SetActive(false);
 
-            plainText.SetActive(false);
-            selectUI.SetActive(true);
-            gameObject.SetActive(false);
+            if (playtesting) mainMenu.StartGame();
+            else
+            {
+                plainText.SetActive(false);
+                selectUI.SetActive(true);
+                gameObject.SetActive(false);
+            }
         }
     }
 }

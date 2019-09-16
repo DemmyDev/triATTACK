@@ -23,14 +23,11 @@ public class PlayerShooting : MonoBehaviour
     [SerializeField] Sprite normalSprite;
     [SerializeField] Sprite recallSprite;
 
-    TrailRenderer trail;
-
     bool canShoot, hasShot;
     [HideInInspector] public bool isRecalling, canRecall;
 
     void Start()
     {
-        trail = transform.Find("Trail").GetComponent<TrailRenderer>();
         spriteR = gameObject.GetComponent<SpriteRenderer>();
         spriteR.sprite = normalSprite;
         firePoint = transform.Find("BulletSpawn");
@@ -48,7 +45,6 @@ public class PlayerShooting : MonoBehaviour
         {
             if (canShoot && (Input.GetButtonDown("Shoot") || Input.GetAxis("ControlShoot") != 0))
             {
-                trail.time = 0;
                 spriteR.sprite = recallSprite;
                 Shoot();
                 hasShot = true;
@@ -112,7 +108,6 @@ public class PlayerShooting : MonoBehaviour
 
     public void BulletHit()
     {
-        trail.time = .75f;
         spriteR.sprite = normalSprite;
         instBullet = null;
         canRecall = false;

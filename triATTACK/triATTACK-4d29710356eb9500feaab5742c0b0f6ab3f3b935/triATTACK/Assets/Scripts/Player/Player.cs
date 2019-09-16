@@ -15,7 +15,7 @@ public class Player : MonoBehaviour
     [SerializeField] float shakeDuration;
 
     public static bool isDead = false;
-    TrailRenderer trail;
+    [SerializeField] TrailRenderer trail;
 
     float screenX = 36.25f, screenY = 20.75f;
 
@@ -24,7 +24,6 @@ public class Player : MonoBehaviour
     void Start()
     {
         shooting = GetComponent<PlayerShooting>();
-        trail = transform.Find("Trail").GetComponent<TrailRenderer>();
         shake = Camera.main.GetComponent<ScreenShake>();
         if (shake == null)
         {
@@ -43,48 +42,33 @@ public class Player : MonoBehaviour
 
         if (pos.x > screenX)
         {
-            if (!shooting.GetHasShot())
-            {
-                trail.time = 0;
-                StartCoroutine(ResetTrail());
-            }
+            if (!shooting.GetHasShot()) StartCoroutine(ResetTrail());
             transform.position = new Vector2(-screenX, pos.y);
         }
 
         if (pos.x < -screenX)
         {
-            if (!shooting.GetHasShot())
-            {
-                trail.time = 0;
-                StartCoroutine(ResetTrail());
-            }
+            if (!shooting.GetHasShot()) StartCoroutine(ResetTrail());
             transform.position = new Vector2(screenX, pos.y);
         }
 
         if (pos.y > screenY)
         {
-            if (!shooting.GetHasShot())
-            {
-                trail.time = 0;
-                StartCoroutine(ResetTrail());
-            }
+            if (!shooting.GetHasShot()) StartCoroutine(ResetTrail());
             transform.position = new Vector2(pos.x, -screenY);
         }
 
         if (pos.y < -screenY)
         {
-            if (!shooting.GetHasShot())
-            {
-                trail.time = 0;
-                StartCoroutine(ResetTrail());
-            }
+            if (!shooting.GetHasShot()) StartCoroutine(ResetTrail());
             transform.position = new Vector2(pos.x, screenY);
         }
     }
 
     IEnumerator ResetTrail()
     {
-        yield return new WaitForSeconds(.1f);
+        trail.time = 0;
+        yield return new WaitForSeconds(.15f);
         trail.time = .75f;
     }
 

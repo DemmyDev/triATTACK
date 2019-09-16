@@ -12,7 +12,6 @@ public class FollowBullet : MonoBehaviour
     [SerializeField] float rotateSpeed;
 
     float screenX = 37.25f, screenY = 21.75f;
-    TrailRenderer trail;
 
     Transform cursor;
 
@@ -20,7 +19,6 @@ public class FollowBullet : MonoBehaviour
     {
         cursor = FindObjectOfType<Crosshair>().transform;
         spriteObj = transform.Find("Sprite");
-        trail = transform.Find("Trail").GetComponent<TrailRenderer>();
         isRecalling = false;
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         transform.rotation = player.rotation;
@@ -49,33 +47,10 @@ public class FollowBullet : MonoBehaviour
     {
         Vector2 pos = transform.position;
 
-        if (pos.x > screenX)
-        {
-            trail.Clear();
-            StartCoroutine(ResetTrail());
-            transform.position = new Vector2(-screenX, pos.y);
-        }
-
-        if (pos.x < -screenX)
-        {
-            trail.Clear();
-            StartCoroutine(ResetTrail());
-            transform.position = new Vector2(screenX, pos.y);
-        }
-
-        if (pos.y > screenY)
-        {
-            trail.Clear();
-            StartCoroutine(ResetTrail());
-            transform.position = new Vector2(pos.x, -screenY);
-        }
-
-        if (pos.y < -screenY)
-        {
-            trail.Clear();
-            StartCoroutine(ResetTrail());
-            transform.position = new Vector2(pos.x, screenY);
-        }
+        if (pos.x > screenX) transform.position = new Vector2(-screenX, pos.y);
+        if (pos.x < -screenX) transform.position = new Vector2(screenX, pos.y);
+        if (pos.y > screenY) transform.position = new Vector2(pos.x, -screenY);
+        if (pos.y < -screenY) transform.position = new Vector2(pos.x, screenY);
     }
 
     IEnumerator AutoRecall()
@@ -86,13 +61,6 @@ public class FollowBullet : MonoBehaviour
             AudioManager.Instance.Play("PlayerRecall");
             isRecalling = true;
         }
-    }
-
-    IEnumerator ResetTrail()
-    {
-        trail.time = 0;
-        yield return new WaitForSeconds(.2f);
-        trail.time = .5f;
     }
 
     public bool GetIsRecalling()

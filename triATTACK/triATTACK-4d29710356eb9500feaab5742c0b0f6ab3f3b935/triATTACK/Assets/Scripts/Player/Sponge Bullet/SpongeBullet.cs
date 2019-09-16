@@ -16,7 +16,6 @@ public class SpongeBullet : MonoBehaviour
     Transform spriteObj;
 
     float screenX = 37.25f, screenY = 21.75f;
-    TrailRenderer trail;
 
     void Start()
     {
@@ -30,7 +29,6 @@ public class SpongeBullet : MonoBehaviour
         rb.velocity = direction * bulletSpeed;
         slowDownSpeed = rotateSpeed;
 
-        trail = transform.Find("Trail").GetComponent<TrailRenderer>();
         StartCoroutine(AutoRecall());
     }
 
@@ -61,33 +59,10 @@ public class SpongeBullet : MonoBehaviour
     {
         Vector2 pos = transform.position;
 
-        if (pos.x > screenX)
-        {
-            trail.Clear();
-            StartCoroutine(ResetTrail());
-            transform.position = new Vector2(-screenX, pos.y);
-        }
-
-        if (pos.x < -screenX)
-        {
-            trail.Clear();
-            StartCoroutine(ResetTrail());
-            transform.position = new Vector2(screenX, pos.y);
-        }
-
-        if (pos.y > screenY)
-        {
-            trail.Clear();
-            StartCoroutine(ResetTrail());
-            transform.position = new Vector2(pos.x, -screenY);
-        }
-
-        if (pos.y < -screenY)
-        {
-            trail.Clear();
-            StartCoroutine(ResetTrail());
-            transform.position = new Vector2(pos.x, screenY);
-        }
+        if (pos.x > screenX) transform.position = new Vector2(-screenX, pos.y);
+        if (pos.x < -screenX) transform.position = new Vector2(screenX, pos.y);
+        if (pos.y > screenY) transform.position = new Vector2(pos.x, -screenY);
+        if (pos.y < -screenY) transform.position = new Vector2(pos.x, screenY);
     }
 
     IEnumerator AutoRecall()
@@ -98,13 +73,6 @@ public class SpongeBullet : MonoBehaviour
             AudioManager.Instance.Play("PlayerRecall");
             isRecalling = true;
         }
-    }
-
-    IEnumerator ResetTrail()
-    {
-        trail.time = 0;
-        yield return new WaitForSeconds(.2f);
-        trail.time = .5f;
     }
 
     public bool GetIsRecalling()

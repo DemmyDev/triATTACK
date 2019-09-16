@@ -18,7 +18,6 @@ public class TripleCollision : MonoBehaviour {
     [HideInInspector] public Rigidbody2D rb;
 
     float screenX = 36.25f, screenY = 20.9f;
-    TrailRenderer trail;
 
     GameObject player;
     Transform target;
@@ -29,7 +28,6 @@ public class TripleCollision : MonoBehaviour {
     {
         player = GameObject.FindGameObjectWithTag("Player");
         target = player.GetComponent<Transform>();
-        trail = transform.Find("Trail").GetComponent<TrailRenderer>();
         rb = gameObject.GetComponent<Rigidbody2D>();
         parentBul = transform.parent.GetComponent<TripleBullet>();
         slowDownSpeed = rotateSpeed;
@@ -44,33 +42,10 @@ public class TripleCollision : MonoBehaviour {
         // Screen wrapping
         Vector2 pos = transform.position;
 
-        if (pos.x > screenX)
-        {
-            trail.Clear();
-            StartCoroutine(ResetTrail());
-            transform.position = new Vector2(-screenX, pos.y);
-        }
-
-        if (pos.x < -screenX)
-        {
-            trail.Clear();
-            StartCoroutine(ResetTrail());
-            transform.position = new Vector2(screenX, pos.y);
-        }
-
-        if (pos.y > screenY)
-        {
-            trail.Clear();
-            StartCoroutine(ResetTrail());
-            transform.position = new Vector2(pos.x, -screenY);
-        }
-
-        if (pos.y < - screenY)
-        {
-            trail.Clear();
-            StartCoroutine(ResetTrail());
-            transform.position = new Vector2(pos.x, screenY);
-        }
+        if (pos.x > screenX) transform.position = new Vector2(-screenX, pos.y);
+        if (pos.x < -screenX) transform.position = new Vector2(screenX, pos.y);
+        if (pos.y > screenY) transform.position = new Vector2(pos.x, -screenY);
+        if (pos.y < -screenY) transform.position = new Vector2(pos.x, screenY);
     }
 
     // Called every frame in TripleBullet, if it is not recalling
@@ -90,14 +65,7 @@ public class TripleCollision : MonoBehaviour {
         transform.Rotate(Vector3.forward * Time.deltaTime * rotateSpeed);
         transform.position = Vector2.MoveTowards(transform.position, target.position, bulletSpeed * 2f * Time.deltaTime);
     }
-
-    IEnumerator ResetTrail()
-    {
-        trail.time = 0;
-        yield return new WaitForSeconds(.2f);
-        trail.time = .5f;
-    }
-
+    
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Enemy"))
