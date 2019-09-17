@@ -305,6 +305,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerParticlePrefab: {fileID: 4142216787440106, guid: 053ac74a98befb84c8c4258ef82cedd4,
     type: 2}
+  screenwrapPrefab: {fileID: 1465723098868408, guid: 5948bc12f585b1945b4fb60d32796f87,
+    type: 2}
   health: 3
   shakeIntensity: 0.5
   shakeDuration: 0.25

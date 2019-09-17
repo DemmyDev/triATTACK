@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-
     [SerializeField] Transform playerParticlePrefab;
-    
+    [SerializeField] GameObject screenwrapPrefab;
+
     [SerializeField] int health;
 
     [Range(0f, 2f)]
@@ -44,24 +44,36 @@ public class Player : MonoBehaviour
         {
             if (!shooting.GetHasShot()) StartCoroutine(ResetTrail());
             transform.position = new Vector2(-screenX, pos.y);
+            var inst = Instantiate(screenwrapPrefab, new Vector2(-screenX + 2, pos.y), transform.rotation);
+            Destroy(inst, .5f);
+            AudioManager.Instance.Play("Screenwrap");
         }
 
         if (pos.x < -screenX)
         {
             if (!shooting.GetHasShot()) StartCoroutine(ResetTrail());
             transform.position = new Vector2(screenX, pos.y);
+            var inst = Instantiate(screenwrapPrefab, new Vector2(screenX - 2, pos.y), transform.rotation);
+            Destroy(inst, .5f);
+            AudioManager.Instance.Play("Screenwrap");
         }
 
         if (pos.y > screenY)
         {
             if (!shooting.GetHasShot()) StartCoroutine(ResetTrail());
             transform.position = new Vector2(pos.x, -screenY);
+            var inst = Instantiate(screenwrapPrefab, new Vector2(pos.x, -screenY + 1.5f), transform.rotation);
+            Destroy(inst, .5f);
+            AudioManager.Instance.Play("Screenwrap");
         }
 
         if (pos.y < -screenY)
         {
             if (!shooting.GetHasShot()) StartCoroutine(ResetTrail());
             transform.position = new Vector2(pos.x, screenY);
+            var inst = Instantiate(screenwrapPrefab, new Vector2(pos.x, screenY - 1.5f), transform.rotation);
+            Destroy(inst, .5f);
+            AudioManager.Instance.Play("Screenwrap");
         }
     }
 
