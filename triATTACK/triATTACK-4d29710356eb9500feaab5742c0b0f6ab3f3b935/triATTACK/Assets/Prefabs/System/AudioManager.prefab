@@ -138,7 +138,7 @@ MonoBehaviour:
     playOnAwake: 0
   - name: Screenwrap
     clip: {fileID: 8300000, guid: 40d8a52234a83154f95d18ce90fc3ced, type: 3}
-    volume: 0.75
+    volume: 0.6
     pitch: 1
     source: {fileID: 0}
     loop: 0

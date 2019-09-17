@@ -23,17 +23,20 @@ public class TripleCollision : MonoBehaviour {
     Transform target;
 
     TripleBullet parentBul;
+    Animation anim;
 
 	void Start ()
     {
+        anim = transform.Find("Anim").GetComponent<Animation>();
         player = GameObject.FindGameObjectWithTag("Player");
         target = player.GetComponent<Transform>();
-        rb = gameObject.GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody2D>();
         parentBul = transform.parent.GetComponent<TripleBullet>();
         slowDownSpeed = rotateSpeed;
 
         Vector2 direction = new Vector2(transform.right.x, transform.right.y);
         rb.velocity = direction * bulletSpeed;
+        anim.Play();
 	}
     
 
@@ -64,6 +67,12 @@ public class TripleCollision : MonoBehaviour {
     {
         transform.Rotate(Vector3.forward * Time.deltaTime * rotateSpeed);
         transform.position = Vector2.MoveTowards(transform.position, target.position, bulletSpeed * 2f * Time.deltaTime);
+    }
+
+    public void PlayAnim()
+    {
+        anim.Stop();
+        anim.Play();
     }
     
     void OnTriggerEnter2D(Collider2D other)

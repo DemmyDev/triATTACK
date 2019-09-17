@@ -8,6 +8,7 @@ public class FollowBullet : MonoBehaviour
 
     bool isRecalling;
     Transform player, spriteObj;
+    Animation anim;
 
     [SerializeField] float rotateSpeed;
 
@@ -19,10 +20,12 @@ public class FollowBullet : MonoBehaviour
     {
         cursor = FindObjectOfType<Crosshair>().transform;
         spriteObj = transform.Find("Sprite");
+        anim = GameObject.Find("Anim").GetComponent<Animation>();
         isRecalling = false;
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         transform.rotation = player.rotation;
         StartCoroutine(AutoRecall());
+        anim.Play();
 	}
 	
 	void Update ()
@@ -71,5 +74,10 @@ public class FollowBullet : MonoBehaviour
     public void SetIsRecalling(bool recalling)
     {
         isRecalling = recalling;
+        if (isRecalling)
+        {
+            anim.Stop();
+            anim.Play();
+        }
     }
 }

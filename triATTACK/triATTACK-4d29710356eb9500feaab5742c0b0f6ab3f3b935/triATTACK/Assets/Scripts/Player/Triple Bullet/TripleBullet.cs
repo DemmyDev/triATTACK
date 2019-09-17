@@ -69,7 +69,6 @@ public class TripleBullet : MonoBehaviour {
             Vector2 shakePos = new Vector2(Random.Range(-.2f, .2f), Random.Range(-.2f, .2f));
             shakePos += originalPos;
             transform.position = shakePos;
-
         }
         else if (isRecalling)
         {
@@ -102,6 +101,10 @@ public class TripleBullet : MonoBehaviour {
     public void SetIsRecalling(bool recalling)
     {
         isRecalling = recalling;
+        if (isRecalling)
+        {
+            foreach (TripleCollision bullet in bullets) bullet.PlayAnim();
+        }
     }
 
     IEnumerator AutoRecall()

@@ -49,7 +49,7 @@ public class PlayerShooting : MonoBehaviour
                 Shoot();
                 hasShot = true;
                 canShoot = false;
-                Invoke("CanRecall", .25f);
+                Invoke("CanRecall", .5f);
             }
             else if (!isRecalling && hasShot && canRecall && (Input.GetButtonDown("Shoot") || Input.GetAxis("ControlShoot") != 0))
             {

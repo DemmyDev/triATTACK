@@ -14,11 +14,13 @@ public class Bullet : MonoBehaviour
     [SerializeField] float slowDownDivider = 1.01f;
     [HideInInspector] public float slowDownSpeed;
     Transform spriteObj;
+    Animation anim;
 
     float screenX = 37.25f, screenY = 21.75f;
 
     void Start()
     {
+        anim = GameObject.Find("Anim").GetComponent<Animation>(); ;
         spriteObj = GameObject.Find("Sprite").GetComponent<Transform>(); ;
         isRecalling = false;
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
@@ -30,6 +32,7 @@ public class Bullet : MonoBehaviour
         slowDownSpeed = rotateSpeed;
 
         StartCoroutine(AutoRecall());
+        anim.Play();
     }
 
     void Update()
@@ -83,5 +86,10 @@ public class Bullet : MonoBehaviour
     public void SetIsRecalling(bool recalling)
     {
         isRecalling = recalling;
+        if (isRecalling)
+        {
+            anim.Stop();
+            anim.Play();
+        }
     }
 }

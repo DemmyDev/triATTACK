@@ -14,12 +14,16 @@ public class SpongeBullet : MonoBehaviour
     [SerializeField] float slowDownDivider = 1.01f;
     [HideInInspector] public float slowDownSpeed;
     Transform spriteObj;
+    [SerializeField] GameObject animObject;
+    Animation anim;
+    
 
     float screenX = 37.25f, screenY = 21.75f;
 
     void Start()
     {
-        spriteObj = GameObject.Find("Sprite").GetComponent<Transform>(); ;
+        spriteObj = GameObject.Find("Sprite").GetComponent<Transform>();
+        anim = animObject.GetComponent<Animation>();
         isRecalling = false;
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         rb = gameObject.GetComponent<Rigidbody2D>();
@@ -30,6 +34,7 @@ public class SpongeBullet : MonoBehaviour
         slowDownSpeed = rotateSpeed;
 
         StartCoroutine(AutoRecall());
+        anim.Play();
     }
 
     void Update()
@@ -83,5 +88,10 @@ public class SpongeBullet : MonoBehaviour
     public void SetIsRecalling(bool recalling)
     {
         isRecalling = recalling;
+        if (isRecalling)
+        {
+            anim.Stop();
+            anim.Play();
+        }
     }
 }
