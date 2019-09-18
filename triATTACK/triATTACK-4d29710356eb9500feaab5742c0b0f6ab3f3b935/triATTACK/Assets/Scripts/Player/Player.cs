@@ -44,7 +44,7 @@ public class Player : MonoBehaviour
         {
             if (!shooting.GetHasShot()) StartCoroutine(ResetTrail());
             transform.position = new Vector2(-screenX, pos.y);
-            var inst = Instantiate(screenwrapPrefab, new Vector2(-screenX + 2, pos.y), transform.rotation);
+            var inst = Instantiate(screenwrapPrefab, new Vector2(-screenX + 1, pos.y), transform.rotation);
             Destroy(inst, .5f);
             AudioManager.Instance.Play("Screenwrap");
         }
@@ -53,7 +53,7 @@ public class Player : MonoBehaviour
         {
             if (!shooting.GetHasShot()) StartCoroutine(ResetTrail());
             transform.position = new Vector2(screenX, pos.y);
-            var inst = Instantiate(screenwrapPrefab, new Vector2(screenX - 2, pos.y), transform.rotation);
+            var inst = Instantiate(screenwrapPrefab, new Vector2(screenX - 1, pos.y), transform.rotation);
             Destroy(inst, .5f);
             AudioManager.Instance.Play("Screenwrap");
         }
@@ -62,7 +62,7 @@ public class Player : MonoBehaviour
         {
             if (!shooting.GetHasShot()) StartCoroutine(ResetTrail());
             transform.position = new Vector2(pos.x, -screenY);
-            var inst = Instantiate(screenwrapPrefab, new Vector2(pos.x, -screenY + 1.5f), transform.rotation);
+            var inst = Instantiate(screenwrapPrefab, new Vector2(pos.x, -screenY + .75f), transform.rotation);
             Destroy(inst, .5f);
             AudioManager.Instance.Play("Screenwrap");
         }
@@ -71,7 +71,7 @@ public class Player : MonoBehaviour
         {
             if (!shooting.GetHasShot()) StartCoroutine(ResetTrail());
             transform.position = new Vector2(pos.x, screenY);
-            var inst = Instantiate(screenwrapPrefab, new Vector2(pos.x, screenY - 1.5f), transform.rotation);
+            var inst = Instantiate(screenwrapPrefab, new Vector2(pos.x, screenY - .75f), transform.rotation);
             Destroy(inst, .5f);
             AudioManager.Instance.Play("Screenwrap");
         }

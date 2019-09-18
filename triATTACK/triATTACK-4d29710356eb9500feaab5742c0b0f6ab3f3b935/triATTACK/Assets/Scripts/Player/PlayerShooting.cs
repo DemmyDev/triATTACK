@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class PlayerShooting : MonoBehaviour
 {
     [SerializeField] Transform[] bulletPrefabs;
-    public enum Bullets { Default = 0, Triple = 1, Follow = 2, Sponge = 3 };
+    public enum Bullets { Default = 0, Triple = 1, Follow = 2, Sponge = 3, Rapid = 4 };
     // Bullets enum will be used to assign bullet types from main menu (and the inspector)
     public Bullets bullets;
 
@@ -49,7 +49,7 @@ public class PlayerShooting : MonoBehaviour
                 Shoot();
                 hasShot = true;
                 canShoot = false;
-                Invoke("CanRecall", .5f);
+                Invoke("CanRecall", .33f);
             }
             else if (!isRecalling && hasShot && canRecall && (Input.GetButtonDown("Shoot") || Input.GetAxis("ControlShoot") != 0))
             {
@@ -65,6 +65,10 @@ public class PlayerShooting : MonoBehaviour
     {
         AudioManager.Instance.Play("PlayerShoot");
         instBullet = Instantiate(bulletPrefabs[(int)bullets], firePoint.position, gameObject.transform.rotation);
+        if (bullets == Bullets.Rapid)
+        {
+
+        }
         shake.Shake(shakeDuration, shakeIntensity);
     }
 
