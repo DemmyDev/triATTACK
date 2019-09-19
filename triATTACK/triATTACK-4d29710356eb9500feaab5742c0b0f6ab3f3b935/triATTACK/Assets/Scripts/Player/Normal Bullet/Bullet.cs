@@ -20,6 +20,7 @@ public class Bullet : MonoBehaviour
 
     void Start()
     {
+        AudioManager.Instance.Play("PlayerShoot");
         anim = GameObject.Find("Anim").GetComponent<Animation>(); ;
         spriteObj = GameObject.Find("Sprite").GetComponent<Transform>(); ;
         isRecalling = false;
@@ -74,7 +75,7 @@ public class Bullet : MonoBehaviour
         if (!isRecalling)
         {
             AudioManager.Instance.Play("PlayerRecall");
-            isRecalling = true;
+            SetIsRecalling(true);
         }
     }
 

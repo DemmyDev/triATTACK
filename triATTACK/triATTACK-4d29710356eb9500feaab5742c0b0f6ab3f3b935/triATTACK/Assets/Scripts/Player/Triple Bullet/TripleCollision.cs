@@ -4,12 +4,6 @@ using UnityEngine;
 
 public class TripleCollision : MonoBehaviour {
 
-    // Movement and rotation
-    // Recall trigger with player
-    // Add recalledBullets to TripleBullet parent
-    // Auto Recall
-    // Trail stuff
-
     [SerializeField] int bulletSpeed = 28;
 
     [SerializeField] float rotateSpeed = 700;

@@ -12,7 +12,7 @@ public class PlayerShooting : MonoBehaviour
 
     Transform instBullet;
 
-    Transform firePoint;
+    [HideInInspector] public Transform firePoint;
 
     [Range(0f, 2f)]
     [SerializeField] float shakeIntensity;
@@ -63,12 +63,7 @@ public class PlayerShooting : MonoBehaviour
 
     void Shoot()
     {
-        AudioManager.Instance.Play("PlayerShoot");
         instBullet = Instantiate(bulletPrefabs[(int)bullets], firePoint.position, gameObject.transform.rotation);
-        if (bullets == Bullets.Rapid)
-        {
-
-        }
         shake.Shake(shakeDuration, shakeIntensity);
     }
 
@@ -89,6 +84,9 @@ public class PlayerShooting : MonoBehaviour
             case Bullets.Sponge:
                 instBullet.GetComponent<SpongeBullet>().SetIsRecalling(true);
                 break;
+            case Bullets.Rapid:
+                instBullet.GetComponent<RapidBullet>().SetIsRecalling(true);
+                break;
             default:
                 Debug.LogError("Could not find bullet");
                 break;
@@ -108,6 +106,16 @@ public class PlayerShooting : MonoBehaviour
     public bool GetHasShot()
     {
         return hasShot;
+    }
+
+    public Vector3 GetFirepointPos()
+    {
+        return firePoint.position;
+    }
+
+    public Vector3 GetPlayerRot()
+    {
+        return transform.eulerAngles;
     }
 
     public void BulletHit()

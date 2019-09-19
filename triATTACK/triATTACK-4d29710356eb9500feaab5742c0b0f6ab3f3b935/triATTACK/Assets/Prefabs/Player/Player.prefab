@@ -269,7 +269,9 @@ MonoBehaviour:
   - {fileID: 4562812362609014, guid: f58b2ebad42688441a23ac8a620c0d4c, type: 2}
   - {fileID: 4527432981176050, guid: c98a7e54101f52f4594ada4bc00670a8, type: 2}
   - {fileID: 4846742299349750, guid: 5da4b853a7fcd464bb81277d944a4ea9, type: 2}
+  - {fileID: 4645033946684348, guid: 6aa3c5673ad95884a96eef44dcc97f11, type: 2}
   bullets: 0
+  firePoint: {fileID: 0}
   shakeIntensity: 0.15
   shakeDuration: 0.1
   normalSprite: {fileID: 21300000, guid: 905cd9f3539338046873f36c7f0db7b4, type: 3}

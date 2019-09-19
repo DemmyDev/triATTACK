@@ -104,6 +104,9 @@ public class GameMaster : Singleton<GameMaster>
         SpongeBullet spongeBullet = FindObjectOfType<SpongeBullet>();
         if (spongeBullet != null) Destroy(spongeBullet.gameObject);
 
+        RapidBullet rapidBullet = FindObjectOfType<RapidBullet>();
+        if (rapidBullet != null) Destroy(rapidBullet.gameObject);
+
         SpawningObject[] spawningObjects = FindObjectsOfType<SpawningObject>();
         foreach (SpawningObject spawningObj in spawningObjects) Destroy(spawningObj.gameObject);
 

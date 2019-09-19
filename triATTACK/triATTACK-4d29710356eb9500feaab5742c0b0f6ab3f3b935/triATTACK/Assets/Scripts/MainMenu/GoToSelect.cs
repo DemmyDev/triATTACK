@@ -19,7 +19,6 @@ public class GoToSelect : MonoBehaviour
 
     void Start()
     {
-        PlayerPrefs.SetInt("BulletType", 0);
         mainMenu = transform.parent.GetComponent<MainMenu>();
         shake = Camera.main.GetComponent<ScreenShake>();
         col = GetComponent<BoxCollider2D>();

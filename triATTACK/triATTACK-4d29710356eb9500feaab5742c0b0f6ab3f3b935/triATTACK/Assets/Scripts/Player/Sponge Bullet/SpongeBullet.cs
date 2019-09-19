@@ -22,6 +22,7 @@ public class SpongeBullet : MonoBehaviour
 
     void Start()
     {
+        AudioManager.Instance.Play("PlayerShoot");
         spriteObj = GameObject.Find("Sprite").GetComponent<Transform>();
         anim = animObject.GetComponent<Animation>();
         isRecalling = false;
@@ -76,7 +77,7 @@ public class SpongeBullet : MonoBehaviour
         if (!isRecalling)
         {
             AudioManager.Instance.Play("PlayerRecall");
-            isRecalling = true;
+            SetIsRecalling(true);
         }
     }
 

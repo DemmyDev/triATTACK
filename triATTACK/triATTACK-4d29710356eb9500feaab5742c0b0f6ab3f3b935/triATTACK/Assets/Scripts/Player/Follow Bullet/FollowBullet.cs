@@ -18,6 +18,7 @@ public class FollowBullet : MonoBehaviour
 
     void Start ()
     {
+        AudioManager.Instance.Play("PlayerShoot");
         cursor = FindObjectOfType<Crosshair>().transform;
         spriteObj = transform.Find("Sprite");
         anim = GameObject.Find("Anim").GetComponent<Animation>();
@@ -62,7 +63,7 @@ public class FollowBullet : MonoBehaviour
         if (!isRecalling)
         {
             AudioManager.Instance.Play("PlayerRecall");
-            isRecalling = true;
+            SetIsRecalling(true);
         }
     }
 

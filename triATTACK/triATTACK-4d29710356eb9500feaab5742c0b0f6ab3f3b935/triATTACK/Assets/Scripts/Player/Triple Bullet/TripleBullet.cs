@@ -37,6 +37,7 @@ public class TripleBullet : MonoBehaviour {
 
     void Start ()
     {
+        AudioManager.Instance.Play("PlayerShoot");
         originalPos = transform.position;
         shake = Camera.main.GetComponent<ScreenShake>();
         freezeDuration = startFreezeDuration;
@@ -113,7 +114,7 @@ public class TripleBullet : MonoBehaviour {
         if (!isRecalling)
         {
             FindObjectOfType<AudioManager>().Play("PlayerRecall");
-            isRecalling = true; 
+            SetIsRecalling(true);
         }
     }
 
