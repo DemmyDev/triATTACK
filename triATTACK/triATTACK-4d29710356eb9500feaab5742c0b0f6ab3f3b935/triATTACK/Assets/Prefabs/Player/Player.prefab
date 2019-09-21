@@ -197,13 +197,13 @@ TrailRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.34652224
-        inSlope: -0.37611336
-        outSlope: -0.37611336
+        value: 0.5
+        inSlope: 0.028619388
+        outSlope: 0.028619388
         tangentMode: 0
         weightedMode: 0
         inWeight: 0.33333334
-        outWeight: 0.13994169
+        outWeight: 0.1764706
       - serializedVersion: 3
         time: 1
         value: 0
@@ -270,7 +270,8 @@ MonoBehaviour:
   - {fileID: 4527432981176050, guid: c98a7e54101f52f4594ada4bc00670a8, type: 2}
   - {fileID: 4846742299349750, guid: 5da4b853a7fcd464bb81277d944a4ea9, type: 2}
   - {fileID: 4645033946684348, guid: 6aa3c5673ad95884a96eef44dcc97f11, type: 2}
-  bullets: 0
+  - {fileID: 4223699293078590, guid: 82f816e496653fc4aaa90cb7d6b6c6c1, type: 2}
+  bullets: 5
   firePoint: {fileID: 0}
   shakeIntensity: 0.15
   shakeDuration: 0.1

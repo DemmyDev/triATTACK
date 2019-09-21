@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class PlayerShooting : MonoBehaviour
 {
     [SerializeField] Transform[] bulletPrefabs;
-    public enum Bullets { Default = 0, Triple = 1, Follow = 2, Sponge = 3, Rapid = 4 };
+    public enum Bullets { Default = 0, Triple = 1, Follow = 2, Sponge = 3, Rapid = 4, Bounce = 5 };
     // Bullets enum will be used to assign bullet types from main menu (and the inspector)
     public Bullets bullets;
 
@@ -86,6 +86,9 @@ public class PlayerShooting : MonoBehaviour
                 break;
             case Bullets.Rapid:
                 instBullet.GetComponent<RapidBullet>().SetIsRecalling(true);
+                break;
+            case Bullets.Bounce:
+                instBullet.GetComponent<BounceBullet>().SetIsRecalling(true);
                 break;
             default:
                 Debug.LogError("Could not find bullet");

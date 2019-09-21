@@ -108,7 +108,6 @@ public class RapidBullet : MonoBehaviour
         spawnBul.transform.eulerAngles = new Vector3(playerRot.x, playerRot.y, playerRot.z + 90f);
         spawnBul.PlayAnim();
         shake.Shake(shakeDuration, shakeIntensity / 3);
-        Debug.Log(player.GetComponent<PlayerShooting>().firePoint.position);
     }
 
     void ObjectShake()

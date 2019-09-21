@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class BounceBullet : MonoBehaviour
 {
-    [SerializeField] float bulletSpeed;
+    [SerializeField] int bulletSpeed;
     float shootSpeed;
 
     [HideInInspector] public bool isRecalling;
@@ -19,8 +19,11 @@ public class Bullet : MonoBehaviour
 
     float screenX = 37.25f, screenY = 21.75f;
 
+    Vector2 direction;
+
     void Start()
     {
+        direction = new Vector2(transform.up.x, transform.up.y);
         shootSpeed = bulletSpeed;
         AudioManager.Instance.Play("PlayerShoot");
         anim = GameObject.Find("Anim").GetComponent<Animation>(); ;
@@ -29,7 +32,6 @@ public class Bullet : MonoBehaviour
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         rb = gameObject.GetComponent<Rigidbody2D>();
         transform.rotation = target.rotation;
-
         slowDownSpeed = rotateSpeed;
 
         StartCoroutine(AutoRecall());
@@ -45,7 +47,6 @@ public class Bullet : MonoBehaviour
     {
         if (!isRecalling)
         {
-            Vector2 direction = new Vector2(transform.up.x, transform.up.y);
             rb.velocity = direction * shootSpeed;
             shootSpeed /= 1.02f;
             spriteObj.Rotate(transform.forward * Time.deltaTime * slowDownSpeed);
@@ -68,12 +69,16 @@ public class Bullet : MonoBehaviour
         if (pos.y < -screenY) transform.position = new Vector2(pos.x, screenY);
     }
 
+    public void Bounce(Vector2 enemyNormal)
+    {
+        direction = Vector2.Reflect(direction, enemyNormal);
+    }
+
     IEnumerator AutoRecall()
     {
         yield return new WaitForSeconds(5f);
         if (!isRecalling)
         {
-            rb.velocity = Vector2.zero;
             AudioManager.Instance.Play("PlayerRecall");
             SetIsRecalling(true);
         }

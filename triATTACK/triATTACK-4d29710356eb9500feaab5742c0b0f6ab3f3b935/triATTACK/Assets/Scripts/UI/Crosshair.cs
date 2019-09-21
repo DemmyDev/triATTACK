@@ -34,7 +34,7 @@ public class Crosshair : MonoBehaviour
             }
         }
         // When controller is used, but analog stick is not in use
-        else if (isUsingController)
+        else if (isUsingController && !Player.isDead)
         {
             Vector3 playerOffset = player.position - prevPlayerPos;
             transform.position += playerOffset;

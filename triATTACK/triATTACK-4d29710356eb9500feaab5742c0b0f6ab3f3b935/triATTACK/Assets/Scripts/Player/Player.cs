@@ -19,16 +19,10 @@ public class Player : MonoBehaviour
 
     float screenX = 36.25f, screenY = 20.75f;
 
-    PlayerShooting shooting;
-
     void Start()
     {
-        shooting = GetComponent<PlayerShooting>();
         shake = Camera.main.GetComponent<ScreenShake>();
-        if (shake == null)
-        {
-            Debug.LogError("No camera found for screenshake");
-        }
+        if (shake == null) Debug.LogError("No camera found for screenshake");
     }
 
     void Update()
@@ -42,7 +36,7 @@ public class Player : MonoBehaviour
 
         if (pos.x > screenX)
         {
-            if (!shooting.GetHasShot()) StartCoroutine(ResetTrail());
+            StartCoroutine(ResetTrail());
             transform.position = new Vector2(-screenX, pos.y);
             var inst = Instantiate(screenwrapPrefab, new Vector2(-screenX + 1, pos.y), transform.rotation);
             Destroy(inst, .5f);
@@ -51,7 +45,7 @@ public class Player : MonoBehaviour
 
         if (pos.x < -screenX)
         {
-            if (!shooting.GetHasShot()) StartCoroutine(ResetTrail());
+            StartCoroutine(ResetTrail());
             transform.position = new Vector2(screenX, pos.y);
             var inst = Instantiate(screenwrapPrefab, new Vector2(screenX - 1, pos.y), transform.rotation);
             Destroy(inst, .5f);
@@ -60,7 +54,7 @@ public class Player : MonoBehaviour
 
         if (pos.y > screenY)
         {
-            if (!shooting.GetHasShot()) StartCoroutine(ResetTrail());
+            StartCoroutine(ResetTrail());
             transform.position = new Vector2(pos.x, -screenY);
             var inst = Instantiate(screenwrapPrefab, new Vector2(pos.x, -screenY + .75f), transform.rotation);
             Destroy(inst, .5f);
@@ -69,7 +63,7 @@ public class Player : MonoBehaviour
 
         if (pos.y < -screenY)
         {
-            if (!shooting.GetHasShot()) StartCoroutine(ResetTrail());
+            StartCoroutine(ResetTrail());
             transform.position = new Vector2(pos.x, screenY);
             var inst = Instantiate(screenwrapPrefab, new Vector2(pos.x, screenY - .75f), transform.rotation);
             Destroy(inst, .5f);
