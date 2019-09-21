@@ -16,7 +16,6 @@ public class ScoreText : MonoBehaviour {
         currentScore = 0;
         scoreText = GetComponent<Text>();
         scoreText.text = "tri.score = " + currentScore.ToString() + ";";
-        highScoreText.text = "tri.highScore = " + PlayerPrefs.GetInt("HighScore", 0).ToString() + ";";
 	}
 
     public void SetScore(int addScore)
@@ -39,10 +38,10 @@ public class ScoreText : MonoBehaviour {
 
     public void SetHighScore()
     {
-        if (currentScore > PlayerPrefs.GetInt("HighScore", 0))
+        if (currentScore > ReadWriteSaveManager.Instance.GetData("HighScore", 0))
         {
-            PlayerPrefs.SetInt("HighScore", currentScore);
-            highScoreText.text = "tri.highScore = " + PlayerPrefs.GetInt("HighScore", 0).ToString() + ";";
+            ReadWriteSaveManager.Instance.SetData("HighScore", 0, true);
+            highScoreText.text = "tri.highScore = " + ReadWriteSaveManager.Instance.GetData("HighScore", 0).ToString() + ";";
         }
     }
 }

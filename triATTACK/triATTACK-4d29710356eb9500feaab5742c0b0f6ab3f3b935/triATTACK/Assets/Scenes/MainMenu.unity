@@ -1538,7 +1538,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ce949b2abef1cd48b2b3180da462eef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitParticle: {fileID: 0}
+  hitParticle: {fileID: 4674653849547896, guid: 5d93db66c10c99d4c9ef8d590fa1fa76,
+    type: 2}
 --- !u!61 &1584916112
 BoxCollider2D:
   m_ObjectHideFlags: 0

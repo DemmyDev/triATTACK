@@ -15,7 +15,7 @@ public class BulletSelect : MonoBehaviour {
 
     public void SelectBullet(int bulletNum)
     {
-        PlayerPrefs.SetInt("BulletType", bulletNum);
+        ReadWriteSaveManager.Instance.SetData("BulletType", bulletNum, true);
         CheckUI();
         selectButtons[bulletNum].gameObject.GetComponent<Selector>().DisableCollider();
         startButton.SetActive(true);
@@ -25,7 +25,7 @@ public class BulletSelect : MonoBehaviour {
     {
         for (int i = 0; i < selectButtons.Length; i++)
         {
-            if (i == PlayerPrefs.GetInt("BulletType", 0))
+            if (i == ReadWriteSaveManager.Instance.GetData("BulletType", 0))
             {
                 selectButtons[i].CrossFadeAlpha(.33f, 0, true);
                 selectButtons[i].gameObject.GetComponent<BoxCollider2D>().enabled = false;

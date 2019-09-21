@@ -36,7 +36,7 @@ public class PlayerShooting : MonoBehaviour
         canRecall = false;
         hasShot = false;
         isRecalling = false;
-        bullets = (Bullets)PlayerPrefs.GetInt("BulletType", 0);
+        bullets = (Bullets)ReadWriteSaveManager.Instance.GetData("BulletType", 0);
     }
 
     void Update()
@@ -134,9 +134,9 @@ public class PlayerShooting : MonoBehaviour
         {
             FindObjectOfType<ComboUI>().ResetCounter();
         }
-        else if (bullets != (Bullets)PlayerPrefs.GetInt("BulletType", 0))
+        else if (bullets != (Bullets)ReadWriteSaveManager.Instance.GetData("BulletType", 0))
         {
-            bullets = (Bullets)PlayerPrefs.GetInt("BulletType", 0);
+            bullets = (Bullets)ReadWriteSaveManager.Instance.GetData("BulletType", 0);
         }
     }
 }

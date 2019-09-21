@@ -179,4 +179,33 @@ public class GameMaster : Singleton<GameMaster>
     {
         health = 3;
     }
+
+    #region Achievements
+
+    public void TripleCheck()
+    {
+
+    }
+
+    public void FollowCheck()
+    {
+
+    }
+
+    public void SpongeCheck()
+    {
+
+    }
+
+    public void BounceCheck()
+    {
+
+    }
+
+    public void RapidCheck()
+    {
+
+    }
+
+    #endregion
 }
