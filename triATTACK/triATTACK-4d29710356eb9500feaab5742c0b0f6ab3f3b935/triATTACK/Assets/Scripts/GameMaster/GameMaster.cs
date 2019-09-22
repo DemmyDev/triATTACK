@@ -115,6 +115,11 @@ public class GameMaster : Singleton<GameMaster>
 
         if (playerIsDead)
         {
+            // Achievement checks
+            TripleCheckUnlock();
+            FollowCheckUnlock(scoreText.GetScore());
+            RapidCheckUnlock();
+
             healthUI.DisableUI();
             deathText.EnableText();
             scoreText.MoveText();
@@ -182,29 +187,56 @@ public class GameMaster : Singleton<GameMaster>
 
     #region Achievements
 
-    public void TripleCheck()
+    public void TripleCheckUnlock()
     {
-
+        // Play 3 games to the end
+        if (!ReadWriteSaveManager.Instance.GetData("UnlockedTriple", false))
+        {
+            int games = ReadWriteSaveManager.Instance.GetData("GameCompletions", 0) + 1;
+            ReadWriteSaveManager.Instance.SetData("GameCompletions", games, true);
+             
+            if (ReadWriteSaveManager.Instance.GetData("GameCompletions", 0) > 3) ReadWriteSaveManager.Instance.SetData("UnlockedTriple", true, true);
+        }
     }
 
-    public void FollowCheck()
+    public void FollowCheckUnlock(int score)
     {
-
+        // Score of at least 20,000
+        if (!ReadWriteSaveManager.Instance.GetData("UnlockedFollow", false))
+        {
+            if (score >= 20000) ReadWriteSaveManager.Instance.SetData("UnlockedFollow", true, true);
+        }
     }
 
-    public void SpongeCheck()
+    public void SpongeCheckUnlock(int combo)
     {
-
+        // Get an 8-enemy combo
+        if (!ReadWriteSaveManager.Instance.GetData("UnlockedSponge", false))
+        {
+            if (combo >= 8) ReadWriteSaveManager.Instance.SetData("UnlockedSponge", true, true);
+        }
     }
 
-    public void BounceCheck()
+    public void RapidCheckUnlock()
     {
-
+        // Unlock all other tris
+        if (!ReadWriteSaveManager.Instance.GetData("UnlockedRapid", false))
+        {
+            bool triple = ReadWriteSaveManager.Instance.GetData("UnlockedTriple", false);
+            bool follow = ReadWriteSaveManager.Instance.GetData("UnlockedFollow", false);
+            bool sponge = ReadWriteSaveManager.Instance.GetData("UnlockedSponge", false);
+            bool bounce = ReadWriteSaveManager.Instance.GetData("UnlockedBounce", false);
+            if (triple && follow && sponge && bounce) ReadWriteSaveManager.Instance.SetData("UnlockedRapid", true, true);
+        }
     }
 
-    public void RapidCheck()
+    public void BounceCheckUnlock(bool homing, bool shooting, bool sitting)
     {
-
+        // Defeat each enemy type in one shot
+        if (!ReadWriteSaveManager.Instance.GetData("UnlockedBounce", false))
+        {
+            if (homing && shooting && sitting) ReadWriteSaveManager.Instance.SetData("UnlockedBounce", true, true);
+        }
     }
 
     #endregion

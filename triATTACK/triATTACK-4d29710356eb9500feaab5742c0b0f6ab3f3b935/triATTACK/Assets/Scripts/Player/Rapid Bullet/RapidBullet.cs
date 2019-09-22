@@ -12,7 +12,8 @@ public class RapidBullet : MonoBehaviour
     [SerializeField] int addScoreShootingHit;
     [SerializeField] int addScoreHomingHit;
     [SerializeField] int addScoreSittingHit;
-    int addScoreStacking = 0;
+    int addScoreStacking = 0, comboCounter;
+    bool defeatedHoming = false, defeatedShooting = false, defeatedSitting = false;
 
     [SerializeField] float startFreezeDuration;
     [SerializeField] float addFreezeDuration;
@@ -174,20 +175,27 @@ public class RapidBullet : MonoBehaviour
             scoreText.SetScore(addScoreHomingHit + addScoreStacking);
             comboUI.SetCounter(addScoreHomingHit + addScoreStacking, homing.transform.position);
             homing.DamageEnemy();
+            defeatedHoming = true;
         }
         else if (shooting)
         {
             scoreText.SetScore(addScoreShootingHit + addScoreStacking);
             comboUI.SetCounter(addScoreShootingHit + addScoreStacking, shooting.transform.position);
             shooting.DamageEnemy(bulletPos, bulletRot);
+            defeatedShooting = true;
         }
         else if (sitting)
         {
             scoreText.SetScore(addScoreSittingHit + addScoreStacking);
             comboUI.SetCounter(addScoreSittingHit + addScoreStacking, sitting.transform.position);
             sitting.DamageEnemy(bulletPos, bulletRot);
+            defeatedSitting = true;
         }
 
         addScoreStacking += 100;
+
+        comboCounter++;
+        GameMaster.Instance.SpongeCheckUnlock(comboCounter);
+        GameMaster.Instance.BounceCheckUnlock(defeatedHoming, defeatedShooting, defeatedSitting);
     }
 }

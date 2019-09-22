@@ -18,6 +18,11 @@ public class ScoreText : MonoBehaviour {
         scoreText.text = "tri.score = " + currentScore.ToString() + ";";
 	}
 
+    public int GetScore()
+    {
+        return currentScore;
+    }
+
     public void SetScore(int addScore)
     {
         currentScore = currentScore + addScore;

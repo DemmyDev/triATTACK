@@ -9,7 +9,9 @@ public class BounceCollision : MonoBehaviour
     [SerializeField] int addScoreShootingHit;
     [SerializeField] int addScoreHomingHit;
     [SerializeField] int addScoreSittingHit;
-    int addScoreStacking = 0;
+    int addScoreStacking = 0, comboCounter;
+    bool defeatedHoming = false, defeatedShooting = false, defeatedSitting = false;
+
     [SerializeField] Transform flashObj;
     [SerializeField] float startFreezeDuration;
     float freezeDuration;
@@ -96,21 +98,27 @@ public class BounceCollision : MonoBehaviour
                 scoreText.SetScore(addScoreHomingHit + addScoreStacking);
                 FindObjectOfType<ComboUI>().SetCounter(addScoreHomingHit + addScoreStacking, homingEnemy.transform.position);
                 homingEnemy.DamageEnemy();
+                defeatedHoming = true;
             }
             else if (shootingEnemy)
             {
                 scoreText.SetScore(addScoreShootingHit + addScoreStacking);
                 FindObjectOfType<ComboUI>().SetCounter(addScoreShootingHit + addScoreStacking, shootingEnemy.transform.position);
                 shootingEnemy.DamageEnemy(bulletPos, bulletRot);
+                defeatedShooting = true;
             }
             else if (sittingEnemy)
             {
                 scoreText.SetScore(addScoreSittingHit + addScoreStacking);
                 FindObjectOfType<ComboUI>().SetCounter(addScoreSittingHit + addScoreStacking, sittingEnemy.transform.position);
                 sittingEnemy.DamageEnemy(bulletPos, bulletRot);
+                defeatedSitting = true;
             }
 
             addScoreStacking += 100;
+            comboCounter++;
+            GameMaster.Instance.SpongeCheckUnlock(comboCounter);
+            GameMaster.Instance.BounceCheckUnlock(defeatedHoming, defeatedShooting, defeatedSitting);
         }
 
         if (other.CompareTag("Player"))
