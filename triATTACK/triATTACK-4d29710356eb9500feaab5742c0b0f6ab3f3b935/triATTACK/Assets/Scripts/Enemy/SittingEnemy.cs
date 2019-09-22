@@ -110,7 +110,7 @@ public class SittingEnemy : MonoBehaviour
         }
     }
 
-    public void DamageEnemy(Vector3 bulletPos, Quaternion bulletRot)
+    public void DamageEnemy()
     {
         Instantiate(sittingParticlePrefab, gameObject.transform.position, gameObject.transform.rotation);
         shake.Shake(shakeDuration, shakeIntensity);

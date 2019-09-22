@@ -43,8 +43,8 @@ public class HomingEnemy : MonoBehaviour
     public void DamageEnemy()
     {
         Instantiate(homingParticlePrefab, gameObject.transform.position, gameObject.transform.rotation);
-        Destroy(gameObject);
         shake.Shake(shakeDuration, shakeIntensity);
+        Destroy(gameObject);
     }
 
     void OnTriggerEnter2D(Collider2D other)

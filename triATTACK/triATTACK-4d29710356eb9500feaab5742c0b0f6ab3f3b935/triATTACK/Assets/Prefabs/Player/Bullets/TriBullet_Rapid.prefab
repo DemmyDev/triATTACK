@@ -596,6 +596,7 @@ MonoBehaviour:
   addScoreShootingHit: 300
   addScoreHomingHit: 200
   addScoreSittingHit: 400
+  addScoreDashingHit: 300
   startFreezeDuration: 0.05
   addFreezeDuration: 0.025
   flashObj: {fileID: 4674653849547896, guid: 5d93db66c10c99d4c9ef8d590fa1fa76, type: 2}

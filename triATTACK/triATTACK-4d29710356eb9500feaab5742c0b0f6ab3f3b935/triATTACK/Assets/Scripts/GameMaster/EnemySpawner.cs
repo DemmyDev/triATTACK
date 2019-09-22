@@ -11,6 +11,7 @@ public class EnemySpawner : MonoBehaviour {
     float timeBtwSpawns; // Allows time between enemy spawns to be reset
     [SerializeField] float shootingEnemySpawnTime;
     [SerializeField] float sittingEnemySpawnTime;
+    [SerializeField] float dashingEnemySpawnTime;
     float playTime;
     bool isSpawning = false;
 
@@ -35,14 +36,20 @@ public class EnemySpawner : MonoBehaviour {
     public void SpawnEnemy()
     {
         int randomInt = Random.Range(1, 101); // Chooses random integer for enemy array
-        if (randomInt > 70 && playTime > sittingEnemySpawnTime)
-        {
+        if (randomInt > 75 && playTime > sittingEnemySpawnTime)
+        {            
             // Sitting enemy
             Vector2 spawnPos = new Vector2(Random.Range(-20f, 20f), Random.Range(-10f, 10f));
             var inst = Instantiate(enemy[1], spawnPos, Quaternion.identity);
             inst.transform.eulerAngles = new Vector3(0f, 0f, 45f);
         }
-        else if (randomInt > 40 && playTime > shootingEnemySpawnTime)
+        else if (randomInt > 50 && playTime > dashingEnemySpawnTime)
+        {
+            // Dashing enemy
+            Vector2 spawnPos = new Vector2(Random.Range(-34f, 34f), Random.Range(-18.5f, 18.5f));
+            Instantiate(enemy[3], spawnPos, Quaternion.identity);
+        }
+        else if (randomInt > 25 && playTime > shootingEnemySpawnTime)
         {
             // Shooting enemy
             Vector2 spawnPos = new Vector2(Random.Range(-34f, 34f), Random.Range(-18.5f, 18.5f));

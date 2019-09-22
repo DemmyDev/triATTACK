@@ -110,10 +110,10 @@ public class ShootingEnemy : MonoBehaviour
         rateOfFire = startRateOfFire;
     }
 
-    public void DamageEnemy(Vector3 bulletPos, Quaternion bulletRot)
+    public void DamageEnemy()
     {
         Instantiate(deathParticlePrefab, gameObject.transform.position, gameObject.transform.rotation);
-        Destroy(gameObject);
         shake.Shake(shakeDuration, shakeIntensity);
+        Destroy(gameObject);
     }
 }

@@ -230,12 +230,12 @@ public class GameMaster : Singleton<GameMaster>
         }
     }
 
-    public void BounceCheckUnlock(bool homing, bool shooting, bool sitting)
+    public void BounceCheckUnlock(bool homing, bool shooting, bool sitting, bool dashing)
     {
         // Defeat each enemy type in one shot
         if (!ReadWriteSaveManager.Instance.GetData("UnlockedBounce", false))
         {
-            if (homing && shooting && sitting) ReadWriteSaveManager.Instance.SetData("UnlockedBounce", true, true);
+            if (homing && shooting && sitting && dashing) ReadWriteSaveManager.Instance.SetData("UnlockedBounce", true, true);
         }
     }
 

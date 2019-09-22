@@ -12,8 +12,9 @@ public class RapidBullet : MonoBehaviour
     [SerializeField] int addScoreShootingHit;
     [SerializeField] int addScoreHomingHit;
     [SerializeField] int addScoreSittingHit;
+    [SerializeField] int addScoreDashingHit;
     int addScoreStacking = 0, comboCounter;
-    bool defeatedHoming = false, defeatedShooting = false, defeatedSitting = false;
+    bool defeatedHoming = false, defeatedShooting = false, defeatedSitting = false, defeatedDashing = false;
 
     [SerializeField] float startFreezeDuration;
     [SerializeField] float addFreezeDuration;
@@ -169,6 +170,7 @@ public class RapidBullet : MonoBehaviour
         HomingEnemy homing = enemy.GetComponent<HomingEnemy>();
         ShootingEnemy shooting = enemy.GetComponent<ShootingEnemy>();
         SittingEnemy sitting = enemy.GetComponent<SittingEnemy>();
+        DashingEnemy dashing = enemy.GetComponent<DashingEnemy>();
 
         if (homing)
         {
@@ -181,21 +183,29 @@ public class RapidBullet : MonoBehaviour
         {
             scoreText.SetScore(addScoreShootingHit + addScoreStacking);
             comboUI.SetCounter(addScoreShootingHit + addScoreStacking, shooting.transform.position);
-            shooting.DamageEnemy(bulletPos, bulletRot);
+            shooting.DamageEnemy();
             defeatedShooting = true;
         }
         else if (sitting)
         {
             scoreText.SetScore(addScoreSittingHit + addScoreStacking);
             comboUI.SetCounter(addScoreSittingHit + addScoreStacking, sitting.transform.position);
-            sitting.DamageEnemy(bulletPos, bulletRot);
+            sitting.DamageEnemy();
             defeatedSitting = true;
+        }
+        else if (dashing)
+        {
+            int dashingAdd = dashing.GetAddScore();
+            scoreText.SetScore(addScoreDashingHit + addScoreStacking + dashingAdd);
+            comboUI.SetCounter(addScoreDashingHit + addScoreStacking + dashingAdd, dashing.transform.position);
+            dashing.DamageEnemy();
+            defeatedDashing = true;
         }
 
         addScoreStacking += 100;
 
         comboCounter++;
         GameMaster.Instance.SpongeCheckUnlock(comboCounter);
-        GameMaster.Instance.BounceCheckUnlock(defeatedHoming, defeatedShooting, defeatedSitting);
+        GameMaster.Instance.BounceCheckUnlock(defeatedHoming, defeatedShooting, defeatedSitting, defeatedDashing);
     }
 }
