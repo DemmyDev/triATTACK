@@ -26,7 +26,7 @@ public class ReadWriteSaveManager : Singleton<ReadWriteSaveManager>
 
     private void Awake()
     {
-        path = Application.persistentDataPath + "/data/" + fileName + ".dat";
+        path = Application.persistentDataPath + "/" + fileName + ".dat";
 
         Read();
     }
@@ -38,10 +38,6 @@ public class ReadWriteSaveManager : Singleton<ReadWriteSaveManager>
     public void Write()
     {
         BinaryFormatter binaryFormatter = new BinaryFormatter();
-
-        if (!File.Exists(path))
-            Directory.CreateDirectory(Application.persistentDataPath + "/data/");
-
         FileStream fileStream = File.Create(path);
 
         ListToArray();
