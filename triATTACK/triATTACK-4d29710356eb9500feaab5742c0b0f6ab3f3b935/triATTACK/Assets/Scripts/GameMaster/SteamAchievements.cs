@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Steamworks;
 
-public class SteamAchievements : MonoBehaviour
+public class SteamAchievements : Singleton<SteamAchievements>
 {
     protected Callback<GameOverlayActivated_t> GameOverlayActivated;
     private static bool unlockTest = false;
