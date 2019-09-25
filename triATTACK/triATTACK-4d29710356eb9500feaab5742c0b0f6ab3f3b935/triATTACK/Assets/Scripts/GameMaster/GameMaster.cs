@@ -60,7 +60,7 @@ public class GameMaster : Singleton<GameMaster>
                 enemy.GetComponent<HomingEnemy>().enabled = false;
                 enemy.GetComponent<CapsuleCollider2D>().enabled = false;
             }
-            else if(enemy.name == "ShootingEnemy(Clone)")
+            else if (enemy.name == "ShootingEnemy(Clone)")
             {
                 enemy.GetComponent<ShootingEnemy>().enabled = false;
                 enemy.GetComponent<PolygonCollider2D>().enabled = false;
@@ -194,8 +194,12 @@ public class GameMaster : Singleton<GameMaster>
         {
             int games = ReadWriteSaveManager.Instance.GetData("GameCompletions", 0) + 1;
             ReadWriteSaveManager.Instance.SetData("GameCompletions", games, true);
-             
-            if (ReadWriteSaveManager.Instance.GetData("GameCompletions", 0) > 3) ReadWriteSaveManager.Instance.SetData("UnlockedTriple", true, true);
+
+            if (ReadWriteSaveManager.Instance.GetData("GameCompletions", 0) > 3)
+            {
+                ReadWriteSaveManager.Instance.SetData("UnlockedTriple", true, true);
+                SteamAchievements.UnlockAchievement("TRIPLE_UNLOCK");
+            }
         }
     }
 
@@ -204,7 +208,11 @@ public class GameMaster : Singleton<GameMaster>
         // Score of at least 20,000
         if (!ReadWriteSaveManager.Instance.GetData("UnlockedFollow", false))
         {
-            if (score >= 20000) ReadWriteSaveManager.Instance.SetData("UnlockedFollow", true, true);
+            if (score >= 20000)
+            {
+                ReadWriteSaveManager.Instance.SetData("UnlockedFollow", true, true);
+                SteamAchievements.UnlockAchievement("FOLLOW_UNLOCK");
+            }
         }
     }
 
@@ -213,7 +221,11 @@ public class GameMaster : Singleton<GameMaster>
         // Get an 8-enemy combo
         if (!ReadWriteSaveManager.Instance.GetData("UnlockedSponge", false))
         {
-            if (combo >= 8) ReadWriteSaveManager.Instance.SetData("UnlockedSponge", true, true);
+            if (combo >= 8)
+            {
+                ReadWriteSaveManager.Instance.SetData("UnlockedSponge", true, true);
+                SteamAchievements.UnlockAchievement("SPONGE_UNLOCK");
+            }
         }
     }
 
@@ -226,7 +238,11 @@ public class GameMaster : Singleton<GameMaster>
             bool follow = ReadWriteSaveManager.Instance.GetData("UnlockedFollow", false);
             bool sponge = ReadWriteSaveManager.Instance.GetData("UnlockedSponge", false);
             bool bounce = ReadWriteSaveManager.Instance.GetData("UnlockedBounce", false);
-            if (triple && follow && sponge && bounce) ReadWriteSaveManager.Instance.SetData("UnlockedRapid", true, true);
+            if (triple && follow && sponge && bounce)
+            {
+                ReadWriteSaveManager.Instance.SetData("UnlockedRapid", true, true);
+                SteamAchievements.UnlockAchievement("RAPID_UNLOCK");
+            }
         }
     }
 
@@ -235,7 +251,11 @@ public class GameMaster : Singleton<GameMaster>
         // Defeat each enemy type in one shot
         if (!ReadWriteSaveManager.Instance.GetData("UnlockedBounce", false))
         {
-            if (homing && shooting && sitting && dashing) ReadWriteSaveManager.Instance.SetData("UnlockedBounce", true, true);
+            if (homing && shooting && sitting && dashing)
+            {
+                ReadWriteSaveManager.Instance.SetData("UnlockedBounce", true, true);
+                SteamAchievements.UnlockAchievement("BOUNCE_UNLOCK");
+            }
         }
     }
 
