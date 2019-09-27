@@ -8,6 +8,7 @@ public class RapidBullet : MonoBehaviour
     [HideInInspector] public bool isRecalling;
     [SerializeField] List<RapidCollision> bullets;
     int recalledBullets = 0;
+    int comboScore = 0;
 
     [SerializeField] int addScoreShootingHit;
     [SerializeField] int addScoreHomingHit;
@@ -176,6 +177,7 @@ public class RapidBullet : MonoBehaviour
         {
             scoreText.SetScore(addScoreHomingHit + addScoreStacking);
             comboUI.SetCounter(addScoreHomingHit + addScoreStacking, homing.transform.position);
+            comboScore += addScoreHomingHit + addScoreStacking;
             homing.DamageEnemy();
             defeatedHoming = true;
         }
@@ -183,6 +185,7 @@ public class RapidBullet : MonoBehaviour
         {
             scoreText.SetScore(addScoreShootingHit + addScoreStacking);
             comboUI.SetCounter(addScoreShootingHit + addScoreStacking, shooting.transform.position);
+            comboScore += addScoreShootingHit + addScoreStacking;
             shooting.DamageEnemy();
             defeatedShooting = true;
         }
@@ -190,6 +193,7 @@ public class RapidBullet : MonoBehaviour
         {
             scoreText.SetScore(addScoreSittingHit + addScoreStacking);
             comboUI.SetCounter(addScoreSittingHit + addScoreStacking, sitting.transform.position);
+            comboScore += addScoreSittingHit + addScoreStacking;
             sitting.DamageEnemy();
             defeatedSitting = true;
         }
@@ -198,6 +202,7 @@ public class RapidBullet : MonoBehaviour
             int dashingAdd = dashing.GetAddScore();
             scoreText.SetScore(addScoreDashingHit + addScoreStacking + dashingAdd);
             comboUI.SetCounter(addScoreDashingHit + addScoreStacking + dashingAdd, dashing.transform.position);
+            comboScore += addScoreDashingHit + addScoreStacking + dashingAdd;
             dashing.DamageEnemy();
             defeatedDashing = true;
         }
@@ -207,5 +212,6 @@ public class RapidBullet : MonoBehaviour
         comboCounter++;
         GameMaster.Instance.SpongeCheckUnlock(comboCounter);
         GameMaster.Instance.BounceCheckUnlock(defeatedHoming, defeatedShooting, defeatedSitting, defeatedDashing);
+        GameMaster.Instance.StackedCheck(comboScore);
     }
 }

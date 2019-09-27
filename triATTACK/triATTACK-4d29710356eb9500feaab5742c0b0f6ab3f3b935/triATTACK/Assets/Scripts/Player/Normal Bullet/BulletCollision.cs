@@ -12,6 +12,7 @@ public class BulletCollision : MonoBehaviour
     [SerializeField] int addScoreDashingHit;
     int addScoreStacking = 0, comboCounter;
     bool defeatedHoming = false, defeatedShooting = false, defeatedSitting = false, defeatedDashing = false;
+    int recallCounter;
 
     [SerializeField] Transform flashObj;
     [SerializeField] float startFreezeDuration;
@@ -121,10 +122,13 @@ public class BulletCollision : MonoBehaviour
                 defeatedDashing = true;
             }
 
+            if (parentBul.GetIsRecalling()) recallCounter++;
+
             addScoreStacking += 100;
             comboCounter++;
             GameMaster.Instance.SpongeCheckUnlock(comboCounter);
             GameMaster.Instance.BounceCheckUnlock(defeatedHoming, defeatedShooting, defeatedSitting, defeatedDashing);
+            GameMaster.Instance.HeaveCheck(recallCounter);
         }
 
         if (other.CompareTag("Player"))

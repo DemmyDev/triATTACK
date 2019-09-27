@@ -32,8 +32,11 @@ public class SpongeCollision : MonoBehaviour
     [SerializeField] float scaleModifier;
     ComboUI comboUI;
 
+    float achieveSizeX;
+
     void Start()
     {
+        achieveSizeX = transform.localScale.x * 2;
         shake = Camera.main.GetComponent<ScreenShake>();
         parentBul = transform.parent.GetComponent<SpongeBullet>();
         freezeDuration = startFreezeDuration;
@@ -66,6 +69,7 @@ public class SpongeCollision : MonoBehaviour
     void IncreaseScale()
     {
         transform.localScale = new Vector2(transform.localScale.x + scaleModifier, transform.localScale.y + scaleModifier);
+        GameMaster.Instance.GiantCheck(achieveSizeX, transform.localScale.x);
     }
 
     void OnTriggerEnter2D(Collider2D other)

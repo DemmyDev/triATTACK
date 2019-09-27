@@ -10,6 +10,7 @@ public class TripleCollision : MonoBehaviour {
     float slowDownDivider = 1.01f;
     [HideInInspector] public float slowDownSpeed;
     [HideInInspector] public Rigidbody2D rb;
+    bool hitEnemy = false;
 
     float screenX = 36.25f, screenY = 20.9f;
 
@@ -73,6 +74,12 @@ public class TripleCollision : MonoBehaviour {
     {
         if (other.CompareTag("Enemy"))
         {
+            if (!hitEnemy)
+            {
+                hitEnemy = true;
+                parentBul.TrackTripleHits();
+            }
+
             parentBul.EnemyHit(other.gameObject, transform.position, transform.rotation);
         }
 

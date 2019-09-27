@@ -9,6 +9,8 @@ public class TripleBullet : MonoBehaviour {
     [SerializeField] List<TripleCollision> bullets;
     int recalledBullets = 0;
 
+    int hitTris;
+
     [SerializeField] int addScoreShootingHit;
     [SerializeField] int addScoreHomingHit;
     [SerializeField] int addScoreSittingHit;
@@ -118,6 +120,12 @@ public class TripleBullet : MonoBehaviour {
             FindObjectOfType<AudioManager>().Play("PlayerRecall");
             SetIsRecalling(true);
         }
+    }
+
+    public void TrackTripleHits()
+    {
+        hitTris++;
+        GameMaster.Instance.SpreadCheck(hitTris);
     }
 
     public void EnemyHit(GameObject enemy, Vector3 bulletPos, Quaternion bulletRot)

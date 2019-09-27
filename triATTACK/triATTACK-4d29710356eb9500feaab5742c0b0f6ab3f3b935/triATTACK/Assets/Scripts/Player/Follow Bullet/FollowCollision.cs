@@ -125,6 +125,7 @@ public class FollowCollision : MonoBehaviour
             comboCounter++;
             GameMaster.Instance.SpongeCheckUnlock(comboCounter);
             GameMaster.Instance.BounceCheckUnlock(defeatedHoming, defeatedShooting, defeatedSitting, defeatedDashing);
+            GameMaster.Instance.HomingCheck(comboCounter);
         }
 
         if (other.CompareTag("Player"))

@@ -131,6 +131,7 @@ public class BounceCollision : MonoBehaviour
             comboCounter++;
             GameMaster.Instance.SpongeCheckUnlock(comboCounter);
             GameMaster.Instance.BounceCheckUnlock(defeatedHoming, defeatedShooting, defeatedSitting, defeatedDashing);
+            GameMaster.Instance.RicochetCheck(comboCounter);
         }
 
         if (other.CompareTag("Player"))
