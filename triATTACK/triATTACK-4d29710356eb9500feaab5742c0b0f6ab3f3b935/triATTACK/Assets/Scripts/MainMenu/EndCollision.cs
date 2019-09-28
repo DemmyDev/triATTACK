@@ -20,7 +20,7 @@ public class EndCollision : MonoBehaviour
     {
         if (other.CompareTag("TriBullet"))
         {
-            FindObjectOfType<AudioManager>().Play("TextEnter");
+            AudioManager.Instance.Play("TextEnter");
             playText.CrossFadeAlpha(2f, 0f, true);
             col.enabled = false;
             mainMenu.QuitGame();
