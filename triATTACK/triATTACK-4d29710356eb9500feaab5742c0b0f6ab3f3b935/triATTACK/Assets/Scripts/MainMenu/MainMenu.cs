@@ -10,6 +10,8 @@ public class MainMenu: MonoBehaviour {
 
     void Start()
     {
+        ReadWriteSaveManager.Instance.SetData("BulletType", 0, true);
+        AudioManager.Instance.Play("MusicMenu");
         anim = fadeObj.GetComponent<Animation>();
         if (wipeData) ReadWriteSaveManager.Instance.Wipe();
     }
@@ -35,6 +37,7 @@ public class MainMenu: MonoBehaviour {
 
     public void LoadGame()
     {
+        AudioManager.Instance.Stop("MusicMenu");
         anim.Stop();
         LoadingManager.Instance.LoadScene("tri.Attack", gameObject.scene);
     }

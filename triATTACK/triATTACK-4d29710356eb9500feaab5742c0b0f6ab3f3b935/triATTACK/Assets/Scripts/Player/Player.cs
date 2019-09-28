@@ -7,8 +7,6 @@ public class Player : MonoBehaviour
     [SerializeField] Transform playerParticlePrefab;
     [SerializeField] GameObject screenwrapPrefab;
 
-    [SerializeField] int health;
-
     [Range(0f, 2f)]
     [SerializeField] float shakeIntensity;
     ScreenShake shake;
@@ -88,8 +86,6 @@ public class Player : MonoBehaviour
 
     public void DamagePlayer()
     {
-        health -= 1;
-
         Instantiate(playerParticlePrefab, gameObject.transform.position, gameObject.transform.rotation);
         shake.Shake(shakeDuration, shakeIntensity);
         AudioManager.Instance.Play("PlayerHit");

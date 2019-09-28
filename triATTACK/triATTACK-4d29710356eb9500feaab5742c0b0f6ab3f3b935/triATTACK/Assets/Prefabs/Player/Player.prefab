@@ -279,7 +279,7 @@ MonoBehaviour:
   recallSprite: {fileID: 21300000, guid: 8a1c849175ddc104fb7ec6222a6ec4da, type: 3}
   isRecalling: 0
   canRecall: 0
-  enableDevInput: 1
+  enableDevInput: 0
 --- !u!114 &114777091590867534
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -295,7 +295,6 @@ MonoBehaviour:
     type: 2}
   screenwrapPrefab: {fileID: 1465723098868408, guid: 5948bc12f585b1945b4fb60d32796f87,
     type: 2}
-  health: 3
   shakeIntensity: 0.5
   shakeDuration: 0.25
   trail: {fileID: 96867956274622118}

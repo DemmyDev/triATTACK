@@ -47,6 +47,7 @@ public class GameMaster : Singleton<GameMaster>
 
     public void RestartScene()
     {
+        AudioManager.Instance.Stop("MusicGame");
         LoadingManager.Instance.LoadScene("tri.Attack", gameObject.scene);
     }
 
@@ -88,11 +89,29 @@ public class GameMaster : Singleton<GameMaster>
     {
         EnemySpawner.spawner.SetIsSpawning(false);
 
+        if (playerIsDead)
+        {
+            AudioManager.Instance.Stop("MusicGame");
+            // Achievement checks
+            TripleCheckUnlock();
+            FollowCheckUnlock(scoreText.GetScore());
+            RapidCheckUnlock();
+
+            healthUI.DisableUI();
+            deathText.EnableText();
+            scoreText.MoveText();
+            scoreText.SetHighScore();
+            ReadWriteSaveManager.Instance.SetData("PlayedOnce", true, true);
+        }
+
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
-        foreach (GameObject enemy in enemies) Destroy(enemy);
+        foreach (GameObject enemy in enemies) if (enemy != null) Destroy(enemy);
 
         GameObject[] bullets = GameObject.FindGameObjectsWithTag("Bullet");
-        foreach (GameObject bullet in bullets) Destroy(bullet);
+        foreach (GameObject bullet in bullets) if (bullet != null) Destroy(bullet);
+
+        SpawningObject[] spawningObjects = FindObjectsOfType<SpawningObject>();
+        foreach (SpawningObject spawningObj in spawningObjects) if (spawningObj != null) Destroy(spawningObj.gameObject);
 
         Bullet triBullet = FindObjectOfType<Bullet>();
         if (triBullet != null) Destroy(triBullet.gameObject);
@@ -110,24 +129,7 @@ public class GameMaster : Singleton<GameMaster>
         if (rapidBullet != null) Destroy(rapidBullet.gameObject);
 
         BounceBullet bounceBullet = FindObjectOfType<BounceBullet>();
-        if (bounceBullet != null) Destroy(rapidBullet.gameObject);
-
-        SpawningObject[] spawningObjects = FindObjectsOfType<SpawningObject>();
-        foreach (SpawningObject spawningObj in spawningObjects) Destroy(spawningObj.gameObject);
-
-        if (playerIsDead)
-        {
-            // Achievement checks
-            TripleCheckUnlock();
-            FollowCheckUnlock(scoreText.GetScore());
-            RapidCheckUnlock();
-
-            healthUI.DisableUI();
-            deathText.EnableText();
-            scoreText.MoveText();
-            scoreText.SetHighScore();
-            ReadWriteSaveManager.Instance.SetData("PlayedOnce", true, true);
-        }
+        if (bounceBullet != null) Destroy(bounceBullet.gameObject);
     }
 
     public void ChangeBackColor(float colorNum)

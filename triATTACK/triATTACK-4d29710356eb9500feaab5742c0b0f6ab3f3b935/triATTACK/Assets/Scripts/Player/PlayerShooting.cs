@@ -37,7 +37,6 @@ public class PlayerShooting : MonoBehaviour
         canRecall = false;
         hasShot = false;
         isRecalling = false;
-        if (SceneManager.GetActiveScene().name == "MainMenu") ReadWriteSaveManager.Instance.SetData("BulletType", 0, true);
         bullets = (Bullets)ReadWriteSaveManager.Instance.GetData("BulletType", 0);
     }
 
@@ -51,7 +50,8 @@ public class PlayerShooting : MonoBehaviour
                 Shoot();
                 hasShot = true;
                 canShoot = false;
-                Invoke("CanRecall", .33f);
+                if (bullets == (Bullets)4) Invoke("CanRecall", .5f);
+                else Invoke("CanRecall", .33f);
             }
             else if (!isRecalling && hasShot && canRecall && (Input.GetButtonDown("Shoot") || Input.GetAxis("ControlShoot") != 0))
             {
