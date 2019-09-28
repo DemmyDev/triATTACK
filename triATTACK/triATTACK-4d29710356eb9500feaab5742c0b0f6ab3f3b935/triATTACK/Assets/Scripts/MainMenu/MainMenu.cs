@@ -5,11 +5,13 @@ using UnityEngine;
 public class MainMenu: MonoBehaviour {
 
     [SerializeField] GameObject fadeObj;
+    [SerializeField] bool wipeData;
     Animation anim;
 
     void Start()
     {
         anim = fadeObj.GetComponent<Animation>();
+        if (wipeData) ReadWriteSaveManager.Instance.Wipe();
     }
 
     public void StartGame()

@@ -25,6 +25,7 @@ public class PlayerShooting : MonoBehaviour
 
     bool canShoot, hasShot;
     [HideInInspector] public bool isRecalling, canRecall;
+    [SerializeField] bool enableDevInput;
 
     void Start()
     {
@@ -36,6 +37,7 @@ public class PlayerShooting : MonoBehaviour
         canRecall = false;
         hasShot = false;
         isRecalling = false;
+        if (SceneManager.GetActiveScene().name == "MainMenu") ReadWriteSaveManager.Instance.SetData("BulletType", 0, true);
         bullets = (Bullets)ReadWriteSaveManager.Instance.GetData("BulletType", 0);
     }
 
@@ -58,6 +60,17 @@ public class PlayerShooting : MonoBehaviour
                 canRecall = false;
                 isRecalling = true;
             }
+        }
+
+        // Dev inputs for setting bullet types
+        if (enableDevInput)
+        {
+            if (Input.GetKeyDown(KeyCode.Alpha0)) ReadWriteSaveManager.Instance.SetData("BulletType", 0, true); // Set default
+            if (Input.GetKeyDown(KeyCode.Alpha1)) ReadWriteSaveManager.Instance.SetData("BulletType", 1, true); // Set triple
+            if (Input.GetKeyDown(KeyCode.Alpha2)) ReadWriteSaveManager.Instance.SetData("BulletType", 2, true); // Set follow
+            if (Input.GetKeyDown(KeyCode.Alpha3)) ReadWriteSaveManager.Instance.SetData("BulletType", 3, true); // Set sponge
+            if (Input.GetKeyDown(KeyCode.Alpha4)) ReadWriteSaveManager.Instance.SetData("BulletType", 4, true); // Set rapid
+            if (Input.GetKeyDown(KeyCode.Alpha5)) ReadWriteSaveManager.Instance.SetData("BulletType", 5, true); // Set bounce
         }
     }
 

@@ -279,6 +279,7 @@ MonoBehaviour:
   recallSprite: {fileID: 21300000, guid: 8a1c849175ddc104fb7ec6222a6ec4da, type: 3}
   isRecalling: 0
   canRecall: 0
+  enableDevInput: 1
 --- !u!114 &114777091590867534
 MonoBehaviour:
   m_ObjectHideFlags: 1

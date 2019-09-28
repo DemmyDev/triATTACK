@@ -1342,9 +1342,9 @@ MonoBehaviour:
   - {fileID: 1294183768238216, guid: a255fa32be018454a9f97c4a55ddb2b2, type: 2}
   - {fileID: 1518102641196994, guid: b870e8cddec68d64595ebef7451d5505, type: 2}
   startTimeBtwSpawns: 2
-  shootingEnemySpawnTime: 15
-  sittingEnemySpawnTime: 45
-  dashingEnemySpawnTime: 30
+  shootingEnemySpawnTime: 20
+  sittingEnemySpawnTime: 60
+  dashingEnemySpawnTime: 40
 --- !u!4 &919015923
 Transform:
   m_ObjectHideFlags: 0

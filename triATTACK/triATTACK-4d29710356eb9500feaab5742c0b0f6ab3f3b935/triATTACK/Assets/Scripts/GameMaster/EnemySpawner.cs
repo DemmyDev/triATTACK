@@ -35,21 +35,27 @@ public class EnemySpawner : MonoBehaviour {
 
     public void SpawnEnemy()
     {
-        int randomInt = Random.Range(1, 101); // Chooses random integer for enemy array
-        if (randomInt > 75 && playTime > sittingEnemySpawnTime)
+        // Chooses random int in array, limited based on play time
+        int randomInt = 0;
+        if (playTime > sittingEnemySpawnTime) randomInt = Random.Range(1, 101); // Homing, Shooting, Dashing, or Sitting
+        else if (playTime > dashingEnemySpawnTime) randomInt = Random.Range(1, 86); // Homing, Shooting, or Dashing
+        else if (playTime > shootingEnemySpawnTime) randomInt = Random.Range(1, 71); // Homing or Shooting
+        else randomInt = Random.Range(1, 2); // Homing guaranteed
+
+        if (randomInt > 85 && playTime > sittingEnemySpawnTime)
         {            
             // Sitting enemy
             Vector2 spawnPos = new Vector2(Random.Range(-20f, 20f), Random.Range(-10f, 10f));
             var inst = Instantiate(enemy[1], spawnPos, Quaternion.identity);
             inst.transform.eulerAngles = new Vector3(0f, 0f, 45f);
         }
-        else if (randomInt > 50 && playTime > dashingEnemySpawnTime)
+        else if (randomInt > 70 && playTime > dashingEnemySpawnTime)
         {
             // Dashing enemy
             Vector2 spawnPos = new Vector2(Random.Range(-34f, 34f), Random.Range(-18.5f, 18.5f));
             Instantiate(enemy[3], spawnPos, Quaternion.identity);
         }
-        else if (randomInt > 25 && playTime > shootingEnemySpawnTime)
+        else if (randomInt > 35 && playTime > shootingEnemySpawnTime)
         {
             // Shooting enemy
             Vector2 spawnPos = new Vector2(Random.Range(-34f, 34f), Random.Range(-18.5f, 18.5f));

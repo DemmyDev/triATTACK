@@ -8,6 +8,7 @@ public class GameMaster : Singleton<GameMaster>
 {
     [SerializeField] Transform player;
     [SerializeField] int health;
+    [SerializeField] bool steamBuild;
     HealthUI healthUI;
     DeathText deathText;
     ScoreText scoreText;
@@ -125,6 +126,7 @@ public class GameMaster : Singleton<GameMaster>
             deathText.EnableText();
             scoreText.MoveText();
             scoreText.SetHighScore();
+            ReadWriteSaveManager.Instance.SetData("PlayedOnce", true, true);
         }
     }
 
@@ -200,15 +202,15 @@ public class GameMaster : Singleton<GameMaster>
             if (games > 3)
             {
                 ReadWriteSaveManager.Instance.SetData("UnlockedTriple", true, true);
-                SteamAchievements.UnlockAchievement("TRIPLE_UNLOCK");
+                if (steamBuild) SteamAchievements.UnlockAchievement("TRIPLE_UNLOCK");
             }
         }
 
         // Play 50 games to the end
-        if (games > 50) SteamAchievements.UnlockAchievement("TRI_ADDICT");
+        if (games > 50 && steamBuild) SteamAchievements.UnlockAchievement("TRI_ADDICT");
 
         // Play 100 games to the end
-        if (games > 100) SteamAchievements.UnlockAchievement("TRI_FOREVER");
+        if (games > 100 && steamBuild) SteamAchievements.UnlockAchievement("TRI_FOREVER");
     }
 
     public void FollowCheckUnlock(int score)
@@ -219,15 +221,15 @@ public class GameMaster : Singleton<GameMaster>
             if (score >= 20000)
             {
                 ReadWriteSaveManager.Instance.SetData("UnlockedFollow", true, true);
-                SteamAchievements.UnlockAchievement("FOLLOW_UNLOCK");
+                if (steamBuild) SteamAchievements.UnlockAchievement("FOLLOW_UNLOCK");
             }
         }
 
         // Score of at least 50,000
-        if (score >= 50000) SteamAchievements.UnlockAchievement("TRI_MASTER");
+        if (score >= 50000 && steamBuild) SteamAchievements.UnlockAchievement("TRI_MASTER");
 
         // Score of at least 100,000
-        if (score >= 100000) SteamAchievements.UnlockAchievement("TRI_LEGEND");
+        if (score >= 100000 && steamBuild) SteamAchievements.UnlockAchievement("TRI_LEGEND");
     }
 
     public void SpongeCheckUnlock(int combo)
@@ -238,7 +240,7 @@ public class GameMaster : Singleton<GameMaster>
             if (combo >= 6)
             {
                 ReadWriteSaveManager.Instance.SetData("UnlockedSponge", true, true);
-                SteamAchievements.UnlockAchievement("SPONGE_UNLOCK");
+                if (steamBuild) SteamAchievements.UnlockAchievement("SPONGE_UNLOCK");
             }
         }
     }
@@ -255,7 +257,7 @@ public class GameMaster : Singleton<GameMaster>
             if (triple && follow && sponge && bounce)
             {
                 ReadWriteSaveManager.Instance.SetData("UnlockedRapid", true, true);
-                SteamAchievements.UnlockAchievement("RAPID_UNLOCK");
+                if (steamBuild) SteamAchievements.UnlockAchievement("RAPID_UNLOCK");
             }
         }
     }
@@ -268,39 +270,39 @@ public class GameMaster : Singleton<GameMaster>
             if (homing && shooting && sitting && dashing)
             {
                 ReadWriteSaveManager.Instance.SetData("UnlockedBounce", true, true);
-                SteamAchievements.UnlockAchievement("BOUNCE_UNLOCK");
+                if (steamBuild) SteamAchievements.UnlockAchievement("BOUNCE_UNLOCK");
             }
         }
     }
 
     public void HeaveCheck(int combo)
     {
-        if (combo >= 5) SteamAchievements.UnlockAchievement("TRI_HEAVE");
+        if (combo >= 5 && steamBuild) SteamAchievements.UnlockAchievement("TRI_HEAVE");
     }
 
     public void SpreadCheck(int hitTris)
     {
-        if (hitTris >= 3) SteamAchievements.UnlockAchievement("TRI_SPREAD");
+        if (hitTris >= 3 && steamBuild) SteamAchievements.UnlockAchievement("TRI_SPREAD");
     }
 
     public void HomingCheck(int combo)
     {
-        if (combo >= 8) SteamAchievements.UnlockAchievement("TRI_HOMING");
+        if (combo >= 8 && steamBuild) SteamAchievements.UnlockAchievement("TRI_HOMING");
     }
 
     public void GiantCheck(float checkSizeX, float currentSizeX)
     {
-        if (currentSizeX >= checkSizeX) SteamAchievements.UnlockAchievement("TRI_GIANT");
+        if (currentSizeX >= checkSizeX && steamBuild) SteamAchievements.UnlockAchievement("TRI_GIANT");
     }
 
     public void RicochetCheck(int combo)
     {
-        if (combo >= 6) SteamAchievements.UnlockAchievement("TRI_RICOCHET");
+        if (combo >= 6 && steamBuild) SteamAchievements.UnlockAchievement("TRI_RICOCHET");
     }
 
     public void StackedCheck(int comboScore)
     {
-        if (comboScore >= 3000) SteamAchievements.UnlockAchievement("TRI_STACKED");
+        if (comboScore >= 3000 && steamBuild) SteamAchievements.UnlockAchievement("TRI_STACKED");
     }
 
     #endregion

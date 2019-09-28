@@ -43,10 +43,7 @@ public class ScoreText : MonoBehaviour {
 
     public void SetHighScore()
     {
-        if (currentScore > ReadWriteSaveManager.Instance.GetData("HighScore", 0))
-        {
-            ReadWriteSaveManager.Instance.SetData("HighScore", 0, true);
-            highScoreText.text = "tri.highScore = " + ReadWriteSaveManager.Instance.GetData("HighScore", 0).ToString() + ";";
-        }
+        if (currentScore > ReadWriteSaveManager.Instance.GetData("HighScore", 0)) ReadWriteSaveManager.Instance.SetData("HighScore", currentScore, true);
+        highScoreText.text = "tri.highScore = " + ReadWriteSaveManager.Instance.GetData("HighScore", 0).ToString() + ";";
     }
 }

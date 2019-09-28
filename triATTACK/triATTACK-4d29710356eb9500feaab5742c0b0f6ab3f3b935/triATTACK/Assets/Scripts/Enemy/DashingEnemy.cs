@@ -6,6 +6,7 @@ public class DashingEnemy : MonoBehaviour
 {
     [SerializeField] int startSpeed;
     [SerializeField] int addSpeed;
+    [SerializeField] int speedCap;
     int currentSpeed = 0;
     int addScore = 0;
 
@@ -68,6 +69,7 @@ public class DashingEnemy : MonoBehaviour
         anim.SetTrigger("IndicateDash");
         yield return new WaitForSeconds(.5f);
         anim.SetTrigger("Dash");
+        AudioManager.Instance.Play("EnemyShoot");
         isDashing = true;
         if (hasJustSpawned)
         {
@@ -79,7 +81,7 @@ public class DashingEnemy : MonoBehaviour
             addScore += 100;
             currentSpeed += addSpeed;
         }
-        if (currentSpeed < 42) Invoke("AddSpeed", 4.5f);
+        if (currentSpeed < speedCap) Invoke("AddSpeed", 4.5f);
     }
 
     public int GetAddScore()

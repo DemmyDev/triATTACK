@@ -52,7 +52,7 @@ PolygonCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -101,7 +101,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startSpeed: 12
-  addSpeed: 6
+  addSpeed: 4
+  speedCap: 24
   shakeIntensity: 0.5
   shakeDuration: 0.1
   dashingParticlePrefab: {fileID: 4313504409584924, guid: a621eec26755bb749871c0140b6c3db3,

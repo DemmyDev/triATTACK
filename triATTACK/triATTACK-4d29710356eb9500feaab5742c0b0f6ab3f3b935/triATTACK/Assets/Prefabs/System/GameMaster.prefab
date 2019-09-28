@@ -53,4 +53,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 4223845747557416, guid: 3b7af739aea3aa34a8e464c11d2d032c, type: 2}
   health: 3
-  playerHealth: 3
+  steamBuild: 1
