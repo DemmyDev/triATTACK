@@ -1,20 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class OpenOptions : MonoBehaviour
+public class OptionsToMenu : MonoBehaviour
 {
     [SerializeField] GameObject plainText;
     [SerializeField] Transform hitParticle;
     [SerializeField] GameObject optionsMenu;
     ScreenShake shake;
 
-    GameObject playButton;
+    [SerializeField] GameObject playButton;
 
     void Start()
     {
-        playButton = transform.parent.gameObject;
         shake = Camera.main.GetComponent<ScreenShake>();
     }
 
@@ -26,9 +24,9 @@ public class OpenOptions : MonoBehaviour
             AudioManager.Instance.Play("TextEnter");
             Instantiate(hitParticle, transform.position, Quaternion.identity);
 
-            plainText.SetActive(false);
-            optionsMenu.SetActive(true);
-            playButton.gameObject.SetActive(false);
+            plainText.SetActive(true);
+            playButton.gameObject.SetActive(true);
+            optionsMenu.SetActive(false);
         }
     }
 }
