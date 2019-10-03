@@ -76,12 +76,6 @@ public class SpongeCollision : MonoBehaviour
     {
         if (other.CompareTag("Enemy"))
         {
-            GameMaster.Instance.ChangeBackColor(colorNum);
-            if (colorNum < .35f)
-            {
-                colorNum += .05f;
-            }
-
             IncreaseScale();
 
             GameMaster.Instance.Freeze(freezeDuration);
@@ -90,8 +84,17 @@ public class SpongeCollision : MonoBehaviour
                 freezeDuration += addFreezeDuration;
             }
 
-            var flashInst = Instantiate(flashObj, other.transform.position, Quaternion.identity);
-            Destroy(flashInst.gameObject, .25f);
+            if (ReadWriteSaveManager.Instance.GetData("CanFlash", true, false))
+            {
+                var flashInst = Instantiate(flashObj, other.transform.position, Quaternion.identity);
+                Destroy(flashInst.gameObject, .25f);
+
+                GameMaster.Instance.ChangeBackColor(colorNum);
+                if (colorNum < .35f)
+                {
+                    colorNum += .05f;
+                }
+            }
 
             AudioManager.Instance.Play("EnemyHit", pitch);
             pitch += .05f;
@@ -100,9 +103,6 @@ public class SpongeCollision : MonoBehaviour
             ShootingEnemy shootingEnemy = other.gameObject.GetComponent<ShootingEnemy>();
             SittingEnemy sittingEnemy = other.gameObject.GetComponent<SittingEnemy>();
             DashingEnemy dashingEnemy = other.gameObject.GetComponent<DashingEnemy>();
-
-            Vector3 bulletPos = gameObject.transform.position;
-            Quaternion bulletRot = gameObject.transform.rotation;
 
             if (homingEnemy)
             {

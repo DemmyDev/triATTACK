@@ -271,7 +271,7 @@ MonoBehaviour:
   - {fileID: 4846742299349750, guid: 5da4b853a7fcd464bb81277d944a4ea9, type: 2}
   - {fileID: 4645033946684348, guid: 6aa3c5673ad95884a96eef44dcc97f11, type: 2}
   - {fileID: 4223699293078590, guid: 82f816e496653fc4aaa90cb7d6b6c6c1, type: 2}
-  bullets: 5
+  bullets: 0
   firePoint: {fileID: 0}
   shakeIntensity: 0.15
   shakeDuration: 0.1
