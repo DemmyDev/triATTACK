@@ -38,7 +38,7 @@ public class CountdownToStart : MonoBehaviour {
             text.text = "tri.Begin();";
             GameMaster.Instance.StartGame();
             Invoke("FadeOut", 1f);
-            Invoke("StartMusic", .5f);
+            if (ReadWriteSaveManager.Instance.GetData("MusicOn", true, false)) Invoke("StartMusic", .5f);
         }
     }
 

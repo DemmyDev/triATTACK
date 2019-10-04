@@ -11,7 +11,7 @@ public class MainMenu: MonoBehaviour {
     void Start()
     {
         ReadWriteSaveManager.Instance.SetData("BulletType", 0, true);
-        AudioManager.Instance.Play("MusicMenu");
+        if (ReadWriteSaveManager.Instance.GetData("MusicOn", true, false)) AudioManager.Instance.Play("MusicMenu");
         anim = fadeObj.GetComponent<Animation>();
         if (wipeData) ReadWriteSaveManager.Instance.Wipe();
     }
