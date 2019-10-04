@@ -23,7 +23,7 @@ public class Crosshair : MonoBehaviour
         {
             isUsingController = true;
             // Follow bullet functionality
-            if (PlayerPrefs.GetInt("BulletType") == 2)
+            if (ReadWriteSaveManager.Instance.GetData("BulletType", 0, false) == 2)
             {
                 Vector2 moveVelocity = new Vector2(Input.GetAxisRaw("AimHorizontal"), Input.GetAxisRaw("AimVertical")) * followSpeed;
                 transform.Translate(moveVelocity);
