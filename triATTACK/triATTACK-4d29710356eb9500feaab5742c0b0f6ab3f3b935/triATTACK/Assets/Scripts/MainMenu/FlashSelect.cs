@@ -11,12 +11,20 @@ public class FlashSelect : MonoBehaviour
     BoxCollider2D col;
     Text text;
     ScreenShake shake;
+    PlayerShooting player;
 
     void Start ()
     {
         col = GetComponent<BoxCollider2D>();
         text = GetComponent<Text>();
         shake = Camera.main.GetComponent<ScreenShake>();
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerShooting>();
+    }
+
+    public void CheckOption()
+    {
+        col = GetComponent<BoxCollider2D>();
+        text = GetComponent<Text>();
 
         if (toggleFlash == ReadWriteSaveManager.Instance.GetData("CanFlash", true, false))
         {
@@ -28,12 +36,13 @@ public class FlashSelect : MonoBehaviour
             col.enabled = true;
             text.CrossFadeAlpha(1f, 0f, true);
         }
-	}
+    }
 
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("TriBullet"))
         {
+            player.ForceRecall();
             ReadWriteSaveManager.Instance.SetData("CanFlash", toggleFlash, true);
             col.enabled = false;
             text.CrossFadeAlpha(.25f, 0f, true);

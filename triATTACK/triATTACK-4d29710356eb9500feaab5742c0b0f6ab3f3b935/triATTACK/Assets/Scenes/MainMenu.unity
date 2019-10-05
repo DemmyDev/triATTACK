@@ -774,7 +774,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71c444d0313700e4680061ed7e9c4ec9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  highScoreObj: {fileID: 0}
+  highScoreObj: {fileID: 1317986106}
 --- !u!1 &406549641
 GameObject:
   m_ObjectHideFlags: 0
@@ -857,7 +857,7 @@ MonoBehaviour:
   selectUI: {fileID: 1270570451}
   hitParticle: {fileID: 4313504409584924, guid: 7adbae7371eae9b48941a615262f8a52,
     type: 2}
-  playtesting: 1
+  playtesting: 0
 --- !u!114 &406549645
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2575,7 +2575,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1317986107
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2591,7 +2591,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -20, y: 100}
+  m_AnchoredPosition: {x: -20, y: 300}
   m_SizeDelta: {x: 800, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1317986108
@@ -3434,6 +3434,17 @@ MonoBehaviour:
   hitParticle: {fileID: 4313504409584924, guid: 7adbae7371eae9b48941a615262f8a52,
     type: 2}
   optionsMenu: {fileID: 501982695}
+  flashSelectors:
+  - {fileID: 1914045132}
+  - {fileID: 1114275896}
+  volumeSelectors:
+  - {fileID: 165701966}
+  - {fileID: 695915501}
+  - {fileID: 1755148916}
+  - {fileID: 1621971282}
+  musicSelectors:
+  - {fileID: 420462626}
+  - {fileID: 522989237}
 --- !u!1 &1755148913
 GameObject:
   m_ObjectHideFlags: 0

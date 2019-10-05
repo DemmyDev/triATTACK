@@ -26,8 +26,8 @@ public class BounceBullet : MonoBehaviour
         direction = new Vector2(transform.up.x, transform.up.y);
         shootSpeed = bulletSpeed;
         AudioManager.Instance.Play("PlayerShoot");
-        anim = GameObject.Find("Anim").GetComponent<Animation>(); ;
-        spriteObj = GameObject.Find("Sprite").GetComponent<Transform>(); ;
+        anim = GameObject.Find("Anim").GetComponent<Animation>();
+        spriteObj = GameObject.Find("Sprite").GetComponent<Transform>();
         isRecalling = false;
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         rb = gameObject.GetComponent<Rigidbody2D>();
@@ -57,6 +57,8 @@ public class BounceBullet : MonoBehaviour
             spriteObj.Rotate(Vector3.forward * Time.deltaTime * rotateSpeed);
             transform.position = Vector2.MoveTowards(transform.position, target.position, bulletSpeed * 2f * Time.deltaTime);
         }
+
+        if (target.transform.position == transform.position && isRecalling) spriteObj.GetComponent<BounceCollision>().PlayerCollide(target.GetComponent<PlayerShooting>());
     }
 
     void ScreenWrap()

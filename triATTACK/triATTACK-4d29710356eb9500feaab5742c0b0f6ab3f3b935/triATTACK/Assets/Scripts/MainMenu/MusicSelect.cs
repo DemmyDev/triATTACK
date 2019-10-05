@@ -11,12 +11,20 @@ public class MusicSelect : MonoBehaviour
     BoxCollider2D col;
     Text text;
     ScreenShake shake;
+    PlayerShooting player;
 
     void Start()
     {
         col = GetComponent<BoxCollider2D>();
         text = GetComponent<Text>();
         shake = Camera.main.GetComponent<ScreenShake>();
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerShooting>();
+    }
+
+    public void CheckOption()
+    {
+        col = GetComponent<BoxCollider2D>();
+        text = GetComponent<Text>();
 
         if (toggleMusic == ReadWriteSaveManager.Instance.GetData("MusicOn", true, false))
         {
@@ -34,6 +42,7 @@ public class MusicSelect : MonoBehaviour
     {
         if (other.CompareTag("TriBullet"))
         {
+            player.ForceRecall();
             ReadWriteSaveManager.Instance.SetData("MusicOn", toggleMusic, true);
             col.enabled = false;
             text.CrossFadeAlpha(.25f, 0f, true);

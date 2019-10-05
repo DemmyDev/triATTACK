@@ -61,6 +61,17 @@ public class BounceCollision : MonoBehaviour
         }
     }
 
+    public void PlayerCollide(PlayerShooting player)
+    {
+        if (player.isRecalling || player.canRecall)
+        {
+            shake.Shake(shakeDuration, shakeIntensity);
+            AudioManager.Instance.Play("PlayerTriHit");
+            player.BulletHit();
+            Destroy(parentBul.gameObject);
+        }
+    }
+
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Enemy"))
@@ -137,14 +148,7 @@ public class BounceCollision : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             PlayerShooting playerShooting = other.GetComponent<PlayerShooting>();
-
-            if (playerShooting.isRecalling || playerShooting.canRecall)
-            {
-                shake.Shake(shakeDuration, shakeIntensity);
-                AudioManager.Instance.Play("PlayerTriHit");
-                playerShooting.BulletHit();
-                Destroy(parentBul.gameObject);
-            }
+            PlayerCollide(playerShooting);
         }
     }
 }

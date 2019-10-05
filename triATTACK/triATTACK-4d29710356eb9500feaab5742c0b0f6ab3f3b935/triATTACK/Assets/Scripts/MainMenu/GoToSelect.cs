@@ -16,6 +16,7 @@ public class GoToSelect : MonoBehaviour
     MainMenu mainMenu;
 
     [SerializeField] bool playtesting;
+    PlayerShooting player;
 
     void Start()
     {
@@ -23,12 +24,14 @@ public class GoToSelect : MonoBehaviour
         shake = Camera.main.GetComponent<ScreenShake>();
         col = GetComponent<BoxCollider2D>();
         playText = GetComponent<Text>();
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerShooting>();
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("TriBullet"))
         {
+            player.ForceRecall();
             shake.Shake(.1f, .5f);
             AudioManager.Instance.Play("TextEnter");
             Instantiate(hitParticle, transform.position, Quaternion.identity);

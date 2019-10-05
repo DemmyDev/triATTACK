@@ -74,6 +74,16 @@ public class PlayerShooting : MonoBehaviour
         }
     }
 
+    public void ForceRecall()
+    {
+        if (!isRecalling)
+        {
+            FindBullet();
+            canRecall = false;
+            isRecalling = true;
+        }
+    }
+
     void Shoot()
     {
         instBullet = Instantiate(bulletPrefabs[(int)bullets], firePoint.position, gameObject.transform.rotation);
@@ -111,7 +121,7 @@ public class PlayerShooting : MonoBehaviour
 
     void CanRecall()
     {
-        canRecall = true;
+        if (hasShot) canRecall = true;
     }
 
     void CanShoot()

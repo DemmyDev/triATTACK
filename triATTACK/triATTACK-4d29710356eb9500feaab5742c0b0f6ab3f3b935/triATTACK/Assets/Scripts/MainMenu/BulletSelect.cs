@@ -7,14 +7,17 @@ public class BulletSelect : MonoBehaviour {
 
     [SerializeField] Text[] selectButtons;
     [SerializeField] GameObject startButton;
+    PlayerShooting player;
 
     void Start()
     {
         startButton.SetActive(false);
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerShooting>();
     }
 
     public void SelectBullet(int bulletNum)
     {
+        player.ForceRecall();
         ReadWriteSaveManager.Instance.SetData("BulletType", bulletNum, true);
         CheckUI();
         selectButtons[bulletNum].gameObject.GetComponent<Selector>().DisableCollider();
