@@ -152,7 +152,7 @@ MonoBehaviour:
     playOnAwake: 0
   - name: MusicGame
     clip: {fileID: 8300000, guid: 3f8546dd31457274696ae096607a4aba, type: 3}
-    volume: 0.125
+    volume: 0.2
     pitch: 1
     source: {fileID: 0}
     loop: 1
